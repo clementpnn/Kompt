@@ -1,32 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { atom, useAtom } from 'jotai'
+
+const base = atom(0)
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useAtom(base)
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <>
+      <div className='card w-96 bg-base-100 shadow-xl'>
+        <figure><img src='https://placeimg.com/400/225/arch' alt='Shoes' /></figure>
+        <div className='card-body'>
+          <h2 className='card-title'>Shoes!</h2>
+          <p>If a dog chews shoes whose shoes does he choose?</p>
+          <div className='card-actions justify-end'>
+            <button className='btn btn-primary'>Buy Now</button>
+          </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+
+      <div className='rating rating-lg'>
+        <input type='radio' name='rating-9' className='rating-hidden' />
+        <input type='radio' name='rating-9' className='mask mask-star-2' />
+        <input type='radio' name='rating-9' className='mask mask-star-2' checked />
+        <input type='radio' name='rating-9' className='mask mask-star-2' />
+        <input type='radio' name='rating-9' className='mask mask-star-2' />
+        <input type='radio' name='rating-9' className='mask mask-star-2' />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+
+      <button className='btn btn-secondary block' onClick={() => setCount((count) => count + 1)}>
+        count is {count}
+      </button>
+
+      <div className="alert alert-success shadow-lg">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <span>Your purchase has been confirmed!</span>
+        </div>
+      </div>
+    </>
   )
 }
 
