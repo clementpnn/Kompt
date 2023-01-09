@@ -1,9 +1,11 @@
 import { atom, useAtom } from 'jotai'
+import { useBooleanStore } from './stores/booleanToggles'
 
 const base = atom(0)
 
 function App() {
   const [count, setCount] = useAtom(base)
+  const { isTrue, toggle } = useBooleanStore();
 
   return (
     <>
@@ -29,6 +31,10 @@ function App() {
 
       <button className='btn btn-secondary block' onClick={() => setCount((count) => count + 1)}>
         count is {count}
+      </button>
+
+      <button className='btn btn-accent' onClick={toggle}>
+        is true {isTrue ? 'yes' : 'no'}
       </button>
 
       <div className="alert alert-success shadow-lg">
