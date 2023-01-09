@@ -3,7 +3,7 @@ import { useBooleanStore } from './stores/booleanToggles'
 
 const base = atom(0)
 
-function App() {
+export default function App() {
   const [count, setCount] = useAtom(base)
   const { isTrue, toggle } = useBooleanStore();
 
@@ -46,5 +46,3 @@ function App() {
     </>
   )
 }
-
-export default App
