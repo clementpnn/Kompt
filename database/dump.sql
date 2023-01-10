@@ -23,11 +23,8 @@ CREATE TABLE IF NOT EXIST expenses (
   id UUID PRIMARY KEY DEFAULT uuid-generate-v4(),
   date DATE NOT NULL,
   amount REAL NOT NULL,
---   pas obligatoire
-  refund_percentage REAL NOT NULL DEFAULT 0, 
-  refund_amount REAL NOT NULL DEFAULT 0,
-  
-  number_sender INTEGER NOT NULL,
+  payers UUID[] NOT NULL,
+  payers_amount REAL NOT NULL,
   user_id UUID NOT NULL,
   collocation_id UUID NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users (id),
