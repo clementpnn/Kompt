@@ -3,4 +3,11 @@ interface State {
     toggle: () => void
 }
 
-export type { State }
+interface FormValues {
+    name: string;
+    email: string;
+    password: string;
+  };
+  
+
+export type { State, FormValues }
