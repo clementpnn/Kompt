@@ -10,6 +10,7 @@ export default function App() {
       <input {...register('name')} />
       <input type='email' {...register('email')} />
       <input {...register('password')} />
+      <input {...register('passwordConfirm')} />
 
       <input type='submit' />
     </form>
