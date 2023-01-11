@@ -9,6 +9,12 @@ interface FormValues {
     password: string;
     passwordConfirm: string;
   };
-  
 
-export type { State, FormValues }
+interface ButtonInterface {
+  text: string;
+  style: string;
+  color: string;
+  icon: string;
+}
+
+export type { State, FormValues, ButtonInterface }
