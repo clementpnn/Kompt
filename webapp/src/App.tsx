@@ -1,18 +1,29 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { FormValues } from './interfaces/interfaces'
+import { Routes, Route, Outlet, Link } from "react-router-dom";
+
+import Login from './routes/login'
+import Register from './routes/register'
+import Layout from './components/navbar'
+import Coucou from './components/test'
+
 
 export default function App() {
-  const { register, handleSubmit } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = data => console.log(data);
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register('name')} />
-      <input type='email' {...register('email')} />
-      <input {...register('password')} />
-      <input {...register('passwordConfirm')} />
+    <div>
 
-      <input type='submit' />
-    </form>
+      <Routes>
+
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        <Route path="/" element={<Layout />}>
+          <Route path="/test" element={<Coucou />} />
+        </Route>
+
+      </Routes>
+
+    </div>
   )
 }
+
+
