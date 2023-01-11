@@ -15,11 +15,10 @@ All commands are run from the root of the project, from a terminal:
 
 | Command                                                           | Action                              |
 | :---------------------------------------------------------------- | :---------------------------------- |
-| `docker compose up -d`                                            | Create Docker container (in server) |
-| `docker compose down`                                             | Delete Docker container (in server) |
-| `cd backend && composer dump-autoload`                                | Install  autoload (in server)       |
-| `pnpm i`                                                          | Install  dependencies (in client)   |
-| `pnpm dev`                                                        | Start Front End (in client)         |
+| `pnpm i`                                                          | Install  dependencies               |
+| `pnpm dev`                                                        | Start project                       |
+| `pnpm down`                                                       | Delete Docker container             |
+| `pnpm composer`                                                   | Install  comperser                  |
 
 ## 🔥 Start project
  
