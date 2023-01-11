@@ -1,5 +1,6 @@
 
 export default function Button({text, style, color, icon}:{text: string, style: string, color:string, icon?: string}) {
+
     function buttonContent(){
         if(icon == undefined){
             return text
@@ -13,12 +14,12 @@ export default function Button({text, style, color, icon}:{text: string, style: 
         }
     }
     let button;
-    if(style=="fill"){
-        button = <button className={`btn btn-${color} text-white`}>
+    if(style=="fill" && color=="primary"){
+        button = <button className="btn btn-primary text-white">
             {buttonContent()}
         </button>
-    } else if(style=="outline"){
-        button = <button className={`btn btn-${style} btn-${color}`}>
+    } else if(style=="outline" && color=="primary" && style=="outline"){
+        button = <button className="btn btn-outline btn-primary">
             {buttonContent()}
         </button>
     } else if(style=="undefined"){
