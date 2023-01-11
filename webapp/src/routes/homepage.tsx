@@ -17,7 +17,7 @@ function HomeNotLog() {
       <p className="text-center">Créez un compte ou connectez-vous pour accéder à l'application</p>
       {/* <br/> */}
       {/* <Badge state={"success"}/><br/><br/>
-      <Badge state={"processing"}/> */}
+      <Badge state={"processing"}/> */} 
     </div>
 )
 
