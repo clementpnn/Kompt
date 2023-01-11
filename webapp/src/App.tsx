@@ -3,7 +3,7 @@ import { Routes, Route, Outlet, Link } from "react-router-dom";
 
 import Login from './routes/login'
 import Register from './routes/register'
-import Layout from './components/navbar'
+import Navbar from './components/navbar'
 import Coucou from './components/test'
 
 
@@ -13,11 +13,12 @@ export default function App() {
 
       <Routes>
 
+        
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        <Route path="/" element={<Layout />}>
-          <Route path="/test" element={<Coucou />} />
+        <Route path="/" element={<Navbar />}>
+          <Route path="/homepage" element={<Coucou />} />
         </Route>
 
       </Routes>
