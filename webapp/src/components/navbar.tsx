@@ -1,31 +1,27 @@
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 
-const Layout = () => {
+const Navbar = () => {
     return (
         <div>
         {/* A "layout route" is a good place to put markup you want to
             share across all the pages on your site, like navigation. */}
             <nav>
-                <ul>
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/about">About</Link>
-                    </li>
-                    <li>
-                        <Link to="/dashboard">Dashboard</Link>
-                    </li>
-                    <li>
-                        <Link to="/nothing-here">Nothing Here</Link>
-                    </li>
-                </ul>
+                <div>
+                    <Link to="/">Kompt</Link>
+                </div>
+                <div>
+                    <button>Join Group</button>
+                    <button>Create Group</button>
+                </div>
+                {/* <div>
+                    <p>Profil</p>
+                </div> */}
+
             </nav>
     
-            <hr />
             <Outlet />
         </div>
     );
 }
 
-export default Layout
+export default Navbar

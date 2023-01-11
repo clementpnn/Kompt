@@ -10,6 +10,7 @@ export default function Register() {
         <p>Create account</p>
 
         <form onSubmit={handleSubmit(onSubmit)}>
+          
           <input placeholder="name" {...register('name')}/>
           <input placeholder="email" type='email' {...register('email')} />
           <input placeholder="password" {...register('password')} />
