@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "docker compose up -d && cd webapp && vite",
     "down": "docker compose down",
-    "composer": "cd backend && composer dump-autoload",
+    "composer": "cd backend && composer dump-autoload && composer install",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },

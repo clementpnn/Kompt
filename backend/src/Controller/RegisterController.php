@@ -8,6 +8,7 @@ use App\Framework\Factory\PDOFactory;
 use App\Manager\UserManager;
 use App\Entity\User;
 use App\Service\JWTHelper;
+use Ramsey\Uuid\Uuid;
 
 class RegisterController extends BaseController
 {
@@ -32,10 +33,13 @@ class RegisterController extends BaseController
             echo "This email is already taken";
             exit;
         }
+        
+        $uuid = Uuid::uuid4();
 
         $hash_password = $userManager->hash_password($data['password']);
 
         $user = new User();
+        $user->setId($uuid);
         $user->setName($data['name']);
         $user->setEmail($data['email']);
         $user->setPassword($hash_password);

@@ -8,23 +8,23 @@ use App\Framework\Entity\BaseManager;
 class UserManager extends BaseManager
 {
 
-    // /**
-    //  * @param string $email
-    //  * @return ?User
-    //  */
-    // public function getByMail(string $email): ?User
-    // {
-    //     $query = $this->pdo->prepare("SELECT * FROM User WHERE email = :email");
-    //     $query->bindValue("email", $email, \PDO::PARAM_STR);
-    //     $query->execute();
-    //     $data = $query->fetch(\PDO::FETCH_ASSOC);
+    /**
+     * @param string $email
+     * @return User|NULL
+     */
+    public function getByMail(string $email): User|NULL
+    {
+        $query = $this->pdo->prepare("SELECT id FROM users WHERE email = :email");
+        $query->bindValue("email", $email, \PDO::PARAM_STR);
+        $query->execute();
+        $data = $query->fetch(\PDO::FETCH_ASSOC);
 
-    //     if ($data) {
-    //         return new User($data);
-    //     }
+        if ($data) {
+            return new User($data);
+        }
 
-    //     return null;
-    // }
+        return null;
+    }
 
     // public function getPwd(string $email)
     // {
@@ -56,7 +56,6 @@ class UserManager extends BaseManager
         $expenseInfo = $query->fetchAll(\PDO::FETCH_ASSOC);
         return $expenseInfo;
     }
-
 
      /**
      * @param $user
@@ -147,8 +146,9 @@ class UserManager extends BaseManager
      */
     public function insertUser(User $user): void
     {
-        $query = $this->pdo->prepare("INSERT INTO users (name, email, password) VALUES (:username, :email, :password)");
-        $query->bindValue("username", $user->getName(), \PDO::PARAM_STR);
+        $query = $this->pdo->prepare("INSERT INTO users (id, name, email, password) VALUES (:id, :name, :email, :password)");
+        $query->bindValue("id", $user->getId(), \PDO::PARAM_STR);
+        $query->bindValue("name", $user->getName(), \PDO::PARAM_STR);
         $query->bindValue("email", $user->getEmail(), \PDO::PARAM_STR);
         $query->bindValue("password", $user->getPassword(), \PDO::PARAM_STR);
         $query->execute();
