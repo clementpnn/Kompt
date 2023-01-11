@@ -4,7 +4,7 @@ import { Routes, Route, Outlet, Link } from "react-router-dom";
 import Login from './routes/login'
 import Register from './routes/register'
 import Navbar from './components/navbar'
-import Coucou from './components/test'
+import Homepage from './routes/homepage'
 
 
 export default function App() {
@@ -18,7 +18,7 @@ export default function App() {
         <Route path="/register" element={<Register />} />
 
         <Route path="/" element={<Navbar />}>
-          <Route path="/homepage" element={<Coucou />} />
+          <Route path="/homepage" element={<Homepage />} />
         </Route>
 
       </Routes>
