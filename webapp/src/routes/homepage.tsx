@@ -15,9 +15,9 @@ function HomeNotLog() {
     <div className="pt-20 bg-stone-100 h-screen flex justify-center items-center flex flex-col">
       <p className="text-center">Bienvenue sur Kompt</p>
       <p className="text-center">Créez un compte ou connectez-vous pour accéder à l'application</p>
-      {/* <br/> */}
-      {/* <Badge state={"success"}/><br/><br/>
-      <Badge state={"processing"}/> */} 
+      <br/>
+      <Badge state={"success"}/><br/><br/>
+      <Badge state={"processing"}/> 
     </div>
 )
 
