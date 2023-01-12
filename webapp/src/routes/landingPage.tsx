@@ -2,6 +2,7 @@
 import Table from "../components/table"
 import HeaderGroup from '../components/headerGroup'
 import HeaderUser from "../components/headerUser"
+import { Outlet } from "react-router-dom"
 
 
 export default function Landing() {
