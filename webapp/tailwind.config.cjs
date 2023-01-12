@@ -18,12 +18,10 @@ module.exports = {
           800: '#424242',
           900: '#424242'
         }
-        
-
+    
       },
       fontFamily: {
-        sans: ['Graphik', 'sans-serif'],
-        serif: ['Merriweather', 'serif'],
+        sans: ['Open Sans', 'sans-serif']
       },
       }
     },

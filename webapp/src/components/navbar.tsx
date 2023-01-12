@@ -1,6 +1,20 @@
 import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { ButtonInterface } from "../interfaces/interfaces";
+import Button from '../components/button/button';
 
 const Navbar = () => {
+    const buttonJoin : ButtonInterface = {
+        text : "Join Group",
+        style: "outline",
+        color: "primary",
+        icon: undefined
+    }
+    const buttonCreate : ButtonInterface = {
+        text : "Create Group",
+        style: "fill",
+        color: "primary",
+        icon: undefined
+    }
     return (
         <div>
         {/* A "layout route" is a good place to put markup you want to
@@ -10,15 +24,11 @@ const Navbar = () => {
                     <Link to="/">Kompt</Link>
                 </div>
                 <div>
-                    <button>Join Group</button>
-                    <button>Create Group</button>
+                    <Button props={buttonJoin} />
+                    <Button props={buttonCreate} />
                 </div>
-                {/* <div>
-                    <p>Profil</p>
-                </div> */}
 
             </nav>
-    
             <Outlet />
         </div>
     );

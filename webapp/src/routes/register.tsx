@@ -8,12 +8,13 @@ export default function Register() {
     const onSubmit: SubmitHandler<FormValues> = data => console.log(data);
 
 
-    const button : ButtonInterface = {
+    const buttonRegister : ButtonInterface = {
       text: "je teste encore",
       style: "fill",
       color: "primary",
       icon: backPrimary
     }
+
 
     return (
       <div>
@@ -27,7 +28,7 @@ export default function Register() {
 
           <input type='submit' />
         </form>
-        <p>Already have an account ? <a href="/login"><Button text={button.text} style={button.style} color={button.color} icon={button.icon}/></a></p>
+        <p>Already have an account ? <a href="/login"><Button props={buttonRegister}/></a></p>
 
       </div>
     )
