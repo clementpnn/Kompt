@@ -1,4 +1,4 @@
-import { ButtonInterface } from '../../interfaces/interfaces'
+import { ButtonInterface } from '../interfaces/interfaces'
 
 export default function Button({props} : {props : ButtonInterface}) {
     // {text, style, color, icon}:{text: string, style: string, color:string, icon?: string}

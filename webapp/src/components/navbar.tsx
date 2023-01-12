@@ -2,6 +2,7 @@ import { Routes, Route, Outlet, Link } from "react-router-dom";
 import {ReactComponent as Menu} from '../assets/icon/menu.svg';
 import Badge from './badge'
 
+
 function NavbarLog() {
     return (
         <>

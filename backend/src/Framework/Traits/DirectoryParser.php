@@ -29,6 +29,9 @@ trait DirectoryParser
                         $extension = '.' . pathinfo($realPath)["extension"];
                         $dirnameReplacedByNamespace = str_replace($dir, $namespace, $path);
                         $withBackSlash = str_replace('/', '\\', $dirnameReplacedByNamespace);
+
+                        if ($extension === '.DS_Store') continue;
+
                         $results[] = str_replace($extension, '', $withBackSlash);
                     }
                 }
