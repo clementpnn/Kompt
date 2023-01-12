@@ -8,13 +8,6 @@ export default function Register() {
   const onSubmit: SubmitHandler<FormValues> = data => console.log(data);
 
 
-    // const button : ButtonInterface = {
-    //   text: "je teste encore",
-    //   style: "fill",
-    //   color: "primary",
-    //   icon: backPrimary
-    // }
-
   return (
     <div className="flex justify-center h-screen items-center">
       <div className="w-1/3 h-screen flex flex-col place-content-evenly">

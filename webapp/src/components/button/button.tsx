@@ -1,35 +1,36 @@
+import { ButtonInterface } from '../../interfaces/interfaces'
 
-export default function Button({text, style, color, icon}:{text: string, style: string, color:string, icon?: string}) {
-
+export default function Button({props} : {props : ButtonInterface}) {
+    // {text, style, color, icon}:{text: string, style: string, color:string, icon?: string}
     function buttonContent(){
-        if(icon == undefined){
-            return text
+        if(props.icon == undefined){
+            return props.text
         } else {
             return (
                 <>
-                    <img className="pr-2" src={icon} alt="icon button" />
-                    {text}
+                    <img className="pr-2" src={props.icon} alt="icon button" />
+                    {props.text}
                 </>
             )
         }
     }
-    let button;
-    if(style=="fill" && color=="primary"){
-        button = <button className="btn btn-primary text-white">
+    let balise;
+    if(props.style=="fill" && props.color=="primary"){
+        balise = <button className="btn btn-primary font-os text-paragraph text-white">
             {buttonContent()}
         </button>
-    } else if(style=="outline" && color=="primary" && style=="outline"){
-        button = <button className="btn btn-outline btn-primary">
+    } else if(props.style=="outline" && props.color=="primary" && props.style=="outline"){
+        balise = <button className="btn btn-outline btn-primary font-os text-paragraph">
             {buttonContent()}
         </button>
-    } else if(style=="undefined"){
-        button = <button className={"btn btn-secondary text-neutral-600"} >
+    } else if(props.style=="undefined"){
+        balise = <button className={"btn btn-secondary text-neutral-600 font-os text-paragraph"} >
             {buttonContent()}
         </button>
     }
     return (
         <>
-            {button}      
+            {balise}      
         </>
     );
 }

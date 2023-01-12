@@ -14,7 +14,7 @@ interface ButtonInterface {
   text: string;
   style: string;
   color: string;
-  icon: string;
+  icon: string | undefined;
 }
 
 export type { State, FormValues, ButtonInterface }
