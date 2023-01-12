@@ -1,22 +1,53 @@
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 
-// import Logout from '../assets/icon/logout.svg'
+import {ReactComponent as User} from '../assets/icon/user.svg';
+import { ButtonInterface } from "../interfaces/interfaces";
+import Button from "./button/button";
 
 
 
 export default function HeaderGroup({groupName, groupId, groupMemberNumber}:{groupName: string, groupId: number, groupMemberNumber:number}) {
+    const buttonInvite : ButtonInterface = {
+        text: 'Invite',
+        style: 'outline',
+        color: 'primary',
+        icon: undefined 
+    }
+    const buttonCreate : ButtonInterface = {
+        text: 'Create refund',
+        style: 'fill',
+        color: 'primary',
+        icon: undefined 
+    }
+    
     return (
-        <div className="px-20 border-b w-full fixed bg-white z-10">
-        
+        <div className="mx-20 pt-40 border-b bg-white">        
             <div className="navbar bg-base-100 p-0">
                 <div className="flex-1">
-                    <Link to="/" className="btn btn-ghost normal-case text-xl">Kompt</Link>
+                    <div className="flex-1 flex flex-col">
+
+                        <p className="text-4xl text-bold">{groupName}</p>
+
+                        <div className="flex my-5">
+                            <div className="flex items-center">
+                                < User />
+                                <p className="text-grey-500 font-bold mx-2.5">{groupMemberNumber}</p>
+                            </div>
+
+                            <p><a className="font-bold ml-2.5 text-primary"href={`/landing/members_group_${groupId}`}>See all members</a></p>
+                        </div>
+
+                    </div>
                 </div>
                 <div className="flex-none">
-                    <button className="btn btn-ghost">Log In</button>
-                    <button className="btn btn-ghost">Sign In</button>
+                    <div className="mr-5">
+                        <Button props={buttonInvite}/>
+                    </div>
+                    <Button props={buttonCreate}/>
+
                 </div>
             </div>
+            <Outlet />
             
         </div>
     )
