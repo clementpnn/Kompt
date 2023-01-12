@@ -21,9 +21,9 @@ export default function Login() {
 
           <form className="form-control w-full" onSubmit={handleSubmit(onSubmit)}>
             <label className="label label-text">
-              <span>Name</span>
+              <span>Email</span>
             </label>
-            <input type="text" placeholder="Enter username" className="input input-bordered w-full" {...register('name')}/>
+            <input type="email" placeholder="Enter email" className="input input-bordered w-full" {...register('email')}/>
 
             <label className="label label-text">
               <span>Password</span>
