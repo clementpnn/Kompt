@@ -1,13 +1,18 @@
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import {ReactComponent as Menu} from '../assets/icon/menu.svg';
 import Badge from './badge'
+import CreateGroupPopup from "./pop-up/createGroupPopup";
+import JoinGroupPopup from "./pop-up/joinGroupPopup";
 
 
 function NavbarLog() {
     return (
         <>
-            <button className="btn btn-ghost">Join Group</button>
-            <button className="btn btn-ghost">Create Group</button>
+            <JoinGroupPopup />
+            <a href="#join_group"><button className="text-base font-bold mr-10">Join Group</button></a>
+            <CreateGroupPopup />
+            <a href="#create_group"><button className="text-base font-bold">Create Group</button></a>
+            
         </>
     )
 }
