@@ -16,15 +16,15 @@ export default function Button({props} : {props : ButtonInterface}) {
     }
     let balise;
     if(props.style=="fill" && props.color=="primary"){
-        balise = <button className="btn btn-primary text-white">
+        balise = <button className="btn btn-primary font-os text-paragraph text-white">
             {buttonContent()}
         </button>
     } else if(props.style=="outline" && props.color=="primary" && props.style=="outline"){
-        balise = <button className="btn btn-outline btn-primary">
+        balise = <button className="btn btn-outline btn-primary font-os text-paragraph">
             {buttonContent()}
         </button>
     } else if(props.style=="undefined"){
-        balise = <button className={"btn btn-secondary text-neutral-600"} >
+        balise = <button className={"btn btn-secondary text-neutral-600 font-os text-paragraph"} >
             {buttonContent()}
         </button>
     }
