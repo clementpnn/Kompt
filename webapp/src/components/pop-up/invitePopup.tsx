@@ -1,5 +1,5 @@
 import { ButtonInterface } from "../../interfaces/interfaces"
-import Button from "../button/button"
+import Button from "../button"
 
 export default function InvitePopup() {
     const buttonInvite : ButtonInterface = {
