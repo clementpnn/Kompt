@@ -1,7 +1,8 @@
 
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { FormValues } from '../interfaces/interfaces'
+import { ButtonInterface, FormValues } from '../interfaces/interfaces'
 import { Routes, Route, Outlet, Link } from "react-router-dom";
+import Button from '../components/button';
 
 
 // import Input from '../components/input'
@@ -26,31 +27,38 @@ export default function Login() {
         .then(json => console.log(json))
     }
     
+    const buttonLogin : ButtonInterface = {
+      text: 'Login',
+      style: 'fill',
+      color: 'primary',
+      icon: undefined 
+    }
 
     return (
       <div className="flex justify-center h-screen items-center">
         <div className="w-1/3 h-screen flex flex-col place-content-evenly">
 
           <div className="flex text-center flex-col">
-            <p className="text-4xl"> Welcome to Kompt ! </p>
+            <p className="font-os text-title3 font-bold"> Welcome to Kompt ! </p>
           </div>
 
-          <form className="form-control w-full" onSubmit={handleSubmit(onSubmit)}>
-            <label className="label label-text">
-              <span>Email</span>
+          <form className="form-control" onSubmit={handleSubmit(onSubmit)}>
+            <label className="label label-text font-bold font-os text-large">
+              Email
             </label>
-            <input type="email" placeholder="Enter email" className="input input-bordered w-full" {...register('email')}/>
+            <input type="email" placeholder="Enter email" className="mb-2 input input-bordered w-full" {...register('email')}/>
 
-            <label className="label label-text">
-              <span>Password</span>
+            <label className="label label-text font-bold font-os text-large">
+              Password
             </label>
-            <input type="password" placeholder="Enter password" className="input input-bordered w-full" {...register('password')}/>
+            <input type="password" placeholder="Enter password" className="mb-10 input input-bordered w-full" {...register('password')}/>
 
-            <button className="btn w-full mt-10 bg-indigo-700 hover:bg-indigo-500 border-none text-white">Log in</button>
+            <Button props={buttonLogin}/>
+            
 
           </form>
-
-          <p>New on Kompt ? <a href="/register" className="font-bold">Sign in</a></p>
+         
+          <p className='font-os text-large'>New on Kompt ? <a href="/register" className="font-os font-bold text-large">Sign up</a></p>
         </div>
       </div>
     )

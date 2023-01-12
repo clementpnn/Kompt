@@ -23,41 +23,47 @@ export default function Register() {
       .then(json => console.log(json))
   }
 
+  const buttonRegister : ButtonInterface = {
+    text: 'Register',
+    style: 'fill',
+    color: 'primary',
+    icon: undefined 
+  }
 
   return (
     <div className="flex justify-center h-screen items-center">
       <div className="w-1/3 h-screen flex flex-col place-content-evenly">
 
         <div className="flex text-center flex-col">
-          <p className="text-4xl"> Welcome to Kompt ! </p>
+          <p className="font-os text-title3 font-bold"> Welcome to Kompt ! </p>
         </div>
 
         <form className="form-control w-full" onSubmit={handleSubmit(onSubmit)}>
-          <label className="label label-text">
-            <span>Name</span>
+          <label className="label label-text font-bold font-os text-large">
+            Name
           </label>
-          <input type="text" placeholder="Enter username" className="input input-bordered w-full" {...register('name')}/>
+          <input type="text" placeholder="Enter username" className="mb-2 input input-bordered w-full" {...register('name')}/>
 
-          <label className="label label-text">
-            <span>Email</span>
+          <label className="label label-text font-bold font-os text-large">
+            Email
           </label>
-          <input type="email" placeholder="Enter email" className="input input-bordered w-full" {...register('name')}/>
+          <input type="email" placeholder="Enter email" className="mb-2 input input-bordered w-full" {...register('name')}/>
 
-          <label className="label label-text">
-            <span>Password</span>
+          <label className="label label-text font-bold font-os text-large">
+            Password
           </label>
-          <input type="password" placeholder="Enter password" className="input input-bordered w-full" {...register('password')}/>
+          <input type="password" placeholder="Enter password" className="mb-2 input input-bordered w-full" {...register('password')}/>
 
-          <label className="label label-text">
-            <span>Confirm password</span>
+          <label className="label label-text font-bold font-os text-large">
+            Confirm password
           </label>
-          <input type="password" placeholder="Confirm password" className="input input-bordered w-full" {...register('passwordConfirm')}/>
+          <input type="password" placeholder="Confirm password" className="mb-10 input input-bordered w-full" {...register('passwordConfirm')}/>
 
-          <button className="btn w-full mt-10 bg-indigo-700 hover:bg-indigo-500 border-none text-white">Log in</button>
+          <Button props={buttonRegister}/>
 
         </form>
 
-        <p>New on Kompt ? <a href="/login" className="font-bold">Log in</a></p>
+        <p className='font-os text-large'>Already have a Kompt account ? <a href="/register" className="font-os font-bold text-large">Sign in</a></p>
       </div>
     </div>
 
