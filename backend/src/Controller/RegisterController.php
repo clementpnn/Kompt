@@ -2,13 +2,12 @@
 
 namespace App\Controller;
 
-use App\Framework\Entity\BaseController;
+use App\Framework\Base\BaseController;
 use App\Framework\Route\Route;
 use App\Framework\Factory\PDOFactory;
 use App\Manager\UserManager;
 use App\Entity\User;
 use App\Service\JWTHelper;
-use Ramsey\Uuid\Uuid;
 
 class RegisterController extends BaseController
 {
@@ -29,17 +28,14 @@ class RegisterController extends BaseController
             exit;
         }
         
-        if ($userManager->verifyMail($data['email'])) {
+        if (!$userManager->verifyMail($data['email'])) {
             echo "This email is already taken";
             exit;
         }
-        
-        $uuid = Uuid::uuid4();
 
         $hash_password = $userManager->hash_password($data['password']);
 
         $user = new User();
-        $user->setId($uuid);
         $user->setName($data['name']);
         $user->setEmail($data['email']);
         $user->setPassword($hash_password);

@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Framework\Entity\BaseEntity;
+use App\Framework\Base\BaseEntity;
 
 class Collocation extends BaseEntity
 {

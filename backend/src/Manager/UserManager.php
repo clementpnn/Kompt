@@ -3,7 +3,7 @@
 namespace App\Manager;
 
 use App\Entity\User;
-use App\Framework\Entity\BaseManager;
+use App\Framework\Base\BaseManager;
 
 class UserManager extends BaseManager
 {
@@ -146,8 +146,7 @@ class UserManager extends BaseManager
      */
     public function insertUser(User $user): void
     {
-        $query = $this->pdo->prepare("INSERT INTO users (id, name, email, password) VALUES (:id, :name, :email, :password)");
-        $query->bindValue("id", $user->getId(), \PDO::PARAM_STR);
+        $query = $this->pdo->prepare("INSERT INTO users (name, email, password) VALUES (:name, :email, :password)");
         $query->bindValue("name", $user->getName(), \PDO::PARAM_STR);
         $query->bindValue("email", $user->getEmail(), \PDO::PARAM_STR);
         $query->bindValue("password", $user->getPassword(), \PDO::PARAM_STR);
