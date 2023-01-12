@@ -1,144 +1,56 @@
-import './index.css'
+import { RefundData } from "../../interfaces/interfaces"
+import Badge from "../badge"
 
-import {
-  createColumnHelper,
-  flexRender,
-  getCoreRowModel,
-  useReactTable,
-} from '@tanstack/react-table'
-import { useReducer, useState } from 'react'
+export default function Table() {
 
-type Person = {
-  firstName: string
-  lastName: string
-  age: number
-  visits: number
-  status: string
-  progress: number
+    const headerTable : string[] = ["Refund", "Loading", "Amount", "Status", "Date"]
+
+    const data : RefundData[] = [
+        {
+            name: "Refund de la bouffe",
+            debt: 10,
+            amount: 20,
+            date: "Jan 11, 2022"
+        },
+        {
+            name: "Refund de la wifi",
+            debt: 30,
+            amount: 30,
+            date: "Fev 24, 2022"
+        },
+        {
+            name: "Soirée halloween",
+            debt: 15,
+            amount: 25,
+            date: "Jan 15, 2022"
+        },
+    ]
+    
+    return (
+    <div className="overflow-x-auto">
+        <table className="table w-full">
+            <thead>
+            <tr className="border-b">
+                {headerTable.map(value => {
+                    return <td className="bg-white">{value}</td>
+                })}
+            </tr>
+            </thead>
+            <tbody>
+            {data.map(line => {
+                return (
+                    <tr>
+                        <td>{line.name}</td>
+                        <td>{line.amount}</td>
+                        <td>{`${line.debt} / ${line.amount}`}</td>
+                        <td>{line.debt==line.amount ? <Badge state="sucess"/> : <Badge state="progress"/>}</td>
+                        <td>{line.date}</td>
+                    </tr>
+                )
+            })}
+            </tbody>
+        </table>
+        
+        </div>
+    )
 }
-
-const defaultData: Person[] = [
-  {
-    firstName: 'tanner',
-    lastName: 'linsley',
-    age: 24,
-    visits: 100,
-    status: 'In Relationship',
-    progress: 50,
-  },
-  {
-    firstName: 'tandy',
-    lastName: 'miller',
-    age: 40,
-    visits: 40,
-    status: 'Single',
-    progress: 80,
-  },
-  {
-    firstName: 'joe',
-    lastName: 'dirte',
-    age: 45,
-    visits: 20,
-    status: 'Complicated',
-    progress: 10,
-  },
-]
-
-const columnHelper = createColumnHelper<Person>()
-
-const columns = [
-  columnHelper.accessor('firstName', {
-    cell: info => info.getValue(),
-    footer: info => info.column.id,
-  }),
-  columnHelper.accessor(row => row.lastName, {
-    id: 'lastName',
-    cell: info => <i>{info.getValue()}</i>,
-    header: () => <span>Last Name</span>,
-    footer: info => info.column.id,
-  }),
-  columnHelper.accessor('age', {
-    header: () => 'Age',
-    cell: info => info.renderValue(),
-    footer: info => info.column.id,
-  }),
-  columnHelper.accessor('visits', {
-    header: () => <span>Visits</span>,
-    footer: info => info.column.id,
-  }),
-  columnHelper.accessor('status', {
-    header: 'Status',
-    footer: info => info.column.id,
-  }),
-  columnHelper.accessor('progress', {
-    header: 'Profile Progress',
-    footer: info => info.column.id,
-  }),
-]
-
-function Tableau() {
-  const [data, setData] = useState(() => [...defaultData])
-  const rerender = useReducer(() => ({}), {})[1]
-
-  const table = useReactTable({
-    data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-  })
-
-  return (
-    <div className="p-2">
-      <table>
-        <thead>
-          {table.getHeaderGroups().map(headerGroup => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map(header => (
-                <th key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map(row => (
-            <tr key={row.id}>
-              {row.getVisibleCells().map(cell => (
-                <td key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-        <tfoot>
-          {table.getFooterGroups().map(footerGroup => (
-            <tr key={footerGroup.id}>
-              {footerGroup.headers.map(header => (
-                <th key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.footer,
-                        header.getContext()
-                      )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </tfoot>
-      </table>
-      <div className="h-4" />
-      <button onClick={() => rerender()} className="border p-2">
-        Rerender
-      </button>
-    </div>
-  )
-}
-
-
