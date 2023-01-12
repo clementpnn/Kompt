@@ -18,15 +18,24 @@ module.exports = {
           800: '#424242',
           900: '#424242'
         }
-        
-
+    
       },
       fontFamily: {
-        sans: ['Graphik', 'sans-serif'],
-        serif: ['Merriweather', 'serif'],
+        os: ['Open Sans', 'sans-serif']
       },
-      }
     },
+    fontSize: {
+      title1: `3rem;`,
+      title2: `2.25rem;`,
+      title3: `1.875rem;`,
+      title4: `1.5rem;`,
+      title5: `1.25rem;`,
+      title6: `1.125rem;`,
+      large: `1rem;`,
+      medium: `0.875rem;`,
+      small: `0.75rem;`,
+    }
+  },
   daisyui: {
     themes: [
       {
