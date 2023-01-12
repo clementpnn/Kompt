@@ -1,6 +1,6 @@
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+// import { Routes, Route, Outlet, Link } from "react-router-dom";
 
-// import {ReactComponent as User} from '../assets/icon/user.svg';
+import {ReactComponent as User} from '../assets/icon/user.svg';
 import { ButtonInterface } from "../interfaces/interfaces";
 import Button from "./button/button";
 
@@ -21,7 +21,7 @@ export default function HeaderGroup({groupName, groupId, groupMemberNumber}:{gro
     }
     
     return (
-        <div className="mx-20 pt-40 border-b bg-white">        
+        <div className="mx-20 pt-40 bg-white">        
             <div className="navbar bg-base-100 p-0">
                 <div className="flex-1">
                     <div className="flex-1 flex flex-col">
@@ -47,9 +47,8 @@ export default function HeaderGroup({groupName, groupId, groupMemberNumber}:{gro
 
                 </div>
             </div>
-            <Outlet />
+            {/* <Outlet /> */}
             
         </div>
     )
 }
-

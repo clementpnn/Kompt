@@ -1,8 +1,6 @@
 import { Routes, Route, Outlet, Link } from "react-router-dom";
-// import {ReactComponent as Menu} from '../assets/icon/menu.svg';
-
-
-// import Logout from '../assets/icon/logout.svg'
+import {ReactComponent as Menu} from '../assets/icon/menu.svg';
+import Badge from './badge'
 
 function NavbarLog() {
     return (
@@ -24,7 +22,7 @@ function NavbarNotLog() {
 
 function NavInGroup() {
     return (
-            // <Menu />
+            <Menu />
     )
 }
 
@@ -54,7 +52,7 @@ export default function Navbar() {
                             <>
                                 
                                 {isGroup ? (
-                                    <NavInGroup />
+                                    <NavbarLog />
                                 ) : ( 
                                     <NavbarLog />
                                 )}
@@ -68,17 +66,7 @@ export default function Navbar() {
                 </div>
                 
             </div>
-                <Outlet/>   
+            <Outlet/>   
         </div>
     )
-    // return (
-    //     <>
-    //         {isLogged ? (
-    //             <NavbarLog />
-    //         ) : (
-    //             <NavbarNotLog />
-    //         )}
-    //         <Outlet />
-    //     </>
-    // );
 }
