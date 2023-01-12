@@ -5,7 +5,23 @@ import { FormValues, ButtonInterface } from '../interfaces/interfaces'
 
 export default function Register() {
   const { register, handleSubmit } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = data => console.log(data);
+  const onSubmit: SubmitHandler<FormValues> = data => {
+      
+    fetch('http://localhost:5432/register', {
+      method: 'POST',
+      mode: 'cors',
+      body: new URLSearchParams({
+        ...data
+      }),
+      credentials: 'include',
+      headers: new Headers({
+        // 'Authorization' : 'Basic amZnbWFpbC5jb206cGFzc3dvcmQ=',
+        'Content-type':  'application/x-www-form-urlencoded'
+      })
+    })
+      .then(data => data.text())
+      .then(json => console.log(json))
+  }
 
 
   return (

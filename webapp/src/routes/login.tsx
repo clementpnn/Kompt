@@ -8,7 +8,23 @@ import { Routes, Route, Outlet, Link } from "react-router-dom";
 
 export default function Login() {
     const { register, handleSubmit } = useForm<FormValues>();
-    const onSubmit: SubmitHandler<FormValues> = data => console.log(data);
+    const onSubmit: SubmitHandler<FormValues> = data => {
+      
+      fetch('http://localhost:5432/register', {
+        method: 'POST',
+        mode: 'cors',
+        body: new URLSearchParams({
+          ...data
+        }),
+        credentials: 'include',
+        headers: new Headers({
+          // 'Authorization' : 'Basic amZnbWFpbC5jb206cGFzc3dvcmQ=',
+          'Content-type':  'application/x-www-form-urlencoded'
+        })
+      })
+        .then(data => data.text())
+        .then(json => console.log(json))
+    }
     
 
     return (

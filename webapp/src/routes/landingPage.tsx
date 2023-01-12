@@ -1,14 +1,13 @@
 
 import Table from "../components/table/table"
-
-
+import HeaderGroup from '../components/headerGroup'
 
 export default function Landing() {
     return (
-        <>
-            <div className="pt-28 px-20">
-                <Table />
-            </div>
-        </>
+        <div>
+            <HeaderGroup groupName={"Test"} groupId={2} groupMemberNumber={4}/>
+            <Table />
+            {/* <Outlet /> */}
+        </div>
     )
 }
