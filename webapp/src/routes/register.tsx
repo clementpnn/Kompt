@@ -47,7 +47,9 @@ export default function Register() {
           <label className="label label-text font-bold font-os text-large">
             Email
           </label>
+
           <input type="email" placeholder="Enter email" className="mb-2 input input-bordered w-full" {...register('name')}/>
+
 
           <label className="label label-text font-bold font-os text-large">
             Password

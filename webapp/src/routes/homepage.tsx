@@ -1,5 +1,5 @@
 import { Routes, Route, Outlet, Link } from "react-router-dom";
-
+import InvitePopup from '../components/pop-up/invitePopup'
 import Badge from "../components/badge"
 
 function HomeLog() {
@@ -16,6 +16,7 @@ function HomeNotLog() {
       <p className="text-center">Bienvenue sur Kompt</p>
       <p className="text-center">Créez un compte ou connectez-vous pour accéder à l'application</p>
       <br/>
+      <InvitePopup />
     </div>
 )
 

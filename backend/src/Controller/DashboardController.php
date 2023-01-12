@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Framework\Entity\BaseController;
+use App\Framework\Base\BaseController;
 use App\Framework\Route\Route;
 use App\Framework\Factory\PDOFactory;
 use App\Manager\UserManager;
@@ -30,25 +30,25 @@ class DashboardController extends BaseController
 }
 
 // récupère le pourcentage de remboursement
-$query = $pdo->prepare("SELECT expenses.*, 
-                 (SELECT SUM(amount) FROM payments WHERE payments.expense_id = expenses.id) / expenses.payers_amount * 100 AS percentage_reimbursed, 
-                 users.name AS user_name, collocations.name AS collocation_name
-                 FROM expenses 
-                 JOIN users ON expenses.user_id = users.id
-                 JOIN collocations ON expenses.collocation_id = collocations.id
-                 WHERE expenses.user_id = :userId OR expenses.payers LIKE :userId");
-$query->bindValue(':userId', $user->getId(), \PDO::PARAM_STR);
-$query->execute();
-$expenseInfo = $query->fetchAll(\PDO::FETCH_ASSOC);
+// $query = $pdo->prepare("SELECT expenses.*, 
+//                  (SELECT SUM(amount) FROM payments WHERE payments.expense_id = expenses.id) / expenses.payers_amount * 100 AS percentage_reimbursed, 
+//                  users.name AS user_name, collocations.name AS collocation_name
+//                  FROM expenses 
+//                  JOIN users ON expenses.user_id = users.id
+//                  JOIN collocations ON expenses.collocation_id = collocations.id
+//                  WHERE expenses.user_id = :userId OR expenses.payers LIKE :userId");
+// $query->bindValue(':userId', $user->getId(), \PDO::PARAM_STR);
+// $query->execute();
+// $expenseInfo = $query->fetchAll(\PDO::FETCH_ASSOC);
 
 // récupère la somme de remboursement
-$query = $pdo->prepare("SELECT expenses.*, 
-                 (SELECT SUM(amount) FROM payments WHERE payments.expense_id = expenses.id) AS amount_reimbursed,
-                 users.name AS user_name, collocations.name AS collocation_name
-                 FROM expenses 
-                 JOIN users ON expenses.user_id = users.id
-                 JOIN collocations ON expenses.collocation_id = collocations.id
-                 WHERE expenses.user_id = :userId OR expenses.payers LIKE :userId");
-$query->bindValue(':userId', $user->getId(), \PDO::PARAM_STR);
-$query->execute();
-$expenseInfo = $query->fetchAll(\PDO::FETCH_ASSOC);
+// $query = $pdo->prepare("SELECT expenses.*, 
+//                  (SELECT SUM(amount) FROM payments WHERE payments.expense_id = expenses.id) AS amount_reimbursed,
+//                  users.name AS user_name, collocations.name AS collocation_name
+//                  FROM expenses 
+//                  JOIN users ON expenses.user_id = users.id
+//                  JOIN collocations ON expenses.collocation_id = collocations.id
+//                  WHERE expenses.user_id = :userId OR expenses.payers LIKE :userId");
+// $query->bindValue(':userId', $user->getId(), \PDO::PARAM_STR);
+// $query->execute();
+// $expenseInfo = $query->fetchAll(\PDO::FETCH_ASSOC);

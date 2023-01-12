@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Framework\Entity;
+namespace App\Framework\Base;
 
 use App\Framework\HTTPFoundation\HTTPRequest;
 use App\Framework\HTTPFoundation\HTTPResponse;

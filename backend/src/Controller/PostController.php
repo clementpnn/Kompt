@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Framework\Entity\BaseController;
+use App\Framework\Base\BaseController;
 use App\Framework\Route\Route;
 use App\Service\JWTHelper;
 

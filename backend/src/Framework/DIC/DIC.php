@@ -101,6 +101,7 @@ class DIC implements ContainerInterface
             }
             $constructorDependencies = [];
             if (($reflection = new \ReflectionClass($class))->getConstructor()) {
+                // var_dump($class);
                 foreach ($reflection->getConstructor()->getParameters() as $parameter) {
                     // If it's a builtin parameter, it should have been manually injected
                     // to be able to have a unique identifier in the container, the name of a
