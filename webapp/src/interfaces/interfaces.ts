@@ -17,4 +17,11 @@ interface ButtonInterface {
   icon: string | undefined;
 }
 
-export type { State, FormValues, ButtonInterface }
+interface RefundData {
+  name: string;
+  debt: number;
+  amount: number;
+  date: string;
+}
+
+export type { State, FormValues, ButtonInterface, RefundData }

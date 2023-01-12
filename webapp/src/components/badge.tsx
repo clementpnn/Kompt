@@ -1,14 +1,4 @@
-// function SuccessBadge() {
-//     return (
-//         <button className={btn btn-black}>success</button>
-//     )
-// }
 
-// function ProcessBadge() {
-//     return (
-//         <button className={btn btn-white}>processing</button>
-//     )
-// }
 
 
 export default function Badge({state}:{state:string}) {

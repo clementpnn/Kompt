@@ -1,11 +1,14 @@
-import { Routes, Route, Outlet, Link } from "react-router-dom";
 
-import Table from '../components/table'
+import Table from "../components/table/table"
+
+
+
 export default function Landing() {
     return (
-        <div>
-            <Table />
-            <Outlet />
-        </div>
+        <>
+            <div className="pt-28 px-20">
+                <Table />
+            </div>
+        </>
     )
 }
