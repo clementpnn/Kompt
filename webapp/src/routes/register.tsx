@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
 import Button from '../components/button';
 import { FormValues, ButtonInterface } from '../interfaces/interfaces'
-// import backPrimary from "../assets/icon/backPrimary.svg";
+  
 
 export default function Register() {
   const { register, handleSubmit } = useForm<FormValues>();
