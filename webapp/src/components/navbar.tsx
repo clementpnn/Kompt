@@ -1,5 +1,5 @@
 import { Routes, Route, Outlet, Link } from "react-router-dom";
-// import {ReactComponent as Menu} from '../assets/icon/menu.svg';
+import {ReactComponent as Menu} from '../assets/icon/menu.svg';
 
 
 // import Logout from '../assets/icon/logout.svg'
@@ -24,7 +24,7 @@ function NavbarNotLog() {
 
 function NavInGroup() {
     return (
-            // <Menu />
+            <Menu />
     )
 }
 

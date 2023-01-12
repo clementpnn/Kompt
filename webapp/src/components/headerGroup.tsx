@@ -1,6 +1,6 @@
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 
-// import {ReactComponent as User} from '../assets/icon/user.svg';
+import {ReactComponent as User} from '../assets/icon/user.svg';
 import { ButtonInterface } from "../interfaces/interfaces";
 import Button from "./button/button";
 
