@@ -5,6 +5,7 @@ import Login from './routes/login'
 import Register from './routes/register'
 import Navbar from './components/navbar'
 import Homepage from './routes/homepage'
+import Landing from './routes/landingPage'
 
 
 export default function App() {
@@ -18,7 +19,8 @@ export default function App() {
         <Route path="/register" element={<Register />} />
 
         <Route path="/" element={<Navbar />}>
-          <Route path="/homepage" element={<Homepage />} />
+          <Route path="/" element={<Homepage />} />
+          <Route path="/landing" element={<Landing />} />
         </Route>
 
       </Routes>
