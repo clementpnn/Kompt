@@ -1,5 +1,6 @@
-import { RefundData } from "../../interfaces/interfaces"
-import Badge from "../badge"
+import { RefundData } from "../interfaces/interfaces"
+import Badge from "./badge"
+import ProgressBar from "./progressbar"
 
 export default function Table() {
 
@@ -27,7 +28,7 @@ export default function Table() {
     ]
     
     return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto pt-14 px-20">
         <table className="table w-full">
             <thead>
             <tr className="border-b">
@@ -41,16 +42,15 @@ export default function Table() {
                 return (
                     <tr>
                         <td>{line.name}</td>
-                        <td>{line.amount}</td>
+                        <td className="w-80 pr-20"><ProgressBar value={line.debt} max={line.amount}/></td>
                         <td>{`${line.debt} / ${line.amount}`}</td>
-                        <td>{line.debt==line.amount ? <Badge state="sucess"/> : <Badge state="progress"/>}</td>
+                        <td>{line.debt==line.amount ? <Badge state="success"/> : <Badge state="processing"/>}</td>
                         <td>{line.date}</td>
                     </tr>
                 )
             })}
             </tbody>
         </table>
-        <h2>test du push</h2>
         </div>
     )
 }

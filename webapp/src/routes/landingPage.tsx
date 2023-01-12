@@ -1,5 +1,5 @@
 
-import Table from "../components/table/table"
+import Table from "../components/table"
 import HeaderGroup from '../components/headerGroup'
 import { Outlet } from "react-router-dom"
 
