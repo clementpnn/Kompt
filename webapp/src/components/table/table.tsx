@@ -50,7 +50,7 @@ export default function Table() {
             })}
             </tbody>
         </table>
-        
+        <h2>test du push</h2>
         </div>
     )
 }
