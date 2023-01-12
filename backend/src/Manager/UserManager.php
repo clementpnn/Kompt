@@ -14,7 +14,7 @@ class UserManager extends BaseManager
      */
     public function getByMail(string $email): User|NULL
     {
-        $query = $this->pdo->prepare("SELECT id FROM users WHERE email = :email");
+        $query = $this->pdo->prepare("SELECT id, email, password FROM users WHERE email = :email");
         $query->bindValue("email", $email, \PDO::PARAM_STR);
         $query->execute();
         $data = $query->fetch(\PDO::FETCH_ASSOC);

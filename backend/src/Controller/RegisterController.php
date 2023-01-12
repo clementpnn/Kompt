@@ -42,7 +42,8 @@ class RegisterController extends BaseController
         $userManager->insertUser($user);
         $jwt = JWTHelper::buildJWT($user);
 
-        echo $jwt;
-        exit;
+        $this->renderJSON([
+            "token" => $jwt
+        ]);
     }
 }

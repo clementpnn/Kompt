@@ -24,21 +24,15 @@ class LoginController extends BaseController
 
         if (!$user)
         {
-            // http_response_code(401); // définit le code d'état d'erreur à 401 (Unauthorized)
-            // echo "Unauthorized: Invalid email or password";
-            // die();
-
             $this->renderJSON(['error' => 'Utilisateur introuvable']);
             return;
         }
 
-        if (!password_verify($data['password'], $user['password']))
+        if (!password_verify($data['password'], $user->getPassword()))
         {
             $this->renderJSON(['error' => 'Mot de passe incorrect']);
             return;
         }
-
-        ($user)->setId($user['id']);
 
         $jwt = JWTHelper::buildJWT($user);
 
