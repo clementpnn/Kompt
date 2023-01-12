@@ -4,7 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "docker compose up -d && cd webapp && vite",
+    "down": "docker compose down",
+    "composer": "cd backend && composer dump-autoload && composer install",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },

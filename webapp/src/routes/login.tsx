@@ -12,22 +12,30 @@ export default function Login() {
     
 
     return (
-      <div>
+      <div className="flex justify-center h-screen items-center">
+        <div className="w-1/3 h-screen flex flex-col place-content-evenly">
 
-        <p> Log in </p>
+          <div className="flex text-center flex-col">
+            <p className="text-4xl"> Welcome to Kompt ! </p>
+          </div>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <input placeholder="name"{...register('name')} />
-          <input placeholder="password"/>
+          <form className="form-control w-full" onSubmit={handleSubmit(onSubmit)}>
+            <label className="label label-text">
+              <span>Name</span>
+            </label>
+            <input type="text" placeholder="Enter username" className="input input-bordered w-full" {...register('name')}/>
 
-          {/* <Input placeholder={"Enter your username"} fonction={register} label={"name"}/> */}
-    
-          <input type='submit' />
-        </form>
+            <label className="label label-text">
+              <span>Password</span>
+            </label>
+            <input type="password" placeholder="Enter password" className="input input-bordered w-full" {...register('password')}/>
 
-        <p><a href="/register">New on Kompt ? Create an account</a></p>
+            <button className="btn w-full mt-10 bg-indigo-700 hover:bg-indigo-500 border-none text-white">Log in</button>
 
-        <Outlet />
+          </form>
+
+          <p>New on Kompt ? <a href="/register" className="font-bold">Sign in</a></p>
+        </div>
       </div>
     )
   }

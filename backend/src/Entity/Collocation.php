@@ -4,12 +4,11 @@ namespace App\Entity;
 
 use App\Framework\Entity\BaseEntity;
 
-class User extends BaseEntity
+class Collocation extends BaseEntity
 {
     private string $id;
     private string $name;
-    private string $email;
-    private string $password;
+    private string $secreteCode;
 
     /**
      * @return string
@@ -48,32 +47,17 @@ class User extends BaseEntity
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getSecreteCode(): string
     {
-        return $this->email;
+        return $this->secreteCode;
     }
 
     /**
-     * @param string $email
+     * @param string $secreteCode
+     * @return void
      */
-    public function setEmail(string $email): void
+    public function setSecreteCode(string $secreteCode): void
     {
-        $this->email = $email;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
-    /**
-     * @param string $password
-     */
-    public function setPassword(string $password): void
-    {
-        $this->password = $password;
+        $this->secreteCode = $secreteCode;
     }
 }

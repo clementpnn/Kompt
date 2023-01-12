@@ -1,15 +1,15 @@
 version: "3.8"
 
 services:
-    frontend:
-        build:
-            context: ./webappConf
-            dockerfile: Dockerfile
-        ports:
-            - "5173:5173"
-        volumes:
-            - ./webapp:/project
-        command: npm run dev
+    # frontend:
+    #     build:
+    #         context: ./webappConf
+    #         dockerfile: Dockerfile
+    #     ports:
+    #         - "5173:5173"
+    #     volumes:
+    #         - ./webapp:/project
+    #     command: npm run dev
 
     backend:
         build:
@@ -21,19 +21,19 @@ services:
         volumes:
             - ./backend:/var/www/html
 
-    db:
-        image: 'mariadb'
-        restart: always
-        environment:
-            MYSQL_DATABASE: data
-            MYSQL_ROOT_PASSWORD: password
-        volumes:
-            - ./database/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+    # db:
+    #     image: 'mariadb'
+    #     restart: always
+    #     environment:
+    #         MYSQL_DATABASE: data
+    #         MYSQL_ROOT_PASSWORD: password
+    #     volumes:
+    #         - ./database/dump.sql:/docker-entrypoint-initdb.d/dump.sql
 
-    phpmyadmin:
-        image: phpmyadmin
-        restart: always
-        ports:
-            - '3306:80'
-        environment:
-            - PMA_ARBITRARY=1
+    # phpmyadmin:
+    #     image: phpmyadmin
+    #     restart: always
+    #     ports:
+    #         - '3306:80'
+    #     environment:
+    #         - PMA_ARBITRARY=1

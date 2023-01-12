@@ -11,7 +11,7 @@ class JWTHelper
     public static function buildJWT(User $user): string
     {
         $payload = [
-            "username" => $user->getUsername(),
+            "email" => $user->getEmail(),
             "exp" => (new \DateTime("+ 20 minutes"))->getTimestamp()
         ];
 
