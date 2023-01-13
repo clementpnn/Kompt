@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "cd webapp && vite",
+    "dev": "docker compose up -d && cd webapp && vite",
     "inst": "pnpm i && cd backend && composer dump-autoload && composer install",
     "down": "docker compose down",
     "build": "tsc && vite build",
