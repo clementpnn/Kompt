@@ -15,10 +15,9 @@ All commands are run from the root of the project, from a terminal:
 
 | Command                                                           | Action                              |
 | :---------------------------------------------------------------- | :---------------------------------- |
-| `pnpm i`                                                          | Install  dependencies               |
+| `pnpm inst`                                                          | Install  dependencies               |
 | `pnpm dev`                                                        | Start project                       |
-| `pnpm down`                                                       | Delete Docker container             |
-| `pnpm composer`                                                   | Install  comperser                  |
+| `pnpm down`                                                       | Delete Docker container                             |
 
 ## 🔥 Start project
  
