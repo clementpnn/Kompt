@@ -1,14 +1,23 @@
 interface State {
-    isTrue: boolean;
-    toggle: () => void
+  compteur: number;
+  increase: () => void
+}
+
+interface Jwt {
+  jwt: {[key: string] : string};
+}
+
+interface Logged {
+  isLogged: boolean;
+  toggle: () => void
 }
 
 interface FormValues {
-    name: string;
-    email: string;
-    password: string;
-    passwordConfirm: string;
-  };
+  name: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+};
 
 interface ButtonInterface {
   text: string;
@@ -30,4 +39,4 @@ interface RefundGroup {
 
 
 
-export type { State, FormValues, ButtonInterface, RefundGroup};
+export type { State, FormValues, ButtonInterface, RefundGroup, Jwt, Logged};
