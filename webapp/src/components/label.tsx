@@ -1,7 +1,9 @@
 import { LabelInterface } from '../interfaces/interfaces'
 
+
+
 export default function Label({props} : {props : LabelInterface}) {
-    // {text, style, color, icon}:{text: string, style: string, color:string, icon?: string}
+
     function labelContent(){
         if(props.icon == undefined){
             return props.text
@@ -14,7 +16,9 @@ export default function Label({props} : {props : LabelInterface}) {
             )
         }
     }
+
     let balise;
+
     if(props.style=="fill" && props.color=="primary"){
         balise = <label className="btn btn-primary font-os text-paragraph text-white normal-case" htmlFor={props.htmlFor}>
             {labelContent()}
@@ -28,9 +32,11 @@ export default function Label({props} : {props : LabelInterface}) {
             {labelContent()}
         </label>
     }
+
     return (
         <>
             {balise}      
         </>
-    );
+    )
+    
 }

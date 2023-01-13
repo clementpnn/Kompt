@@ -1,7 +1,10 @@
 import { ButtonInterface } from "../../interfaces/interfaces"
 import Button from "../button"
 
+
+
 export default function LeaveGroupPopup() {
+
     const buttonLeave : ButtonInterface = {
         text: 'Leave group',
         style: 'fill',
@@ -17,7 +20,6 @@ export default function LeaveGroupPopup() {
 
     return(
         <>
-        
             <input type="checkbox" id="leave_group" className="modal-toggle z-10" />
             <label htmlFor="leave_group" className="modal cursor-pointer">
                 <label className="modal-box relative p-5">
@@ -35,4 +37,5 @@ export default function LeaveGroupPopup() {
             </label>
         </>
     )
+    
 }

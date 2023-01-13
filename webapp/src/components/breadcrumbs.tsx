@@ -1,4 +1,5 @@
 export default function BreadCrumbds() {
+    
     return(
         <>
             <div className="text-sm breadcrumbs">
@@ -10,5 +11,6 @@ export default function BreadCrumbds() {
             </div>
         </>
     )
+
 }
 

@@ -9,7 +9,9 @@ import LeaveGroupPopup from "../components/pop-up/leaveGroupPopup"
 import LogoutPopup from "../components/pop-up/logoutPopup"
 
 
+
 export default function Landing() {
+
     const header: string[] = ["Refund", "Loading", "Amount", "Status", "Date"]
     const tableauRefund : RefundGroup[]= [
         {   
@@ -46,4 +48,5 @@ export default function Landing() {
             <Outlet />
         </>
     )
+    
 }

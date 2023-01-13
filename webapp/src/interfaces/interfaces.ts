@@ -47,6 +47,4 @@ interface RefundGroup {
 
 
 
-
-
 export type { State, FormValues, ButtonInterface, RefundGroup, LabelInterface, Jwt, Logged};
