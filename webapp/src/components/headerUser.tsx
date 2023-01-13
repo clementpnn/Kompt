@@ -1,5 +1,5 @@
 import { ButtonInterface } from "../interfaces/interfaces";
-import Button from "./button/button";
+
 
 export default function headerUser({username, loanValue, debtValue}:{username: string, loanValue: number, debtValue:number}) {
     const buttonInvite : ButtonInterface = {
@@ -20,13 +20,13 @@ export default function headerUser({username, loanValue, debtValue}:{username: s
                 <div className="flex-1">
                     <div className="flex-1 flex flex-col">
 
-                        <p className="text-4xl text-bold">{username}</p>
+                        <p className="font-os text-title5 font-bold">{username}</p>
 
                     </div>
                 </div>
-                <div className="flex-none">
-                    <p className="text-gray-500">your loans: <span className="text-primary ml-2.5">{loanValue}$</span></p>
-                    <p className="text-gray-500 ml-10">your debt: <span className="text-primary ml-2.5">{debtValue}$</span></p>
+                <div>
+                    <p className="font-os text-large text-gray-500">your loans: <span className="font-medium text-title5 text-primary ml-4">{loanValue}$</span></p>
+                    <p className="font-os text-large text-gray-500 ml-10">your debt: <span className="font-medium text-title5 text-primary ml-4">{debtValue}$</span></p>
 
                 </div>
             </div>

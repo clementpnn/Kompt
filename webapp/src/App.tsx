@@ -7,13 +7,13 @@ import Navbar from './components/navbar'
 import Homepage from './routes/homepage'
 import Landing from './routes/landingPage'
 
+import Refund from './routes/refund';
+
 
 export default function App() {
   return (
     <div>
-
       <Routes>
-
         
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -21,8 +21,10 @@ export default function App() {
         <Route path="/" element={<Navbar />}>
           <Route path="/" element={<Homepage />} />
           <Route path="/landing" element={<Landing />} />
+          <Route path="/refund" element={<Refund />} />
         </Route>
 
+        
       </Routes>
 
     </div>
