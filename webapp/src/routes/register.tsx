@@ -48,7 +48,7 @@ export default function Register() {
             Email
           </label>
 
-          <input type="email" placeholder="Enter email" className="mb-2 input input-bordered w-full" {...register('name')}/>
+          <input type="email" placeholder="Enter email" className="mb-2 input input-bordered w-full" {...register('email')}/>
 
 
           <label className="label label-text font-bold font-os text-large">
