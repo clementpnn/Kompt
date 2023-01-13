@@ -7,7 +7,7 @@ export default function Login() {
   const { register, handleSubmit } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = data => {
     
-    fetch('http://localhost:5432/login', {
+    fetch('http://localhost:2329/login', {
       method: 'POST',
       mode: 'cors',
       body: new URLSearchParams({
