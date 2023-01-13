@@ -10,52 +10,9 @@ use App\Manager\UserManager;
 use App\Entity\Collocation;
 use App\Service\JWTHelper;
 
-class CollocationController extends BaseController
+class CollocationCreateController extends BaseController
 {
-    #[Route('/collocation', name: "app_collocation", methods: ['GET'])]
-    public function collocation()
-    {
-        $collocationManager = new CollocationManager(new PDOFactory());
-        $userManager = new UserManager(new PDOFactory());
-
-        $headers = getallheaders();
-        if (isset($headers['Authorization'])) {
-            $jwt = $collocationManager->bearer($headers);
-        }
-        
-        $token = JWTHelper::decodeJWT($jwt);
-        if (!$token)
-        {
-            $this->renderJSON([
-                "message" => "invalid cred"
-            ]);
-            die;
-        }
-        
-        $object = json_decode(json_encode($token));
-        $email = $object->email;
-        $user = $userManager->getByMail($email);
-
-        $collocationManager = new CollocationManager(new PDOFactory());
-        $collocation = $collocationManager->getCollocation($user);
-
-        if (!$collocation)
-        {
-            $this->renderJSON([
-                "isInCollocation" => "no"
-            ]);
-            die;
-        }
-
-        // $isInCollocation = $collocationManager->isInCollocation($collocation, $user);
-
-        $this->renderJSON([
-            "isInCollocation" => "yes"
-        ]);
-        die;
-    }
-
-     #[Route('/create', name: "app_create", methods: ['POST'])]
+    #[Route('/create', name: "app_create", methods: ['POST'])]
         public function create()
         {
             $collocationManager = new CollocationManager(new PDOFactory());

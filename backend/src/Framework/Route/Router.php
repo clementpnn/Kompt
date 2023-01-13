@@ -60,7 +60,7 @@ class Router
 
                 $controllerClass = $route->getController();
                 $controllerActionName = $route->getAction();
-
+            
                 foreach ((new ReflectionClass($controllerClass))->getMethods() as $method) {
                     if ($method->getName() === $controllerActionName) {
                         foreach ($method->getParameters() as $parameter) {
@@ -84,6 +84,6 @@ class Router
                 return new $controllerClass($controllerActionName, $finalParams ?? []);
             }
         }
-        return new ErrorController('noRoute');
+        return new \Exception('noRoute');
     }
 }
