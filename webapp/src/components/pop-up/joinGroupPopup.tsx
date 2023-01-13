@@ -33,11 +33,11 @@ export default function JoinGroupPopup() {
             <div className="modal" id="join_group">
                 <div className="modal-box">
                 <div className="flex">
-                        <h3 className="font-bold text-2xl flex-1">Join Group</h3>
-                        <a href="" className="text-primary font-bold">✕</a>
-                    </div>
-                    <p className="py-4 my-2.5">Enter the code generate by the group admin to join</p>
-                    <form className="form-control" onSubmit={handleSubmit(onSubmit)}>
+                    <h3 className="font-bold text-2xl flex-1">Join Group</h3>
+                    <a href="" className="text-primary font-bold">✕</a>
+                </div>
+                <p className="py-4 my-2.5">Enter the code generate by the group admin to join</p>
+                <form className="form-control" onSubmit={handleSubmit(onSubmit)}>
 
 {/* valeur entre parenthèses du ...register() à modifier */}
 {/* j'ai ajouté "generateCode" dans interface pour formValues en attendant*/}

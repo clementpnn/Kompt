@@ -18,6 +18,14 @@ interface ButtonInterface {
   icon: string | undefined;
 }
 
+interface LabelInterface {
+  text: string;
+  style: string;
+  color: string;
+  htmlFor: string;
+  icon: string | undefined;
+}
+
 interface RefundGroup {
   id: number;
   name: string;
@@ -31,4 +39,4 @@ interface RefundGroup {
 
 
 
-export type { State, FormValues, ButtonInterface, RefundGroup};
+export type { State, FormValues, ButtonInterface, RefundGroup, LabelInterface};

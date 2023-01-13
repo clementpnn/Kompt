@@ -41,10 +41,8 @@ export default function Refund(){
     ]
     return (
         <>
-            <div className="pt-32">
-                <HeaderExpense refund={refund}/>
-                <Table header={header} tab={tableauRefund}/>
-            </div>
+            <HeaderExpense refund={refund}/>
+            <Table header={header} tab={tableauRefund}/>
             <Outlet />
         </>
     )
