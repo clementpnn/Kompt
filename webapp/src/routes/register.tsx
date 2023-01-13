@@ -65,7 +65,7 @@ export default function Register() {
 
         </form>
 
-        <p className='font-os text-large'>Already have a Kompt account ? <a href="/register" className="font-os font-bold text-large">Sign in</a></p>
+        <p className='font-os text-large'>Already have a Kompt account ? <a href="/login" className="font-os font-bold text-large">Sign in</a></p>
       </div>
     </div>
 

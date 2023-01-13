@@ -28,29 +28,29 @@ export default function Table() {
     ]
     
     return (
-    <div className="overflow-x-auto pt-14 px-20">
-        <table className="table w-full">
-            <thead>
-            <tr className="border-b">
-                {headerTable.map(value => {
-                    return <td className="bg-white">{value}</td>
-                })}
-            </tr>
-            </thead>
-            <tbody>
-            {data.map(line => {
-                return (
-                    <tr>
-                        <td>{line.name}</td>
-                        <td className="w-80 pr-20"><ProgressBar value={line.debt} max={line.amount}/></td>
-                        <td>{`${line.debt} / ${line.amount}`}</td>
-                        <td>{line.debt==line.amount ? <Badge state="success"/> : <Badge state="processing"/>}</td>
-                        <td>{line.date}</td>
+        <div className="overflow-x-auto pt-14 px-20">
+            <table className="table-normal w-full">
+                <thead>
+                    <tr className="border-b">
+                        {headerTable.map(value => {
+                            return <td className="bg-white">{value}</td>
+                        })}
                     </tr>
-                )
-            })}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {data.map(line => {
+                        return (
+                            <tr>
+                                <td>{line.name}</td>
+                                <td className="w-80 pr-20"><ProgressBar value={line.debt} max={line.amount}/></td>
+                                <td>{`${line.debt} / ${line.amount}`}</td>
+                                <td>{line.debt==line.amount ? <Badge state="success"/> : <Badge state="processing"/>}</td>
+                                <td>{line.date}</td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
+            </table>
         </div>
     )
 }

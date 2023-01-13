@@ -30,7 +30,6 @@ export default function JoinGroupPopup() {
     }
     return(
         <>
-            {/* <a href="#join_group">aaa</a> */}
             <div className="modal" id="join_group">
                 <div className="modal-box">
                 <div className="flex">

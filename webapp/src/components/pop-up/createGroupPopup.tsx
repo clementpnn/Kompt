@@ -30,8 +30,7 @@ export default function CreateGroupPopup() {
     }
     return(
         <>
-            {/* <a href="#create_group">ooo</a> */}
-            <div className="modal" id="create_group">
+                <a href="#create_group"><button className="text-base font-bold">Create Group</button></a>            <div className="modal" id="create_group">
                 <div className="modal-box">
                 <div className="flex">
                         <h3 className="font-bold text-2xl flex-1">Create Group</h3>
