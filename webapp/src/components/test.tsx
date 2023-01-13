@@ -1,5 +1,7 @@
 import { useBooleanStore, useJwtStore, useLoggedStore } from "../stores/booleanToggles"
 
+
+
 export function Chips(){
     const chips = useBooleanStore((state) => state.compteur)
     const increaseChips = useBooleanStore((state) => state.increase)
@@ -29,7 +31,6 @@ export function Jwt(){
     console.log(logged)
     return(
         <>  
-            
             <button onClick={switchLogged}>Change state</button>
             {logged==true && <h1>{jwt.token}</h1>}
         </>

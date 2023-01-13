@@ -1,6 +1,8 @@
 import create from 'zustand'
 import { State, Jwt, Logged } from '../interfaces/interfaces';
 
+
+
 export const useBooleanStore = create<State>((set, get) => ({
   compteur: 0,
   increase: () => set((state) => ({ compteur: state.compteur + 1 })),

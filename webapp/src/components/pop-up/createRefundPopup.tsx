@@ -1,8 +1,12 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { ButtonInterface, FormValues } from '../../interfaces/interfaces';
+import { ButtonInterface, FormValues, LabelInterface } from '../../interfaces/interfaces';
 import Button from "../button"
+import Label from "../label"
 
-export default function CreateRefundPopup() {
+
+
+export default function InvitePopup() {
+
     const { register, handleSubmit } = useForm<FormValues>();
     const onSubmit: SubmitHandler<FormValues> = data => {
       
@@ -21,51 +25,47 @@ export default function CreateRefundPopup() {
         .then(data => data.text())
         .then(json => console.log(json))
     }
-  
-        
-    const buttonCreate : ButtonInterface = {
-        text: 'Create refund',
-        style: 'fill',
-        color: 'primary',
+
+    const LabelInviteGroup : LabelInterface = {
+        text: "Create Refund",
+        style: "fill",
+        color: "primary",
+        htmlFor: 'create_refund',
         icon: undefined 
     }
-
     const buttonCreateRefund : ButtonInterface = {
         text: 'Create',
         style: 'fill',
         color: 'primary',
         icon: undefined 
     }
-
+    
     return(
         <>
-            <a href="#create_refund"><Button props={buttonCreate}/></a>
-            <div className="modal" id="create_refund">
-                <div className="modal-box">
+            <Label props={LabelInviteGroup}/>
+            <input type="checkbox" id="create_refund" className="modal-toggle z-10" />
+            <label htmlFor="create_refund" className="modal cursor-pointer">
+                <label className="modal-box relative p-5">
                     <div className="flex">
-                        <h3 className="font-bold text-2xl flex-1">Create Refund</h3>
+                        <p className="font-bold text-2xl flex-1">Create Refund</p>
                         <a href="" className="text-primary font-bold">✕</a>
                     </div>
                     <form className="form-control my-5" onSubmit={handleSubmit(onSubmit)}>
-                        <label className="label label-text font-os text-large">
-                        Title
-                        </label>
-                        <input type="text" placeholder="Enter the title of the refund" className="mb-2 input input-bordered w-full" {...register('email')}/>
+                         <label className="label label-text font-os text-large">
+                            Title
+                         </label>
+                         <input type="text" placeholder="Enter the title of the refund" className="mb-2 input input-bordered w-full" {...register('email')}/>
+                         <label className="label label-text font-os text-large">
+                            Amount
+                         </label>
+                         <input type="number" min="1" step="1"placeholder="Enter the refund amount" className="mb-10 input input-bordered w-full" {...register('password')}/>
+                         <Button props={buttonCreateRefund}/>
+                     </form>
+                </label>
+            </label>
+         </>
+     )
+     
+ }
 
-                        <label className="label label-text font-os text-large">
-                        Amount
-                        </label>
-                        <input type="number" min="1" step="1"placeholder="Enter the refund amount" className="mb-10 input input-bordered w-full" {...register('password')}/>
-
-                        <Button props={buttonCreateRefund}/>
-                        
-
-                    </form>
-
-                </div>
-            </div>
-        </>
-    )
-
-}
 

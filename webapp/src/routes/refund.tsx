@@ -5,10 +5,8 @@ import { RefundGroup } from "../interfaces/interfaces";
 
 
 
-
-
-
 export default function Refund(){
+
     const location = useLocation();
     const id : number = location.state.id
     const refund : RefundGroup = {
@@ -39,6 +37,7 @@ export default function Refund(){
             amount: 25,
         },
     ]
+
     return (
         <>
             <HeaderExpense refund={refund}/>
@@ -46,4 +45,5 @@ export default function Refund(){
             <Outlet />
         </>
     )
+    
 }
