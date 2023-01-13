@@ -20,8 +20,8 @@ function NavbarLog() {
 function NavbarNotLog() {
     return (
         <>
-            <a href="/login" className="text-base font-bold mr-10">Log In</a>
-            <a href="/register" className="text-base font-bold">Sign In</a>
+            <a href="/login" className="font-os text-large font-bold mr-10">Log In</a>
+            <a href="/register" className="font-os text-large font-bold">Sign In</a>
         </>
     )
 }
@@ -33,12 +33,6 @@ function NavInGroup() {
         </>
     )
 }
-
-
-
-
-
-
 
 
 export default function Navbar() {
@@ -53,7 +47,7 @@ export default function Navbar() {
             
                 <div className="navbar bg-base-100 p-0">
                     <div className="flex-1">
-                        <Link to="/" className="text-2xl font-bold text-primary">Kompt</Link>
+                        <Link to="/" className="font-os font-bold text-title4 text-primary">Kompt</Link>
                     </div>
                     <div className="flex-none">
                         {isLogged ? (

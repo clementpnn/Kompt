@@ -6,24 +6,24 @@ use App\Framework\Base\BaseEntity;
 
 class User extends BaseEntity
 {
-    private string $id;
+    private int    $id;
     private string $name;
     private string $email;
     private string $password;
 
     /**
-     * @return string
+     * @return int
      */
-    public function getId(): string
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param string $id
+     * @param  int $id
      * @return void
      */
-    public function setId(string $id): void
+    public function setId(int $id): void
     {
         $this->id = $id;
     }
@@ -37,7 +37,7 @@ class User extends BaseEntity
     }
 
     /**
-     * @param string $name
+     * @param  string $name
      * @return void
      */
     public function setName(string $name): void
@@ -54,7 +54,8 @@ class User extends BaseEntity
     }
 
     /**
-     * @param string $email
+     * @param  string $email
+     * @return void
      */
     public function setEmail(string $email): void
     {
@@ -70,7 +71,8 @@ class User extends BaseEntity
     }
 
     /**
-     * @param string $password
+     * @param  string $password
+     * @return void
      */
     public function setPassword(string $password): void
     {

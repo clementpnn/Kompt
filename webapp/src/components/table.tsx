@@ -1,56 +1,36 @@
-import { RefundData } from "../interfaces/interfaces"
+import { RefundGroup } from "../interfaces/interfaces"
 import Badge from "./badge"
 import ProgressBar from "./progressbar"
+import { useNavigate } from 'react-router-dom';
 
-export default function Table() {
+export default function Table({header, tab} : {header : string[], tab: RefundGroup[]}) {
 
-    const headerTable : string[] = ["Refund", "Loading", "Amount", "Status", "Date"]
+    const navigate = useNavigate();
 
-    const data : RefundData[] = [
-        {
-            name: "Refund de la bouffe",
-            debt: 10,
-            amount: 20,
-            date: "Jan 11, 2022"
-        },
-        {
-            name: "Refund de la wifi",
-            debt: 30,
-            amount: 30,
-            date: "Fev 24, 2022"
-        },
-        {
-            name: "Soirée halloween",
-            debt: 15,
-            amount: 25,
-            date: "Jan 15, 2022"
-        },
-    ]
-    
     return (
-        <div className="overflow-x-auto pt-14 px-20">
-            <table className="table-normal w-full">
-                <thead>
-                    <tr className="border-b">
-                        {headerTable.map(value => {
-                            return <td className="bg-white">{value}</td>
-                        })}
+    <div className="overflow-x-auto pt-14 px-20">
+        <table className="table-normal w-full">
+            <thead>
+            <tr className="border-b">
+                {header.map(value => {
+                    return <td className="bg-white font-os normal-case text-large font-bold">{value}</td>
+                })}
+            </tr>
+            </thead>
+            <tbody>
+            {tab.map(line => {
+                return (
+                    <tr onClick={() => navigate('/refund', {state: {id: line.id}})}>
+                        <td className="font-os text-large ">{line.name}</td>
+                        <td className="w-80 pr-20"><ProgressBar taille={"w-80"} value={line.expense} max={line.amount}/></td>
+                        <td className="font-os text-large text-primary font-bold">{`${line.expense}$ / ${line.amount}$`}</td>
+                        <td>{line.expense==line.amount ? <Badge state="success"/> : <Badge state="processing"/>}</td>
+                        <td className="font-os text-large">{line.date}</td>
                     </tr>
-                </thead>
-                <tbody>
-                    {data.map(line => {
-                        return (
-                            <tr>
-                                <td>{line.name}</td>
-                                <td className="w-80 pr-20"><ProgressBar value={line.debt} max={line.amount}/></td>
-                                <td>{`${line.debt} / ${line.amount}`}</td>
-                                <td>{line.debt==line.amount ? <Badge state="success"/> : <Badge state="processing"/>}</td>
-                                <td>{line.date}</td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
+                )
+            })}
+            </tbody>
+        </table>
         </div>
     )
 }

@@ -4,13 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "cd webapp && vite",
-    "ins": "pnpm i && cd backend && composer dump-autoload && composer install",
+    "dev": "docker compose up -d && cd webapp && vite",
+    "inst": "pnpm i && cd backend && composer dump-autoload && composer install",
     "down": "docker compose down",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.1",
     "@tailwindcss/typography": "^0.5.8",
     "@tanstack/react-router": "0.0.1-beta.48",
     "autoprefixer": "^10.4.13",

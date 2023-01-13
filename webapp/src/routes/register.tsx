@@ -68,22 +68,5 @@ export default function Register() {
         <p className='font-os text-large'>Already have a Kompt account ? <a href="/login" className="font-os font-bold text-large">Sign in</a></p>
       </div>
     </div>
-
-
-
-    // <div>
-    //   <p>Create account</p>
-    //   <form onSubmit={handleSubmit(onSubmit)}>
-        
-    //     <input placeholder="name" {...register('name')}/>
-    //     <input placeholder="email" type='email' {...register('email')} />
-    //     <input placeholder="password" {...register('password')} />
-    //     <input placeholder="confirm password" {...register('passwordConfirm')} />
-
-    //     <input type='submit' />
-    //   </form>
-    //   <p>Already have an account ? <a href="/login"><Button text={button.text} style={button.style} color={button.color} icon={button.icon}/></a></p>
-
-    // </div>
   )
 }
