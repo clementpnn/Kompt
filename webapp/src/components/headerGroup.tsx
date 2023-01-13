@@ -23,19 +23,24 @@ export default function HeaderGroup({groupName, groupId, groupMemberNumber}:{gro
                 <div className="flex-1">
                     <div className="flex-1 flex flex-col">
 
-                        <p className="text-4xl text-bold">{groupName}</p>
+                        <p className="font-os text-title3 font-bold">{groupName}</p>
 
                         <div className="flex my-5">
                             <div className="flex items-center">
                                 < User />
-                                <p className="text-grey-500 font-bold mx-2.5">{groupMemberNumber}</p>
+                                <p className="font-os text-large font-bold text-grey-500 ml-2 mr-4">{groupMemberNumber}</p>
                             </div>
 
-                            <p><a className="font-bold ml-2.5 text-primary"href={`/landing/members_group_${groupId}`}>See all members</a></p>
+                            <p><a className="font-os text-large font-bold text-primary"href={`/landing/members_group_${groupId}`}>see all members</a></p>
                         </div>
 
                     </div>
                 </div>
+
+                <div>
+                    <div className="mr-4">
+                        <Button props={buttonInvite}/>
+
                 <div className="flex-none">
                     <div className="mr-5">
                         <InvitePopup generateCode={"DZIOQJ249898JND2948"} />
