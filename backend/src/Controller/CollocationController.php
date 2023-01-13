@@ -8,6 +8,7 @@ use App\Framework\Factory\PDOFactory;
 use App\Manager\CollocationManager;
 use App\Manager\UserManager;
 use App\Entity\Collocation;
+use App\Entity\User;
 use App\Service\JWTHelper;
 
 class CollocationController extends BaseController
@@ -36,6 +37,14 @@ class CollocationController extends BaseController
         $email = $object->email;
         $user = $userManager->getByMail($email);
 
+        if (!$user)
+        {
+            $this->renderJSON([
+                "message" => "no user"
+            ]);
+            die;
+        }
+
         $collocationManager = new CollocationManager(new PDOFactory());
         $collocation = $collocationManager->getCollocation($user);
 
@@ -55,8 +64,8 @@ class CollocationController extends BaseController
         die;
     }
 
-     #[Route('/create', name: "app_create", methods: ['POST'])]
-        public function create()
+     #[Route('/collocation/create', name: "app_collocation_create", methods: ['POST'])]
+        public function collocationCreate()
         {
             $collocationManager = new CollocationManager(new PDOFactory());
             $userManager = new UserManager(new PDOFactory());
@@ -80,6 +89,14 @@ class CollocationController extends BaseController
             $email = $object->email;
             $user = $userManager->getByMail($email);
 
+            if (!($user instanceof User))
+            {
+                $this->renderJSON([
+                    "message" => "no user"
+                ]);
+                die;
+            }
+
             $data = [
                 'name' => $_POST['name'],
             ];
@@ -88,8 +105,9 @@ class CollocationController extends BaseController
 
             $collocation->setName($data['name']);
             $collocation->setSecreteCode($secreteCode);
-            $collocationManager->insertCollocation($collocation);
-
+            $id = $collocationManager->insertCollocation($collocation);
+            $collocation->setId($id);
+            
             $role = 'admin';
             $collocationManager->insertCollocationRole($collocation, $user, $role);
 

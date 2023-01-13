@@ -26,14 +26,16 @@ class CollocationManager extends BaseManager
 
     /**
      * @param Collocation $collocation
-     * @return void
+     * @return int
      */
-    public function insertCollocation(Collocation $collocation): void
+    public function insertCollocation(Collocation $collocation): int
     {
         $query = $this->pdo->prepare("INSERT INTO collocations (name, secret_code) VALUES (:name, :secretCode)");
         $query->bindValue("name", $collocation->getName(), \PDO::PARAM_STR);
         $query->bindValue("secretCode", $collocation->getSecreteCode(), \PDO::PARAM_STR);
         $query->execute();
+
+        return $this->pdo->lastInsertId();
     }
 
     /**
