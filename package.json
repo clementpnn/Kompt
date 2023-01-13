@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "cd webapp && vite",
-    "ins": "pnpm i && cd backend && composer dump-autoload && composer install",
+    "inst": "pnpm i && cd backend && composer dump-autoload && composer install",
     "down": "docker compose down",
     "build": "tsc && vite build",
     "preview": "vite preview"
