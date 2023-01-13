@@ -27,10 +27,9 @@ CREATE TABLE IF NOT EXISTS expenses
 (
   id             INT    PRIMARY KEY AUTO_INCREMENT NOT NULL,
   date           DATE   NOT NULL,
-  description    TEXT   NOT NULL,
+  title          TEXT   NOT NULL,
   amount         REAL   NOT NULL,
   payers         INT    NOT NULL,
-  payers_amount  REAL   NOT NULL,
   user_id        INT    NOT NULL,
   collocation_id INT    NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users (id),

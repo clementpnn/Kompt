@@ -8,6 +8,7 @@ interface FormValues {
     email: string;
     password: string;
     passwordConfirm: string;
+    generateCode: string
   };
 
 interface ButtonInterface {
