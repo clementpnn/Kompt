@@ -7,7 +7,6 @@ use App\Framework\Base\BaseManager;
 
 class UserManager extends BaseManager
 {
-
     /**
      * @param string $email
      * @return User|NULL
@@ -25,20 +24,6 @@ class UserManager extends BaseManager
 
         return null;
     }
-
-    // public function getPwd(string $email)
-    // {
-    //     $query = $this->pdo->prepare("SELECT * FROM User WHERE email = :email");
-    //     $query->bindValue("email", $email, \PDO::PARAM_STR);
-    //     $query->execute();
-    //     $data = $query->fetch(\PDO::FETCH_ASSOC);
-
-    //     if ($data) {
-    //         return $data;
-    //     }
-
-    //     return null;
-    // }
 
      /**
      * @param $user

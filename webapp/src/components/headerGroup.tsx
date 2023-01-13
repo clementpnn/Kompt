@@ -3,16 +3,13 @@
 import {ReactComponent as User} from '../assets/icon/user.svg';
 import { ButtonInterface } from "../interfaces/interfaces";
 import Button from "./button";
+import InvitePopup from './pop-up/inviteGroupPopup';
+import CreateRefundPopup from "../components/pop-up/createRefundPopup";
+
 
 
 
 export default function HeaderGroup({groupName, groupId, groupMemberNumber}:{groupName: string, groupId: number, groupMemberNumber:number}) {
-    const buttonInvite : ButtonInterface = {
-        text: 'Invite',
-        style: 'outline',
-        color: 'primary',
-        icon: undefined 
-    }
     const buttonCreate : ButtonInterface = {
         text: 'Create refund',
         style: 'fill',
@@ -39,16 +36,17 @@ export default function HeaderGroup({groupName, groupId, groupMemberNumber}:{gro
 
                     </div>
                 </div>
-                <div>
-                    <div className="mr-4">
-                        <Button props={buttonInvite}/>
-                    </div>
-                    <Button props={buttonCreate}/>
 
-                </div>
+                <div>
+                    <div className="flex">
+                        <div className="mr-5">
+                            <InvitePopup generateCode={"DZIOQJ249898JND2948"} />
+                        </div>
+                        <CreateRefundPopup/>
+                    </div>
+                </div>   
+
             </div>
-            {/* <Outlet /> */}
-            
         </div>
     )
 }

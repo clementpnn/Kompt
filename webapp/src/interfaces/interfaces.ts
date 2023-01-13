@@ -13,11 +13,14 @@ interface Logged {
 }
 
 interface FormValues {
-  name: string;
-  email: string;
-  password: string;
-  passwordConfirm: string;
-};
+
+    name: string;
+    email: string;
+    password: string;
+    passwordConfirm: string;
+    generateCode: string
+  };
+
 
 interface ButtonInterface {
   text: string;

@@ -1,4 +1,3 @@
-
 import { RefundGroup } from "../interfaces/interfaces"
 import Badge from "./badge"
 import ProgressBar from "./progressbar"
@@ -7,10 +6,10 @@ import { useNavigate } from 'react-router-dom';
 export default function Table({header, tab} : {header : string[], tab: RefundGroup[]}) {
 
     const navigate = useNavigate();
-    
+
     return (
     <div className="overflow-x-auto pt-14 px-20">
-        <table className="table w-full">
+        <table className="table-normal w-full">
             <thead>
             <tr className="border-b">
                 {header.map(value => {
