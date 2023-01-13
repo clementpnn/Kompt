@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import {ReactComponent as Menu} from '../assets/icon/menu.svg';
-import Badge from './badge'
 import CreateGroupPopup from "./pop-up/createGroupPopup";
 import JoinGroupPopup from "./pop-up/joinGroupPopup";
+// import { LabelInterface } from "../interfaces/interfaces";
+// import Label from "./label";
 
 
 
@@ -26,10 +26,18 @@ function NavbarNotLog() {
     )
 }
 
-function NavInGroup() {
+function NavbarInGroup() {
+    // const labelLeaveGroup : LabelInterface = {
+    //     text: "Button",
+    //     style: "fill",
+    //     color: "primary",
+    //     htmlFor: 'drawer',
+    //     icon: '../assets/icon/backPrimary.svg' 
+    // }
     return (
         <>
-            <label htmlFor="my-drawer-4"><Menu /></label>
+            {/* <Label props={labelLeaveGroup}/> */}
+            <label htmlFor="drawer"><Menu /></label>
         </>
     )
 }
@@ -54,7 +62,7 @@ export default function Navbar() {
                             <>
                                 
                                 {isGroup ? (
-                                    <NavInGroup />
+                                    <NavbarInGroup />
                                 ) : ( 
                                     <NavbarLog />
                                 )}

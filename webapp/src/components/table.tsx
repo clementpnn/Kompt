@@ -19,7 +19,9 @@ export default function Table({header, tab} : {header : string[], tab: RefundGro
             </thead>
             <tbody>
             {tab.map(line => {
+                
                 return (
+                    // <tr onClick={() => navigate(`/refund_${line.id}`, {state: {id: line.id}})}>
                     <tr onClick={() => navigate('/refund', {state: {id: line.id}})}>
                         <td className="font-os text-large ">{line.name}</td>
                         <td className="w-80 pr-20"><ProgressBar taille={"w-80"} value={line.expense} max={line.amount}/></td>
