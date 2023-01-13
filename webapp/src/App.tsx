@@ -8,6 +8,7 @@ import Homepage from './routes/homepage'
 import Landing from './routes/landingPage'
 
 import Refund from './routes/refund';
+import Test from './components/test';
 
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
         
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/test" element={<Test />} />
 
         <Route path="/" element={<Navbar />}>
           <Route path="/" element={<Homepage />} />
