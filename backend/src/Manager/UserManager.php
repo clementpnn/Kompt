@@ -25,61 +25,61 @@ class UserManager extends BaseManager
         return null;
     }
 
-     /**
-     * @param $user
-     * @return string
-     */
-    public function displayLine(User $user): string
-    {
-        $query = $this->pdo->prepare("SELECT expenses.*, users.name AS user_name, collocations.name AS collocation_name
-                        FROM expenses 
-                        JOIN users ON expenses.user_id = users.id
-                        JOIN collocations ON expenses.collocation_id = collocations.id
-                        WHERE expenses.user_id = :userId");
-        $query->bindValue(':userId', $user->getId(), \PDO::PARAM_STR);
-        $query->execute();
-        $expenseInfo = $query->fetchAll(\PDO::FETCH_ASSOC);
-        return $expenseInfo;
-    }
+    //  /**
+    //  * @param $user
+    //  * @return string
+    //  */
+    // public function displayLine(User $user): string
+    // {
+    //     $query = $this->pdo->prepare("SELECT expenses.*, users.name AS user_name, collocations.name AS collocation_name
+    //                     FROM expenses 
+    //                     JOIN users ON expenses.user_id = users.id
+    //                     JOIN collocations ON expenses.collocation_id = collocations.id
+    //                     WHERE expenses.user_id = :userId");
+    //     $query->bindValue(':userId', $user->getId(), \PDO::PARAM_STR);
+    //     $query->execute();
+    //     $expenseInfo = $query->fetchAll(\PDO::FETCH_ASSOC);
+    //     return $expenseInfo;
+    // }
 
-     /**
-     * @param $user
-     * @return int
-     */
-    public function countReceivable(User $user): int
-    {
-        $query = $this->pdo->prepare("SELECT SUM(amount) FROM expenses WHERE payers LIKE :userId");
-        $query->bindValue(':userId', $user->getId(), \PDO::PARAM_STR);
-        $query->execute();
-        $totalReceivable = $query->fetchColumn();
-        return $totalReceivable;
-    }
+    //  /**
+    //  * @param $user
+    //  * @return int
+    //  */
+    // public function countReceivable(User $user): int
+    // {
+    //     $query = $this->pdo->prepare("SELECT SUM(amount) FROM expenses WHERE payers LIKE :userId");
+    //     $query->bindValue(':userId', $user->getId(), \PDO::PARAM_STR);
+    //     $query->execute();
+    //     $totalReceivable = $query->fetchColumn();
+    //     return $totalReceivable;
+    // }
 
-    /**
-     * @param $user
-     * @return int
-     */
-    public function countToPay(User $user): int
-    {
-        $query = $this->pdo->prepare("SELECT SUM(amount) FROM expenses WHERE user_id = :userId AND payers NOT LIKE :userId");
-        $query->bindValue(':userId', $user->getId(), \PDO::PARAM_STR);
-        $query->execute();
-        $totalOwed = $query->fetchColumn();
-        return $totalOwed;
-    }
+    // /**
+    //  * @param $user
+    //  * @return int
+    //  */
+    // public function countToPay(User $user): int
+    // {
+    //     $query = $this->pdo->prepare("SELECT SUM(amount) FROM expenses WHERE user_id = :userId AND payers NOT LIKE :userId");
+    //     $query->bindValue(':userId', $user->getId(), \PDO::PARAM_STR);
+    //     $query->execute();
+    //     $totalOwed = $query->fetchColumn();
+    //     return $totalOwed;
+    // }
 
-    /**
-     * @param $user
-     * @return int
-     */
-    public function countPeople(User $user): int
-    {
-        $query = $this->pdo->prepare("SELECT COUNT(DISTINCT user_id) FROM collocation_roles WHERE collocation_id = (SELECT collocation_id FROM users WHERE id = :userId)");
-        $query->bindValue(':userId', $user->getId(), \PDO::PARAM_STR);
-        $query->execute();
-        $numPeople = $query->fetchColumn();
-        return $numPeople;
-    }
+    // /**
+    //  * @param $user
+    //  * @return int
+    //  */
+    // public function countPeople(User $user): int
+    // {
+    //     $query = $this->pdo->prepare("SELECT COUNT(DISTINCT user_id) FROM collocation_roles WHERE collocation_id = (SELECT collocation_id FROM users WHERE id = :userId)");
+    //     $query->bindValue(':userId', $user->getId(), \PDO::PARAM_STR);
+    //     $query->execute();
+    //     $numPeople = $query->fetchColumn();
+    //     return $numPeople;
+    // }
 
     /**
      * @param $data

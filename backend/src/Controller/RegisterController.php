@@ -24,13 +24,17 @@ class RegisterController extends BaseController
         $userManager = new UserManager(new PDOFactory());
 
         if (!$userManager->validateData($data)) {
-            echo "Données de formulaire non valides";
-            exit;
+            $this->renderJSON([
+                "message" => "Données de formulaire non valides"
+            ]);
+            die;
         }
         
         if (!$userManager->verifyMail($data['email'])) {
-            echo "This email is already taken";
-            exit;
+            $this->renderJSON([
+                "message" => "This email is already taken"
+            ]);
+            die;
         }
 
         $hash_password = $userManager->hash_password($data['password']);
