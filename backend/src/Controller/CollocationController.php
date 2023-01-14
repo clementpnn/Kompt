@@ -71,11 +71,9 @@ class CollocationController extends BaseController
             if (isset($headers['Authorization'])) {
                 $jwt = $collocationManager->bearer($headers);
             }
-
-            if (!$jwt)
-            {
+            else{
                 $this->renderJSON([
-                    "message" => "tu t'es encore trompé vico"
+                    "message" => "ici pour debug"
                 ]);
                 die;
             }
