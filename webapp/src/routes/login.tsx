@@ -2,8 +2,10 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { ButtonInterface, FormValues } from '../interfaces/interfaces'
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import Button from '../components/button';
+import { useBearStore } from '../stores/connexionStore';
 
 export default function Login() {
+  const bearsCompteur = useBearStore((state: any) => state.bears)
   const { register, handleSubmit } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = data => {
     
@@ -54,7 +56,7 @@ export default function Login() {
 
         </form>
         
-        <p className='font-os text-large'>New on Kompt ? <a href="/register" className="font-os font-bold text-large">Sign up</a></p>
+        <p className='font-os text-large'>{bearsCompteur}New on Kompt ? <a href="/register" className="font-os font-bold text-large">Sign up</a></p>
       </div>
     </div>
   )
