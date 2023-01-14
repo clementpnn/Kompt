@@ -1,4 +1,3 @@
-
 import Table from "../components/table"
 import HeaderGroup from '../components/headerGroup'
 import HeaderUser from "../components/headerUser"
