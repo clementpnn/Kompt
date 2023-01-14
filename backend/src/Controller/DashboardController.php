@@ -17,7 +17,6 @@ class DashboardController extends BaseController
         $userManager = new UserManager(new PDOFactory());
         $collocationManager = new CollocationManager(new PDOFactory());
 
-
         $headers = getallheaders();
         if (isset($headers['Authorization'])) {
             $jwt = $collocationManager->bearer($headers);
@@ -47,8 +46,15 @@ class DashboardController extends BaseController
         $collocation = $collocationManager->getCollocation($user);
 
         $TotalPeople = $collocationManager->countPeople($collocation);
-        // $totalToPay = $userManager->countToPay($user);
-        // $totalReceivable = $userManager->countReceivable($user);
-        // $totalLine = $userManager->displayLine($user);
+        $totalToPay = $collocationManager->countToPay($user, $collocation);
+        $totalReceivable = $collocationManager->countReceivable($user, $collocation);
+        // $totalLine = $collocationManager->displayLine($collocation);
+
+        $this->renderJSON([
+            "peoples" => $TotalPeople,
+            "toPay" => $totalToPay,
+            "toReceivable" => $totalReceivable,
+        ]);
+        die;
     }
 }

@@ -107,7 +107,7 @@ class CollocationManager extends BaseManager
         $query = $this->pdo->prepare("SELECT id FROM collocations JOIN collocation_roles ON collocations.id = collocation_roles.collocation_id WHERE collocation_roles.user_id = :userId");
         $query->bindValue(':userId', $user->getId(), \PDO::PARAM_INT);
         $query->execute();
-        $data = $query->fetchAll(\PDO::FETCH_ASSOC);
+        $data = $query->fetch(\PDO::FETCH_ASSOC);
 
         if ($data) {
             return new Collocation($data);
@@ -135,12 +135,15 @@ class CollocationManager extends BaseManager
 
     /**
      * @param $user
-     * @return int
+     * @param Collocation $collocation
+     * @return ?int
      */
-    public function countReceivable(User $user): int
+    public function countReceivable(User $user, Collocation $collocation): ?int
     {
-        $query = $this->pdo->prepare("SELECT SUM(amount) FROM expenses WHERE payers LIKE :userId");
-        $query->bindValue(':userId', $user->getId(), \PDO::PARAM_STR);
+        $query = $this->pdo->prepare("SELECT 
+        SUM(expenses.amount - payments.amount) AS amount_due FROM expenses JOIN payments ON expenses.id = payments.expense_id WHERE expenses.collocation_id = [collocation_id] AND payments.sender_id != [user_id]");
+        $query->bindValue(':userId', $user->getId(), \PDO::PARAM_INT);
+        $query->bindValue(':userId', $collocation->getId(), \PDO::PARAM_INT);
         $query->execute();
         $totalReceivable = $query->fetchColumn();
         return $totalReceivable;
@@ -149,9 +152,9 @@ class CollocationManager extends BaseManager
     /**
      * @param User $user
      * @param Collocation $collocation
-     * @return int
+     * @return ?int
      */
-    public function countToPay(User $user, Collocation $collocation): int
+    public function countToPay(User $user, Collocation $collocation): ?int
     {
         $query = $this->pdo->prepare("SELECT SUM(expenses.payers_amount - payments.amount) AS amount_due FROM expenses JOIN payments ON expenses.id = payments.expense_id WHERE expenses.collocation_id = :collocationId AND expenses.user_id = :userId");
         $query->bindValue(':userId', $user->getId(), \PDO::PARAM_INT);

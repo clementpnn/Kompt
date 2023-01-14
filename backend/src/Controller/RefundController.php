@@ -19,7 +19,6 @@ class RefundController extends BaseController
         $userManager = new UserManager(new PDOFactory());
         $collocationManager = new CollocationManager(new PDOFactory());
 
-
         $headers = getallheaders();
         if (isset($headers['Authorization'])) {
             $jwt = $collocationManager->bearer($headers);
@@ -45,7 +44,7 @@ class RefundController extends BaseController
             ]);
             die;
         }
-    
+
         $collocation = $collocationManager->getCollocation($user);
 
         if (!$collocation)
@@ -61,13 +60,13 @@ class RefundController extends BaseController
             'amount' => $_POST['amount'],
         ];
 
+        $users = $collocationManager->getUsers($collocation, $user);
+        $sum = $data['amount'];
+        $num = count($users);
+        $payerAmount =  $sum / $num;
+
         $refundManager = new RefundManager(new PDOFactory());
         $refund = new Refund();
-
-        $users = $collocationManager->getUsers($collocation, $user);
-        // $sum = $data['amount'];
-        // $num = count($users);
-        // $payerAmount =  $sum / $num;
 
         $string = json_encode($users);
 
@@ -77,7 +76,7 @@ class RefundController extends BaseController
         $refund->setTitle($data['title']);
         $refund->setAmount($data['amount']);
         $refund->setPayers($string);
-        $refund->setPayerAmount(10);
+        $refund->setPayerAmount($payerAmount);
         $refundManager->insertRefund($refund, $user, $collocation);
 
         $this->renderJSON([
