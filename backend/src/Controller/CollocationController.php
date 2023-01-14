@@ -89,7 +89,7 @@ class CollocationController extends BaseController
             $email = $object->email;
             $user = $userManager->getByMail($email);
 
-            if (!($user instanceof User))
+            if (!$user)
             {
                 $this->renderJSON([
                     "message" => "no user"
@@ -107,8 +107,65 @@ class CollocationController extends BaseController
             $collocation->setSecreteCode($secreteCode);
             $id = $collocationManager->insertCollocation($collocation);
             $collocation->setId($id);
-            
+
             $role = 'admin';
+            $collocationManager->insertCollocationRole($collocation, $user, $role);
+
+            $this->renderJSON([
+                "isInCollocation" => "yes"
+            ]);
+            die;
+        }
+    
+        #[Route('/collocation/joined', name: "app_collocation_joined", methods: ['POST'])]
+        public function collocationJoined()
+        {
+            $collocationManager = new CollocationManager(new PDOFactory());
+            $userManager = new UserManager(new PDOFactory());
+            $collocation = new Collocation();
+
+            $headers = getallheaders();
+            if (isset($headers['Authorization'])) {
+                $jwt = $collocationManager->bearer($headers);
+            }
+            
+            $token = JWTHelper::decodeJWT($jwt);
+            if (!$token)
+            {
+                $this->renderJSON([
+                    "message" => "invalid cred"
+                ]);
+                die;
+            }
+            
+            $object = json_decode(json_encode($token));
+            $email = $object->email;
+            $user = $userManager->getByMail($email);
+
+            if (!$user)
+            {
+                $this->renderJSON([
+                    "message" => "no user"
+                ]);
+                die;
+            }
+
+            $data = [
+                'code' => $_POST['code'],
+            ];
+
+            $collocation->setSecreteCode($data['code']);
+            $checkCode = $collocationManager->checkCode($collocation);
+
+            if (!$checkCode)
+            {
+                $this->renderJSON([
+                    "message" => "not good code"
+                ]);
+                die;
+            }
+
+            $role = 'member';
             $collocationManager->insertCollocationRole($collocation, $user, $role);
 
             $this->renderJSON([
