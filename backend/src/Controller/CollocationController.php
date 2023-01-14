@@ -22,14 +22,6 @@ class CollocationController extends BaseController
         if (isset($headers['Authorization'])) {
             $jwt = $collocationManager->bearer($headers);
         }
-
-        if (!$jwt)
-        {
-            $this->renderJSON([
-                "message" => "tu t'es encore trompé vico"
-            ]);
-            die;
-        }
         
         $token = JWTHelper::decodeJWT($jwt);
         if (!$token)
@@ -78,6 +70,14 @@ class CollocationController extends BaseController
             $headers = getallheaders();
             if (isset($headers['Authorization'])) {
                 $jwt = $collocationManager->bearer($headers);
+            }
+
+            if (!$jwt)
+            {
+                $this->renderJSON([
+                    "message" => "tu t'es encore trompé vico"
+                ]);
+                die;
             }
             
             $token = JWTHelper::decodeJWT($jwt);
