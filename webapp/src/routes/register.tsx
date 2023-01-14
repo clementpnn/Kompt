@@ -2,7 +2,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import Button from "../components/button";
 import { FormValues, ButtonInterface } from "../interfaces/interfaces";
 import { userStore } from "../stores/store";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function Register() {
@@ -89,9 +89,9 @@ export default function Register() {
         </form>
         <p className="font-os text-large">
           Already have a Kompt account ?{" "}
-          <a href="/login" className="font-os font-bold text-large">
+          <Link to="/login" className="font-os font-bold text-large">
             Sign in
-          </a>
+          </Link>
         </p>
       </div>
     </div>

@@ -2,7 +2,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { ButtonInterface, FormValues } from "../interfaces/interfaces";
 import Button from "../components/button";
 import { userStore } from "../stores/store";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function Login() {
@@ -75,9 +75,9 @@ export default function Login() {
         </form>
         <p className="font-os text-large">
           New on Kompt ?{" "}
-          <a href="/register" className="font-os font-bold text-large">
+          <Link to="/register" className="font-os font-bold text-large">
             Sign up
-          </a>
+          </Link>
         </p>
       </div>
     </div>

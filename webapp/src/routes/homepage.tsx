@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom";
-import LeaveGroupPopup from "../components/pop-up/leaveGroupPopup";
 import { userStore } from "../stores/store";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
@@ -17,11 +16,7 @@ function HomeNotLog() {
   return (
     <div className="pt-20 bg-stone-100 h-screen flex justify-center items-center flex flex-col">
       <p className="text-center">Bienvenue sur Kompt</p>
-      <p className="text-center">
-        Créez un compte ou connectez-vous pour accéder à l'application
-      </p>
-      <br />
-      <LeaveGroupPopup />
+      <p className="text-center">Créez un compte ou connectez-vous pour accéder à l'application</p>
     </div>
   );
 }

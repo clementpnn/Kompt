@@ -7,9 +7,11 @@ import Navbar from './components/navbar'
 import Homepage from './routes/homepage'
 import Landing from './routes/landingPage'
 
+
 import Refund from './routes/refund';
 import Test from './components/test';
 import GroupMember from './routes/member_group';
+import PageNotFound from './routes/pageNotFound';
 
 
 
@@ -31,6 +33,7 @@ export default function App() {
 
         </Route>
 
+        <Route path="*" element={<PageNotFound />} />
         
       </Routes>
 
