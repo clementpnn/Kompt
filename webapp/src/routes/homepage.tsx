@@ -27,6 +27,12 @@ export default function Homepage() {
   const setGroup = userStore((state) => state.setGroup);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (getGroup == true) {
+      navigate("/landing");
+    }
+  });
+
   let isLogged: boolean = false;
   if (getJwt == "") {
     isLogged = false;
@@ -43,17 +49,12 @@ export default function Homepage() {
     .then((response) => response.json())
     .then((data) => {
       if(data.isInCollocation == "yes"){
-        
         setGroup(true)
       }
     })
   }
 
-  useEffect(() => {
-    if (getGroup == true) {
-      navigate("/landing");
-    }
-  });
+  
   
   return (
     <>

@@ -5,7 +5,8 @@ import Button from "../button";
 
 export default function CreateGroupPopup() {
   const getJwt = userStore((state) => state.token);
-  console.log(getJwt);
+  const setGroup = userStore((state) => state.setGroup);
+
   const { register, handleSubmit } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     fetch("http://localhost:2329/collocation/create", {
@@ -20,7 +21,9 @@ export default function CreateGroupPopup() {
       },
     })
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        setGroup(true)
+      });
   };
 
   const buttonJoinGroup: ButtonInterface = {

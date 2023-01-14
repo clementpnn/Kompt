@@ -9,7 +9,12 @@ export default function Login() {
   const setJwt = userStore((state) => state.setUser);
   const getJwt = userStore((state) => state.token);
   const navigate = useNavigate();
-
+  
+  useEffect(() => {
+    if (getJwt != "") {
+      navigate("/");
+    }
+  });
   const { register, handleSubmit } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     fetch("http://localhost:2329/login", {
@@ -32,12 +37,8 @@ export default function Login() {
         }
       });
   };
-
-  useEffect(() => {
-    if (getJwt != "" && getJwt != undefined) {
-      navigate("/");
-    }
-  });
+  
+  
 
   const buttonLogin: ButtonInterface = {
     text: "Login",
