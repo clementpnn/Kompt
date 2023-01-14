@@ -40,7 +40,7 @@ export default function JoinGroupPopup() {
                 <label className="modal-box relative p-5">
                     <div className="flex">
                         <p className="font-bold text-2xl flex-1">Join Group</p>
-                        <a href="" className="text-primary font-bold">✕</a>
+                        {/* <a href="" className="text-primary font-bold">✕</a> */}
                     </div>
                     <p className="py-4 my-2.5">Enter the code generate by the group admin to join</p>
                     <div className="mt-5">

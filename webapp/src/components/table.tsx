@@ -17,6 +17,15 @@ export default function Table({header, tab} : {header : string[], tab: RefundGro
         icon: undefined 
     }
 
+    var url = document.location.href; 
+    const endOfUrl = url.substring (url.lastIndexOf( "/" )+1 );
+
+    var onPage = false
+    if (endOfUrl == "refund") {
+        onPage = true
+    } else {
+        false
+    }
 
     return (
         <div className="overflow-x-auto pt-14 px-20">
@@ -40,7 +49,12 @@ export default function Table({header, tab} : {header : string[], tab: RefundGro
                                 <td className="font-os text-large text-primary font-bold">{`${line.expense}$ / ${line.amount}$`}</td>
                                 <td>{line.expense==line.amount ? <Badge state="success"/> : <Badge state="processing"/>}</td>
                                 <td className="font-os text-large">{line.date}</td>
-                                <td><RefundPopup/></td>
+                                {onPage ? (
+                                    <td><RefundPopup/></td>
+                                ) : ( 
+                                    <></>
+                                )}
+                                
                             </tr>
                         )
                 })}

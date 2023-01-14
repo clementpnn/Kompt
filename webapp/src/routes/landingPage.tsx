@@ -11,6 +11,9 @@ import LogoutPopup from "../components/pop-up/logoutPopup"
 
 
 export default function Landing() {
+    var url = document.location.href; 
+    const endOfUrl = url.substring (url.lastIndexOf( "/" )+1 );
+
 
     const header: string[] = ["Refund", "Loading", "Amount", "Status", "Date"]
     const tableauRefund : RefundGroup[]= [
