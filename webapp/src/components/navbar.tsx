@@ -38,14 +38,15 @@ function NavbarInGroup() {
 
 export default function Navbar() {
   const getJwt = userStore((state) => state.token);
+  const getGroup = userStore((state) => state.group);
 
   let isLogged: boolean = false;
-  let isGroup: boolean = false;
 
   if (getJwt == "") {
     isLogged = false;
   } else {
     isLogged = true;
+
   }
 
   return (
@@ -59,7 +60,7 @@ export default function Navbar() {
           </div>
           <div className="flex-none">
             {isLogged ? (
-              <>{isGroup ? <NavbarInGroup /> : <NavbarLog />}</>
+              <>{getGroup == true ? <NavbarInGroup /> : <NavbarLog />}</>
             ) : (
               <NavbarNotLog />
             )}

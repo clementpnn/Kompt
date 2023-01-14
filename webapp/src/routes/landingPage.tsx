@@ -1,15 +1,27 @@
 import Table from "../components/table"
 import HeaderGroup from '../components/headerGroup'
 import HeaderUser from "../components/headerUser"
-import { Outlet } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom"
 import SideBarPopup from "../components/pop-up/sideBarPopup"
 import { RefundGroup } from "../interfaces/interfaces"
 import LeaveGroupPopup from "../components/pop-up/leaveGroupPopup"
 import LogoutPopup from "../components/pop-up/logoutPopup"
+import { useEffect } from "react"
+import { userStore } from "../stores/store"
 
 
 
 export default function Landing() {
+
+    const getJwt = userStore((state) => state.token);
+    const getGroup = userStore((state) => state.group);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (getJwt == "" || getGroup == false) {
+          navigate("/");
+        }
+    });
 
     const header: string[] = ["Refund", "Loading", "Amount", "Status", "Date"]
     const tableauRefund : RefundGroup[]= [
@@ -35,6 +47,8 @@ export default function Landing() {
             date: "Jan 17, 2022"
         },
     ]
+    
+    
             
     return (
         <>

@@ -23,8 +23,8 @@ export default function Table({header, tab} : {header : string[], tab: RefundGro
             <table className="table-normal w-full">
                 <thead>
                     <tr className="border-b">
-                        {header.map(value => {
-                            return <td className="bg-white font-os normal-case text-large font-bold">{value}</td>
+                        {header.map((value, index) => {
+                            return <td key={index} className="bg-white font-os normal-case text-large font-bold">{value}</td>
                         })}
                     </tr>
                 </thead>
@@ -34,7 +34,7 @@ export default function Table({header, tab} : {header : string[], tab: RefundGro
                 
                         return (
                             // <tr onClick={() => navigate(`/refund_${line.id}`, {state: {id: line.id}})}>
-                            <tr onClick={() => navigate('/landing/refund', {state: {id: line.id}})}>
+                            <tr key={line.id} onClick={() => navigate('/landing/refund', {state: {id: line.id}})}>
                                 <td className="font-os text-large ">{line.name}</td>
                                 <td className="w-80 pr-20"><ProgressBar taille={"w-80"} value={line.expense} max={line.amount}/></td>
                                 <td className="font-os text-large text-primary font-bold">{`${line.expense}$ / ${line.amount}$`}</td>

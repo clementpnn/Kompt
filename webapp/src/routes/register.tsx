@@ -10,6 +10,12 @@ export default function Register() {
   const getJwt = userStore((state) => state.token);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (getJwt != "" ) {
+      navigate("/");
+    } 
+  });
+
   const { register, handleSubmit } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     fetch("http://localhost:2329/register", {
@@ -29,11 +35,7 @@ export default function Register() {
       });
   };
 
-  useEffect(() => {
-    if (getJwt != "" && getJwt != undefined) {
-      navigate("/");
-    } 
-  });
+  
 
   const buttonRegister: ButtonInterface = {
     text: "Register",
@@ -57,6 +59,7 @@ export default function Register() {
             placeholder="Enter username"
             className="mb-2 input input-bordered w-full"
             {...register("name")}
+            required
           />
           <label className="label label-text font-bold font-os text-large">
             Email
@@ -66,6 +69,7 @@ export default function Register() {
             placeholder="Enter email"
             className="mb-2 input input-bordered w-full"
             {...register("email")}
+            required
           />
           <label className="label label-text font-bold font-os text-large">
             Password
@@ -75,6 +79,7 @@ export default function Register() {
             placeholder="Enter password"
             className="mb-2 input input-bordered w-full"
             {...register("password")}
+            required
           />
           <label className="label label-text font-bold font-os text-large">
             Confirm password
@@ -84,6 +89,7 @@ export default function Register() {
             placeholder="Confirm password"
             className="mb-10 input input-bordered w-full"
             {...register("passwordConfirm")}
+            required
           />
           <Button props={buttonRegister} />
         </form>
