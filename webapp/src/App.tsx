@@ -24,7 +24,7 @@ export default function App() {
         <Route path="/" element={<Navbar />}>
           <Route path="/" element={<Homepage />} />
           <Route path="/landing" element={<Landing />} />
-          <Route path="/refund" element={<Refund />} />
+          <Route path="/landing/refund" element={<Refund />} />
         </Route>
 
         
