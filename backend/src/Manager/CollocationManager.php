@@ -55,37 +55,20 @@ class CollocationManager extends BaseManager
 
     /**
      * @param Collocation $collocation
-     * @return ?int
+     * @return ?Collocation
      */
-    public function checkCode(Collocation $collocation): ?int
+    public function checkCode(Collocation $collocation): ?Collocation
     {
         $query = $this->pdo->prepare("SELECT id FROM collocations WHERE secret_code = :collocationCode");
         $query->bindValue("collocationCode", $collocation->getSecreteCode(), \PDO::PARAM_STR);
         $query->execute();
-        $result = $query->fetch();
+        $result = $query->fetch(\PDO::FETCH_ASSOC);
         if($result) {
             return new Collocation($result); ;
         } else {
             return null;
         }
-
     }
-
-    // /**
-    //  * @param Collocation $id
-    //  * @param User $user_id
-    //  * @return bool
-    //  */
-    // public function isInCollocation(Collocation $collocation, User $user): bool
-    // {
-    //     $query = $this->pdo->prepare("SELECT COUNT(*) FROM collocation_roles WHERE collocation_id = :id AND user_id = :user_id");
-    //     $query->bindValue("id", $collocation->getId(), \PDO::PARAM_INT);
-    //     $query->bindValue("user_id", $user->getId(), \PDO::PARAM_INT);
-    //     $query->execute();
-    //     $count = $query->fetchColumn();
-
-    //     return $count === 1;
-    // }
 
     /**
      * @param array $headers
@@ -131,5 +114,63 @@ class CollocationManager extends BaseManager
         }
 
         return null;
+    }
+
+    //  /**
+    //  * @param $user
+    //  * @return string
+    //  */
+    // public function displayLine(User $user): string
+    // {
+    //     $query = $this->pdo->prepare("SELECT expenses.*, users.name AS user_name, collocations.name AS collocation_name
+    //                     FROM expenses 
+    //                     JOIN users ON expenses.user_id = users.id
+    //                     JOIN collocations ON expenses.collocation_id = collocations.id
+    //                     WHERE expenses.user_id = :userId");
+    //     $query->bindValue(':userId', $user->getId(), \PDO::PARAM_STR);
+    //     $query->execute();
+    //     $expenseInfo = $query->fetchAll(\PDO::FETCH_ASSOC);
+    //     return $expenseInfo;
+    // }
+
+    /**
+     * @param $user
+     * @return int
+     */
+    public function countReceivable(User $user): int
+    {
+        $query = $this->pdo->prepare("SELECT SUM(amount) FROM expenses WHERE payers LIKE :userId");
+        $query->bindValue(':userId', $user->getId(), \PDO::PARAM_STR);
+        $query->execute();
+        $totalReceivable = $query->fetchColumn();
+        return $totalReceivable;
+    }
+
+    /**
+     * @param User $user
+     * @param Collocation $collocation
+     * @return int
+     */
+    public function countToPay(User $user, Collocation $collocation): int
+    {
+        $query = $this->pdo->prepare("SELECT SUM(expenses.payers_amount - payments.amount) AS amount_due FROM expenses JOIN payments ON expenses.id = payments.expense_id WHERE expenses.collocation_id = :collocationId AND expenses.user_id = :userId");
+        $query->bindValue(':userId', $user->getId(), \PDO::PARAM_INT);
+        $query->bindValue(':collocationId', $collocation->getId(), \PDO::PARAM_INT);
+        $query->execute();
+        $totalOwed = $query->fetchColumn();
+        return $totalOwed;
+    }
+
+    /**
+     * @param Collocation $collocation
+     * @return int
+     */
+    public function countPeople(Collocation $collocation): int
+    {
+        $query = $this->pdo->prepare("SELECT COUNT(DISTINCT user_id) FROM collocation_roles WHERE collocation_id = :collocationId");
+        $query->bindValue(':collocationId', $collocation->getId(), \PDO::PARAM_STR);
+        $query->execute();
+        $numPeople = $query->fetchColumn();
+        return $numPeople;
     }
 }

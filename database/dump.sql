@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS expenses
 (
   id             INT    PRIMARY KEY AUTO_INCREMENT NOT NULL,
   date           DATE   NOT NULL,
-  description    TEXT   NOT NULL,
+  title          TEXT   NOT NULL,
   amount         REAL   NOT NULL,
   payers         TEXT   NOT NULL,
   payers_amount  REAL   NOT NULL,

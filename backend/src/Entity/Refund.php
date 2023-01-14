@@ -6,11 +6,12 @@ use App\Framework\Base\BaseEntity;
 
 class Refund extends BaseEntity
 {
-    private int       $id;
-    private \DateTime|string $date;
-    private string    $title;
-    private float     $amount;
-    private array     $payers;
+    private int              $id;
+    private                  $date;
+    private string           $title;
+    private int              $amount;
+    private string           $payers;
+    private int              $payerAmount;
 
     /**
      * @return int
@@ -29,25 +30,22 @@ class Refund extends BaseEntity
         $this->id = $id;
     }
 
-    /**
-     * @return \DateTime|string
-     */
-    public function getDate(): \DateTime|string
+    public function getDate()
     {
         return $this->date;
     }
 
     /**
-     * @param  \DateTime|string $date
+     * @param  $date
      * @return void
      */
-    public function setDate(\DateTime|string $date): void
+    public function setDate($date): void
     {
         $this->date = $date;
     }
 
     /**
-     * @return string
+     * @return 
      */
     public function getTitle(): string
     {
@@ -64,37 +62,53 @@ class Refund extends BaseEntity
     }
 
     /**
-     * @return float
+     * @return int
      */
-    public function getAmount(): float
+    public function getAmount(): int
     {
         return $this->amount;
     }
 
     /**
-     * @param  float $amount
+     * @param  int $amount
      * @return void
      */
-    public function setAmount(float $amount): void
+    public function setAmount(int $amount): void
     {
         $this->amount = $amount;
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getPayers(): array
+    public function getPayers(): string
     {
         return $this->payers;
     }
 
     /**
-     * @param  array $payers
+     * @param  string $payers
      * @return void
      */
-    public function setPayers(array $payers): void
+    public function setPayers(string $payers): void
     {
         $this->payers = $payers;
     }
-    
+
+    /**
+     * @return int
+     */
+    public function getPayerAmount(): int
+    {
+        return $this->payerAmount;
+    }
+
+    /**
+     * @param  int $payerAmount
+     * @return void
+     */
+    public function setPayerAmount(int $payerAmount): void
+    {
+        $this->payerAmount = $payerAmount;
+    }
 }

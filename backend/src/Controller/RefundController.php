@@ -9,35 +9,80 @@ use App\Manager\RefundManager;
 use App\Manager\CollocationManager;
 use App\Manager\UserManager;
 use App\Entity\Refund;
-use App\Entity\Collocation;
-use App\Entity\User;
 use App\Service\JWTHelper;
 
 class RefundController extends BaseController
 {
-    #[Route('/refund', name: "app_refund", methods: ['POST'])]
-    public function refund()
+    #[Route('/refund/create', name: "app_refund_create", methods: ['POST'])]
+    public function refundCreate()
     {
+        $userManager = new UserManager(new PDOFactory());
+        $collocationManager = new CollocationManager(new PDOFactory());
+
+
+        $headers = getallheaders();
+        if (isset($headers['Authorization'])) {
+            $jwt = $collocationManager->bearer($headers);
+        }
+        
+        $token = JWTHelper::decodeJWT($jwt);
+        if (!$token)
+        {
+            $this->renderJSON([
+                "message" => "invalid cred"
+            ]);
+            die;
+        }
+        
+        $object = json_decode(json_encode($token));
+        $email = $object->email;
+        $user = $userManager->getByMail($email);
+
+        if (!$user)
+        {
+            $this->renderJSON([
+                "message" => "no user"
+            ]);
+            die;
+        }
+    
+        $collocation = $collocationManager->getCollocation($user);
+
+        if (!$collocation)
+        {
+            $this->renderJSON([
+                "message" => "no collocation"
+            ]);
+            die;
+        }
+        
         $data = [
             'title' => $_POST['title'],
             'amount' => $_POST['amount'],
         ];
 
         $refundManager = new RefundManager(new PDOFactory());
-        $collocationManager = new CollocationManager(new PDOFactory());
-        
         $refund = new Refund();
-        $collocation = new Collocation();
-        $user = new User();
 
         $users = $collocationManager->getUsers($collocation, $user);
+        // $sum = $data['amount'];
+        // $num = count($users);
+        // $payerAmount =  $sum / $num;
 
-        $dateFormated = date('d/m/Y');
+        $string = json_encode($users);
+
+        $dateFormated = new \DateTime();
 
         $refund->setDate($dateFormated);
         $refund->setTitle($data['title']);
         $refund->setAmount($data['amount']);
-        $refund->setPayers($users);
-        $refundManager->insertRefund($refund);
+        $refund->setPayers($string);
+        $refund->setPayerAmount(10);
+        $refundManager->insertRefund($refund, $user, $collocation);
+
+        $this->renderJSON([
+            "message" => "refund create"
+        ]);
+        die;
     }
 }

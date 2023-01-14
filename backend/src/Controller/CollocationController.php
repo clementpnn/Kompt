@@ -44,7 +44,6 @@ class CollocationController extends BaseController
             die;
         }
 
-        $collocationManager = new CollocationManager(new PDOFactory());
         $collocation = $collocationManager->getCollocation($user);
 
         if (!$collocation)
@@ -54,8 +53,6 @@ class CollocationController extends BaseController
             ]);
             die;
         }
-
-        // $isInCollocation = $collocationManager->isInCollocation($collocation, $user);
 
         $this->renderJSON([
             "isInCollocation" => "yes"
@@ -165,7 +162,7 @@ class CollocationController extends BaseController
             }
 
             $role = 'member';
-            $collocationManager->insertCollocationRole($collocation, $user, $role);
+            $collocationManager->insertCollocationRole($checkCode, $user, $role);
 
             $this->renderJSON([
                 "isInCollocation" => "yes"
