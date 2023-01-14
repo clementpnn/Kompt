@@ -48,12 +48,13 @@ class DashboardController extends BaseController
         $TotalPeople = $collocationManager->countPeople($collocation);
         $totalToPay = $collocationManager->countToPay($user, $collocation);
         $totalReceivable = $collocationManager->countReceivable($user, $collocation);
-        // $totalLine = $collocationManager->displayLine($collocation);
+        $totalLine = $collocationManager->displayLine($user, $collocation);
 
         $this->renderJSON([
             "peoples" => $TotalPeople,
             "toPay" => $totalToPay,
-            "toReceivable" => $totalReceivable
+            "toReceivable" => $totalReceivable,
+            "data" => $totalLine,
         ]);
         die;
     }
