@@ -12,7 +12,7 @@ class JWTHelper
     {
         $payload = [
             "email" => $user->getEmail(),
-            "exp" => (new \DateTime("+ 20 minutes"))->getTimestamp()
+            "exp" => (new \DateTime("+ 1440 minutes"))->getTimestamp()
         ];
 
         return JWT::encode($payload, "mgkfjdslkgjfdkljshgfkld", "HS256");

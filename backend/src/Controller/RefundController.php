@@ -65,21 +65,24 @@ class RefundController extends BaseController
         $refund = new Refund();
 
         $users = $collocationManager->getUsers($collocation, $user);
+        // $sum = $data['amount'];
+        // $num = count($users);
+        // $payerAmount =  $sum / $num;
 
-        $dateFormated = date('d/m/Y');
+        $string = json_encode($users);
+
+        $dateFormated = new \DateTime();
 
         $refund->setDate($dateFormated);
         $refund->setTitle($data['title']);
         $refund->setAmount($data['amount']);
-        $refund->setPayers($users);
+        $refund->setPayers($string);
+        $refund->setPayerAmount(10);
         $refundManager->insertRefund($refund, $user, $collocation);
 
-        if (!$user)
-        {
-            $this->renderJSON([
-                "message" => "refund create"
-            ]);
-            die;
-        }
+        $this->renderJSON([
+            "message" => "refund create"
+        ]);
+        die;
     }
 }

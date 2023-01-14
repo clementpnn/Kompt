@@ -7,8 +7,6 @@ use App\Framework\Route\Route;
 use App\Framework\Factory\PDOFactory;
 use App\Manager\UserManager;
 use App\Manager\CollocationManager;
-use App\Entity\User;
-use App\Entity\Collocation;
 use App\Service\JWTHelper;
 
 class DashboardController extends BaseController
@@ -48,7 +46,7 @@ class DashboardController extends BaseController
     
         $collocation = $collocationManager->getCollocation($user);
 
-        // $TotalPeople = $userManager->countPeople($user);
+        $TotalPeople = $collocationManager->countPeople($collocation);
         // $totalToPay = $userManager->countToPay($user);
         // $totalReceivable = $userManager->countReceivable($user);
         // $totalLine = $userManager->displayLine($user);

@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS expenses
   title          TEXT   NOT NULL,
   amount         REAL   NOT NULL,
   payers         TEXT   NOT NULL,
+  payers_amount  REAL   NOT NULL,
   user_id        INT    NOT NULL,
   collocation_id INT    NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users (id),
