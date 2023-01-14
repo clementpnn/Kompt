@@ -130,23 +130,22 @@ class CollocationManager extends BaseManager
           WHEN expenses.user_id = :userId THEN expenses.amount 
           ELSE expenses.payers_amount 
         END AS amount_due,
-        SUM(payments.amount) as payments_amount,
         SUM(CASE 
           WHEN expenses.user_id = :userId THEN payments.amount 
           ELSE 0 
         END) as total_paid_by_users,
-        SUM(CASE 
-          WHEN expenses.user_id != :userId THEN payments.amount 
-          ELSE 0 
-        END) as total_refunded
+        SUM(payments.amount) as payments_amount,
+        CASE 
+          WHEN expenses.user_id = :userId THEN SUM(payments.amount) 
+          ELSE NULL 
+        END as total_amount
       FROM expenses
       LEFT JOIN payments ON expenses.id = payments.expense_id 
       WHERE expenses.collocation_id = :collocationId 
-      GROUP BY expenses.id
-         
+      GROUP BY expenses.id      
       ");
-        $query->bindValue(':userId', $user->getId(), \PDO::PARAM_INT);
-        $query->bindValue(':collocationId', $colocation->getId(), \PDO::PARAM_INT);
+        $query->bindValue('userId', $user->getId(), \PDO::PARAM_INT);
+        $query->bindValue('collocationId', $colocation->getId(), \PDO::PARAM_INT);
         $query->execute();
         $expenseInfo = $query->fetchAll(\PDO::FETCH_ASSOC);
         return $expenseInfo;
