@@ -1,60 +1,50 @@
-import { useForm, SubmitHandler } from 'react-hook-form'
-import { ButtonInterface, FormValues } from '../interfaces/interfaces'
-import Button from '../components/button';
-import { useAuthStore } from '../stores/connexionStore';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
-
-
-
+import { useForm, SubmitHandler } from "react-hook-form";
+import { ButtonInterface, FormValues } from "../interfaces/interfaces";
+import Button from "../components/button";
+import { userStore } from "../stores/store";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Login() {
-
-  const setJwt = useAuthStore(state => state.setToken)
-  const getJwt = useAuthStore(state => state.token)
+  const setJwt = userStore((state) => state.setUser);
+  const getJwt = userStore((state) => state.token);
   const navigate = useNavigate();
-  
-  const { register, handleSubmit } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = data => {
-    
-    fetch('http://localhost:2329/login', {
-      method: 'POST',
-      mode: 'cors',
-      body: new URLSearchParams({
-        ...data
-      }),
-      credentials: 'include',
-      headers: new Headers({
-        'Authorization' : `Bearer ${getJwt}`,
-        'Content-type':  'application/x-www-form-urlencoded'
-      })
-    })
-      .then(data => data.text())
-      .then(response =>{
-        const obj = JSON.parse(response)
-        if("token" in obj){
-          setJwt(obj.token)
-        } else {
-          console.log(obj.error)
-        }
-        
-      }
-        
-    )
-  }
 
-  useEffect(()=>{
-    if(getJwt != ""){
-      navigate('/');
+  const { register, handleSubmit } = useForm<FormValues>();
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    fetch("http://localhost:2329/login", {
+      method: "POST",
+      mode: "cors",
+      body: new URLSearchParams({
+        ...data,
+      }),
+      credentials: "include",
+      headers: new Headers({
+        "Content-type": "application/x-www-form-urlencoded",
+      }),
+    })
+      .then((data) => data.json())
+      .then((response) => {
+        if ("token" in response) {
+          setJwt(response.token);
+        } else {
+          console.log(response.error);
+        }
+      });
+  };
+
+  useEffect(() => {
+    if (getJwt != "") {
+      navigate("/");
     }
-  })
-  
-  const buttonLogin : ButtonInterface = {
-    text: 'Login',
-    style: 'fill',
-    color: 'primary',
-    icon: undefined 
-  }
+  });
+
+  const buttonLogin: ButtonInterface = {
+    text: "Login",
+    style: "fill",
+    color: "primary",
+    icon: undefined,
+  };
 
   return (
     <div className="flex justify-center h-screen items-center">
@@ -66,16 +56,30 @@ export default function Login() {
           <label className="label label-text font-bold font-os text-large">
             Email
           </label>
-          <input type="email" placeholder="Enter email" className="mb-2 input input-bordered w-full" {...register('email')}/>
+          <input
+            type="email"
+            placeholder="Enter email"
+            className="mb-2 input input-bordered w-full"
+            {...register("email")}
+          />
           <label className="label label-text font-bold font-os text-large">
             Password
           </label>
-          <input type="password" placeholder="Enter password" className="mb-10 input input-bordered w-full" {...register('password')}/>
-          <Button props={buttonLogin}/>
+          <input
+            type="password"
+            placeholder="Enter password"
+            className="mb-10 input input-bordered w-full"
+            {...register("password")}
+          />
+          <Button props={buttonLogin} />
         </form>
-        <p className='font-os text-large'>New on Kompt ? <a href="/register" className="font-os font-bold text-large">Sign up</a></p>
+        <p className="font-os text-large">
+          New on Kompt ?{" "}
+          <a href="/register" className="font-os font-bold text-large">
+            Sign up
+          </a>
+        </p>
       </div>
     </div>
-  )
-  
+  );
 }
