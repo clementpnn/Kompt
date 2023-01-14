@@ -9,6 +9,7 @@ import Landing from './routes/landingPage'
 
 import Refund from './routes/refund';
 import Test from './components/test';
+import GroupMember from './routes/member_group';
 
 
 export default function App() {
@@ -25,6 +26,8 @@ export default function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/landing" element={<Landing />} />
           <Route path="/landing/refund" element={<Refund />} />
+          <Route path="/landing/members_group" element={<GroupMember/>} />
+
         </Route>
 
         
