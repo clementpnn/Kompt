@@ -10,7 +10,7 @@ export default function HeaderGroup({groupName, groupId, groupMemberNumber}:{gro
     return (
         <>
             <div className="mb-5 mx-20 pt-28">
-                <BreadCrumbds page=""/>   
+                <BreadCrumbds/>   
             </div> 
             <div className="mx-20 bg-white">  
                 <div className="navbar bg-base-100 p-0">
@@ -22,8 +22,7 @@ export default function HeaderGroup({groupName, groupId, groupMemberNumber}:{gro
                                     < User />
                                     <p className="font-os text-large font-bold text-grey-500 ml-2 mr-4">{groupMemberNumber}</p>
                                 </div>
-                                <p><a className="font-os text-large font-bold text-primary" href={`/landing/members_group`}>see all members</a></p>
-                                {/* <p><a className="font-os text-large font-bold text-primary" href={`/landing/members_group_${groupId}`}>see all members</a></p> */}
+                                <p><a className="font-os text-large font-bold text-primary" href={`/landing/members_group_${groupId}`}>see all members</a></p>
                             </div>
                         </div>
                     </div>
