@@ -5,7 +5,7 @@ import BreadCrumbs from './breadcrumbs';
 
 
 
-export default function HeaderGroup({groupName, groupId, groupMemberNumber}:{groupName: string, groupId: number, groupMemberNumber:number}) {
+export default function HeaderGroup({groupName,  groupMemberNumber}:{groupName: string,  groupMemberNumber:number}) {
     
     return (
         <>
@@ -22,7 +22,6 @@ export default function HeaderGroup({groupName, groupId, groupMemberNumber}:{gro
                                     < User />
                                     <p className="font-os text-large font-bold text-grey-500 ml-2 mr-4">{groupMemberNumber}</p>
                                 </div>
-                                {/* <p><a className="font-os text-large font-bold text-primary" href={`/landing/members_group_${groupId}`}>see all members</a></p> */}
                                 <p><a className="font-os text-large font-bold text-primary" href={`/landing/members_group`}>see all members</a></p>
 
                             </div>

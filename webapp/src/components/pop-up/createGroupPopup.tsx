@@ -8,7 +8,7 @@ export default function CreateGroupPopup() {
   const setGroup = userStore((state) => state.setGroup);
 
   const { register, handleSubmit } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<FormValues> = (data : any) => {
     fetch("http://localhost:2329/collocation/create", {
       method: "POST",
       mode: "cors",

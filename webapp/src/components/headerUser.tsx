@@ -1,4 +1,4 @@
-export default function headerUser({username, loanValue, debtValue}:{username: string, loanValue: number, debtValue:number}) {
+export default function headerUser({username, debtValue}:{username: string, debtValue:number}) {
 
     return (
         <div className="mx-20 border-y bg-white">        
@@ -9,7 +9,6 @@ export default function headerUser({username, loanValue, debtValue}:{username: s
                     </div>
                 </div>
                 <div>
-                    <p className="font-os text-large text-gray-500">your loans: <span className="font-medium text-title5 text-primary ml-4">{loanValue}$</span></p>
                     <p className="font-os text-large text-gray-500 ml-10">your debt: <span className="font-medium text-title5 text-primary ml-4">{debtValue}$</span></p>
                 </div>
             </div>

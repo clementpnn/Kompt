@@ -23,6 +23,19 @@ export default function Landing() {
         }
     });
 
+    fetch("http://localhost:2329/dashboard", {
+      method: "GET",
+      mode: "cors",
+      credentials: "include",
+      headers: {
+        Authorization: "Bearer " + getJwt,
+      },
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data)
+    })
+
     const header: string[] = ["Refund", "Loading", "Amount", "Status", "Date"]
     const tableauRefund : RefundGroup[]= [
         {   
@@ -55,8 +68,8 @@ export default function Landing() {
             <SideBarPopup />
             <LeaveGroupPopup />
             <LogoutPopup />
-            <HeaderGroup groupName={"Nom du groupe"} groupId={2} groupMemberNumber={4}/>
-            <HeaderUser username={"UsernameHere"} loanValue={4} debtValue={12.00}/>
+            <HeaderGroup groupName={"Nom du groupe"} groupMemberNumber={4}/>
+            <HeaderUser username={"UsernameHere"} debtValue={12.00}/>
             <Table header={header} tab={tableauRefund} />
             <Outlet />
         </>

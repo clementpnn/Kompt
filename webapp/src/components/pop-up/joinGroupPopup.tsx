@@ -45,7 +45,7 @@ export default function JoinGroupPopup() {
                     <p className="py-4 my-2.5">Enter the code generate by the group admin to join</p>
                     <div className="mt-5">
                         <form className="form-control w-full" onSubmit={handleSubmit(onSubmit)}>
-                            <input type="text" placeholder="Enter the code" className="mb-5 input input-bordered w-full" {...register('generateCode')}/>
+                            <input type="text" placeholder="Enter the code" className="mb-5 input input-bordered w-full" {...register('code')}/>
                             <Button props={buttonJoinGroup}/>
                         </form>
                     </div>
