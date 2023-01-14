@@ -116,22 +116,44 @@ class CollocationManager extends BaseManager
         return null;
     }
 
-    //  /**
-    //  * @param $user
-    //  * @return string
-    //  */
-    // public function displayLine(User $user): string
-    // {
-    //     $query = $this->pdo->prepare("SELECT expenses.*, users.name AS user_name, collocations.name AS collocation_name
-    //                     FROM expenses 
-    //                     JOIN users ON expenses.user_id = users.id
-    //                     JOIN collocations ON expenses.collocation_id = collocations.id
-    //                     WHERE expenses.user_id = :userId");
-    //     $query->bindValue(':userId', $user->getId(), \PDO::PARAM_STR);
-    //     $query->execute();
-    //     $expenseInfo = $query->fetchAll(\PDO::FETCH_ASSOC);
-    //     return $expenseInfo;
-    // }
+    /**
+     * @param User $user
+     * @param Collocation $collocation
+     */
+    public function displayLine(User $user, Collocation $colocation)
+    {
+        $query = $this->pdo->prepare("SELECT 
+        expenses.id, 
+        expenses.date, 
+        expenses.title, 
+        CASE 
+          WHEN expenses.user_id = :userId THEN expenses.amount 
+          ELSE expenses.payers_amount 
+        END AS amount_due,
+        SUM(CASE 
+          WHEN expenses.user_id = :userId THEN payments.amount 
+          ELSE 0 
+        END) as total_paid_by_users,
+        SUM(payments.amount) as payments_amount,
+        CASE 
+          WHEN expenses.user_id = :userId THEN SUM(payments.amount) 
+          ELSE NULL 
+        END as total_amount,
+        CASE 
+          WHEN expenses.user_id = :userId THEN 'YES'
+          ELSE 'NO'
+        END as created_by
+      FROM expenses
+      LEFT JOIN payments ON expenses.id = payments.expense_id 
+      WHERE expenses.collocation_id = :collocationId 
+      GROUP BY expenses.id      
+      ");
+        $query->bindValue(':userId', $user->getId(), \PDO::PARAM_INT);
+        $query->bindValue(':collocationId', $colocation->getId(), \PDO::PARAM_INT);
+        $query->execute();
+        $expenseInfo = $query->fetchAll(\PDO::FETCH_ASSOC);
+        return $expenseInfo;
+    }
 
     /**
      * @param $user
