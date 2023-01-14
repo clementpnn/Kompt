@@ -4,7 +4,8 @@ interface State {
 }
 
 interface Jwt {
-  jwt: {[key: string] : string};
+  jwt: string;
+  setJwt: (newState : string) => void;
 }
 
 interface Logged {
@@ -13,6 +14,7 @@ interface Logged {
 }
 
 interface FormValues {
+    token(token: any): unknown;
 
     name: string;
     email: string;

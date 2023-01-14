@@ -1,5 +1,4 @@
-import { useBooleanStore, useJwtStore, useLoggedStore } from "../stores/booleanToggles"
-
+import { useBooleanStore, useJwtStore, useLoggedStore} from "../stores/connexionStore"
 
 
 export function Chips(){
@@ -26,16 +25,20 @@ export function Paelas(){
 
 export function Jwt(){
     const jwt = useJwtStore(state => state.jwt)
+    const setJwt = useJwtStore(state => state.setJwt)
     const logged = useLoggedStore(state => state.isLogged)
-    const switchLogged = useLoggedStore(state => state.toggle)
-    console.log(logged)
+
+    console.log(jwt)
     return(
         <>  
-            <button onClick={switchLogged}>Change state</button>
-            {logged==true && <h1>{jwt.token}</h1>}
+            <h1>{jwt}</h1>
+            <button onClick={() => setJwt("chips")}>Change state</button>
+            
         </>
     )
 }
+
+
 
 export default function Test(){
     return(

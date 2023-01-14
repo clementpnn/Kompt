@@ -1,14 +1,15 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
 import Button from '../components/button';
 import { FormValues, ButtonInterface } from '../interfaces/interfaces'
+import { useJwtStore } from "../stores/connexionStore.jsx"
   
 
 
 export default function Register() {
-
+  const setJwt = useJwtStore(state => state.setJwt)
+  const getJwt = useJwtStore(state => state.jwt)
   const { register, handleSubmit } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = data => {
-      
     fetch('http://localhost:2329/register', {
       method: 'POST',
       mode: 'cors',
@@ -22,8 +23,14 @@ export default function Register() {
       })
     })
       .then(data => data.text())
-      .then(json => console.log(json))
+      .then(response => {
+          const data = JSON.parse(response)
+          setJwt(data.token)
+          
+        }
+      )
   }
+  console.log(getJwt)
 
   const buttonRegister : ButtonInterface = {
     text: 'Register',
@@ -57,7 +64,8 @@ export default function Register() {
           <input type="password" placeholder="Confirm password" className="mb-10 input input-bordered w-full" {...register('passwordConfirm')}/>
           <Button props={buttonRegister}/>
         </form>
-        <p className='font-os text-large'>Already have a Kompt account ? <a href="/login" className="font-os font-bold text-large">Sign in</a></p>
+        <p className='font-os text-large'>{getJwt}Already have a Kompt account ? <a href="/login" className="font-os font-bold text-large">Sign in</a></p>
+        
       </div>
     </div>
   )
