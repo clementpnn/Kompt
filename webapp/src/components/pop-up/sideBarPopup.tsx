@@ -12,6 +12,7 @@ export default function SideBarPopup() {
         htmlFor: 'leave_group',
         icon: undefined 
     }
+    
     const labelLogout : LabelInterface = {
         text: 'Log out',
         style: 'fill',
