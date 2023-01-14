@@ -45,7 +45,7 @@ class CollocationController extends BaseController
         }
 
         $collocation = $collocationManager->getCollocation($user);
-
+   
         if (!$collocation)
         {
             $this->renderJSON([
