@@ -5,9 +5,13 @@ import HeaderUser from "../components/headerUser"
 import { Outlet } from "react-router-dom"
 import SideBarPopup from "../components/pop-up/sideBarPopup"
 import { RefundGroup } from "../interfaces/interfaces"
+import LeaveGroupPopup from "../components/pop-up/leaveGroupPopup"
+import LogoutPopup from "../components/pop-up/logoutPopup"
+
 
 
 export default function Landing() {
+
     const header: string[] = ["Refund", "Loading", "Amount", "Status", "Date"]
     const tableauRefund : RefundGroup[]= [
         {   
@@ -34,12 +38,15 @@ export default function Landing() {
     ]
             
     return (
-        <div>
+        <>
             <SideBarPopup />
+            <LeaveGroupPopup />
+            <LogoutPopup />
             <HeaderGroup groupName={"Nom du groupe"} groupId={2} groupMemberNumber={4}/>
-            <HeaderUser username={"Vicoh"} loanValue={4} debtValue={12.00}/>
+            <HeaderUser username={"UsernameHere"} loanValue={4} debtValue={12.00}/>
             <Table header={header} tab={tableauRefund} />
             <Outlet />
-        </div>
+        </>
     )
+    
 }

@@ -1,7 +1,9 @@
 import { ButtonInterface } from '../interfaces/interfaces'
 
+
+
 export default function Button({props} : {props : ButtonInterface}) {
-    // {text, style, color, icon}:{text: string, style: string, color:string, icon?: string}
+
     function buttonContent(){
         if(props.icon == undefined){
             return props.text
@@ -14,13 +16,15 @@ export default function Button({props} : {props : ButtonInterface}) {
             )
         }
     }
+
     let balise;
+
     if(props.style=="fill" && props.color=="primary"){
-        balise = <button className="btn btn-primary font-os text-paragraph text-white normal-case">
+        balise = <button className="btn btn-primary font-os text-paragraph text-white normal-case w-full">
             {buttonContent()}
         </button>
-    } else if(props.style=="outline" && props.color=="primary" && props.style=="outline"){
-        balise = <button className="btn btn-outline btn-primary font-os text-paragraph normal-case">
+    } else if(props.style=="outline" && props.color=="primary"){
+        balise = <button className="btn btn-outline btn-primary font-os text-paragraph normal-case w-full">
             {buttonContent()}
         </button>
     } else if(props.style=="undefined"){
@@ -28,9 +32,11 @@ export default function Button({props} : {props : ButtonInterface}) {
             {buttonContent()}
         </button>
     }
+
     return (
         <>
             {balise}      
         </>
-    );
+    )
+    
 }

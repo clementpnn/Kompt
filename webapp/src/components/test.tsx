@@ -1,5 +1,4 @@
-import { useBooleanStore, useJwtStore, useLoggedStore, useBearStore } from "../stores/connexionStore"
-
+import { useBooleanStore, useJwtStore, useLoggedStore} from "../stores/connexionStore"
 
 
 export function Chips(){
