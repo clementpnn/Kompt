@@ -1,18 +1,20 @@
-import { Routes, Route } from "react-router-dom";
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { Routes, Route, Outlet, Link } from "react-router-dom";
+
 import Login from './routes/login'
 import Register from './routes/register'
 import Navbar from './components/navbar'
 import Homepage from './routes/homepage'
 import Landing from './routes/landingPage'
+
 import Refund from './routes/refund';
 import Test from './components/test';
 
 
-
 export default function App() {
-
+  
   return (
-    <div>
+    <>
       <Routes>
         
         <Route path="/login" element={<Login />} />
@@ -25,10 +27,11 @@ export default function App() {
           <Route path="/refund" element={<Refund />} />
         </Route>
 
+        
       </Routes>
-    </div>
+
+    </>
   )
-  
 }
 
 

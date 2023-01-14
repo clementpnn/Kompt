@@ -1,5 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 import {ReactComponent as Menu} from '../assets/icon/menu.svg';
+import { useAuthStore } from "../stores/connexionStore";
 import CreateGroupPopup from "./pop-up/createGroupPopup";
 import JoinGroupPopup from "./pop-up/joinGroupPopup";
 
@@ -35,8 +36,17 @@ function NavbarInGroup() {
 
 export default function Navbar() {
     
-    const isLogged = true;
-    const isGroup  = false;
+    const getJwt = useAuthStore(state => state.token)
+
+    let isLogged : boolean = false;
+    let isGroup : boolean  = false;
+
+
+    if(getJwt == ""){
+        isLogged = false
+    } else {
+        isLogged = true
+    }
 
     return (
         <div>

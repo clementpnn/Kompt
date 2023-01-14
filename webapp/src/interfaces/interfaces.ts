@@ -1,18 +1,3 @@
-interface State {
-  compteur: number;
-  increase: () => void
-}
-
-interface Jwt {
-  jwt: string;
-  setJwt: (newState : string) => void;
-}
-
-interface Logged {
-  isLogged: boolean;
-  toggle: () => void
-}
-
 interface FormValues {
     token(token: any): unknown;
 
@@ -47,6 +32,9 @@ interface RefundGroup {
   date?: string;
 }
 
-
-
-export type { State, FormValues, ButtonInterface, RefundGroup, LabelInterface, Jwt, Logged};
+interface Jwt {
+  token: string;
+  setToken: (token: string) => void;
+  deleteToken: () => void;
+}
+export type { FormValues, ButtonInterface, RefundGroup, LabelInterface, Jwt };
