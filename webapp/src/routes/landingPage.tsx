@@ -12,6 +12,9 @@ import { userStore } from "../stores/store"
 
 
 export default function Landing() {
+    var url = document.location.href; 
+    const endOfUrl = url.substring (url.lastIndexOf( "/" )+1 );
+
 
     const getJwt = userStore((state) => state.token);
     const getGroup = userStore((state) => state.group);
