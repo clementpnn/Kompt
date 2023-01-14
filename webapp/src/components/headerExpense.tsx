@@ -1,6 +1,6 @@
 import { RefundGroup } from "../interfaces/interfaces";
 import Badge from "./badge";
-import BreadCrumbds from "./breadcrumbs";
+import BreadCrumbs from "./breadcrumbs";
 import ProgressBar from "./progressbar";
 
 
@@ -10,7 +10,7 @@ export default function HeaderExpense({refund} : {refund : RefundGroup}){
     return(
         <>
             <div className="mb-5 mx-20 pt-28">
-                <BreadCrumbds/>   
+                <BreadCrumbs page="Expense"/>   
             </div> 
             <div className="grid grid-rows-1 grid-cols-2 mx-20 ">
                 <div>
