@@ -1,13 +1,11 @@
 interface FormValues {
-    token(token: any): unknown;
-
-    name: string;
-    email: string;
-    password: string;
-    passwordConfirm: string;
-    generateCode: string
-  };
-
+  token(token: any): unknown;
+  name: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+  code: string;
+}
 
 interface ButtonInterface {
   text: string;
@@ -32,9 +30,11 @@ interface RefundGroup {
   date?: string;
 }
 
-interface Jwt {
+interface User {
   token: string;
-  setToken: (token: string) => void;
-  deleteToken: () => void;
+  group: boolean;
+  setUser: (token: string) => void;
+  setGroup: (inGroup: boolean) => void;
+  deleteUser: () => void;
 }
-export type { FormValues, ButtonInterface, RefundGroup, LabelInterface, Jwt };
+export type { FormValues, ButtonInterface, RefundGroup, LabelInterface, User };
