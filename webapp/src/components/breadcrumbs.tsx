@@ -1,12 +1,17 @@
-export default function BreadCrumbds() {
+import { list } from "postcss";
+
+export default function BreadCrumbds({page}:{page:string | undefined}) {
     
     return(
         <>
             <div className="text-sm breadcrumbs">
                 <ul>
                     <li><a href="/landing">Home</a></li> 
-                    {/* <li><a href="/landing/refund">Refund</a></li> 
-                    <li><a href="/landing/members_group">Members</a></li> */}
+                    {page ? (
+                            <li>{page}</li>
+                        ) : (
+                            <p></p>
+                        )}
                 </ul>
             </div>
         </>

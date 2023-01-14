@@ -2,6 +2,7 @@ import { RefundGroup } from "../interfaces/interfaces"
 import Badge from "./badge"
 import ProgressBar from "./progressbar"
 import { useNavigate } from 'react-router-dom';
+import RefundPopup from "./pop-up/refundPopup";
 
 
 
@@ -25,12 +26,13 @@ export default function Table({header, tab} : {header : string[], tab: RefundGro
                 
                         return (
                             // <tr onClick={() => navigate(`/refund_${line.id}`, {state: {id: line.id}})}>
-                            <tr onClick={() => navigate('/refund', {state: {id: line.id}})}>
+                            <tr onClick={() => navigate('/landing/refund', {state: {id: line.id}})}>
                                 <td className="font-os text-large ">{line.name}</td>
                                 <td className="w-80 pr-20"><ProgressBar taille={"w-80"} value={line.expense} max={line.amount}/></td>
                                 <td className="font-os text-large text-primary font-bold">{`${line.expense}$ / ${line.amount}$`}</td>
                                 <td>{line.expense==line.amount ? <Badge state="success"/> : <Badge state="processing"/>}</td>
                                 <td className="font-os text-large">{line.date}</td>
+                                <td><RefundPopup /></td>
                             </tr>
                         )
                 })}

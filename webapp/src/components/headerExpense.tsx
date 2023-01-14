@@ -10,7 +10,7 @@ export default function HeaderExpense({refund} : {refund : RefundGroup}){
     return(
         <>
             <div className="mb-5 mx-20 pt-28">
-                <BreadCrumbds/>   
+                <BreadCrumbds page="Refund"/>   
             </div> 
             <div className="grid grid-rows-1 grid-cols-2 mx-20 ">
                 <div>
