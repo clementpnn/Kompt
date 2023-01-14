@@ -8,7 +8,6 @@ use App\Framework\Factory\PDOFactory;
 use App\Manager\CollocationManager;
 use App\Manager\UserManager;
 use App\Entity\Collocation;
-use App\Entity\User;
 use App\Service\JWTHelper;
 
 class CollocationController extends BaseController
