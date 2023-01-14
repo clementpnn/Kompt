@@ -6,23 +6,19 @@ use App\Framework\Base\BaseEntity;
 
 class Collocation extends BaseEntity
 {
-    private int $id;
+    private        $id;
     private string $name;
     private string $secreteCode;
 
-    /**
-     * @return int
-     */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
      * @return void
      */
-    public function setId(int $id): void
+    public function setId($id): void
     {
         $this->id = $id;
     }

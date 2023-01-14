@@ -19,36 +19,38 @@ class DashboardController extends BaseController
         $userManager = new UserManager(new PDOFactory());
         $collocationManager = new CollocationManager(new PDOFactory());
 
-        $user = new User();
-        $collocation = new Collocation();
 
-        $TotalPeople = $userManager->countPeople($user);
-        $totalToPay = $userManager->countToPay($user);
-        $totalReceivable = $userManager->countReceivable($user);
-        $totalLine = $userManager->displayLine($user);
+        $headers = getallheaders();
+        if (isset($headers['Authorization'])) {
+            $jwt = $collocationManager->bearer($headers);
+        }
+        
+        $token = JWTHelper::decodeJWT($jwt);
+        if (!$token)
+        {
+            $this->renderJSON([
+                "message" => "invalid cred"
+            ]);
+            die;
+        }
+        
+        $object = json_decode(json_encode($token));
+        $email = $object->email;
+        $user = $userManager->getByMail($email);
+
+        if (!$user)
+        {
+            $this->renderJSON([
+                "message" => "no user"
+            ]);
+            die;
+        }
+    
+        $collocation = $collocationManager->getCollocation($user);
+
+        // $TotalPeople = $userManager->countPeople($user);
+        // $totalToPay = $userManager->countToPay($user);
+        // $totalReceivable = $userManager->countReceivable($user);
+        // $totalLine = $userManager->displayLine($user);
     }
 }
-
-// récupère le pourcentage de remboursement
-// $query = $pdo->prepare("SELECT expenses.*, 
-//                  (SELECT SUM(amount) FROM payments WHERE payments.expense_id = expenses.id) / expenses.payers_amount * 100 AS percentage_reimbursed, 
-//                  users.name AS user_name, collocations.name AS collocation_name
-//                  FROM expenses 
-//                  JOIN users ON expenses.user_id = users.id
-//                  JOIN collocations ON expenses.collocation_id = collocations.id
-//                  WHERE expenses.user_id = :userId OR expenses.payers LIKE :userId");
-// $query->bindValue(':userId', $user->getId(), \PDO::PARAM_STR);
-// $query->execute();
-// $expenseInfo = $query->fetchAll(\PDO::FETCH_ASSOC);
-
-// récupère la somme de remboursement
-// $query = $pdo->prepare("SELECT expenses.*, 
-//                  (SELECT SUM(amount) FROM payments WHERE payments.expense_id = expenses.id) AS amount_reimbursed,
-//                  users.name AS user_name, collocations.name AS collocation_name
-//                  FROM expenses 
-//                  JOIN users ON expenses.user_id = users.id
-//                  JOIN collocations ON expenses.collocation_id = collocations.id
-//                  WHERE expenses.user_id = :userId OR expenses.payers LIKE :userId");
-// $query->bindValue(':userId', $user->getId(), \PDO::PARAM_STR);
-// $query->execute();
-// $expenseInfo = $query->fetchAll(\PDO::FETCH_ASSOC);

@@ -55,20 +55,19 @@ class CollocationManager extends BaseManager
 
     /**
      * @param Collocation $collocation
-     * @return ?int
+     * @return ?Collocation
      */
-    public function checkCode(Collocation $collocation): ?int
+    public function checkCode(Collocation $collocation): ?Collocation
     {
         $query = $this->pdo->prepare("SELECT id FROM collocations WHERE secret_code = :collocationCode");
         $query->bindValue("collocationCode", $collocation->getSecreteCode(), \PDO::PARAM_STR);
         $query->execute();
-        $result = $query->fetch();
+        $result = $query->fetch(\PDO::FETCH_ASSOC);
         if($result) {
             return new Collocation($result); ;
         } else {
             return null;
         }
-
     }
 
     // /**
