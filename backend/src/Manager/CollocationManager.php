@@ -152,21 +152,6 @@ class CollocationManager extends BaseManager
     }
 
     /**
-     * @param $user
-     * @param Collocation $collocation
-     * @return ?int
-     */
-    public function countReceivable(User $user, Collocation $collocation): ?int
-    {
-        $query = $this->pdo->prepare("SELECT SUM(expenses.amount - payments.amount) AS amount_due FROM expenses JOIN payments ON expenses.id = payments.expense_id WHERE expenses.collocation_id = :collocationId AND payments.sender_id != :userId");
-        $query->bindValue(':userId', $user->getId(), \PDO::PARAM_INT);
-        $query->bindValue(':collocationId', $collocation->getId(), \PDO::PARAM_INT);
-        $query->execute();
-        $totalReceivable = $query->fetchColumn();
-        return $totalReceivable;
-    }
-
-    /**
      * @param User $user
      * @param Collocation $collocation
      * @return ?int
