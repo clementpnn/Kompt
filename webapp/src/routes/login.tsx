@@ -1,10 +1,18 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { ButtonInterface, FormValues } from '../interfaces/interfaces'
 import Button from '../components/button';
+import { useAuthStore } from '../stores/connexionStore';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+
 
 
 
 export default function Login() {
+
+  const setJwt = useAuthStore(state => state.setToken)
+  const getJwt = useAuthStore(state => state.token)
+  const navigate = useNavigate();
   
   const { register, handleSubmit } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = data => {
@@ -17,13 +25,29 @@ export default function Login() {
       }),
       credentials: 'include',
       headers: new Headers({
-        // 'Authorization' : 'Basic amZnbWFpbC5jb206cGFzc3dvcmQ=',
+        'Authorization' : `Bearer ${getJwt}`,
         'Content-type':  'application/x-www-form-urlencoded'
       })
     })
       .then(data => data.text())
-      .then(json => console.log(json))
+      .then(response =>{
+        const obj = JSON.parse(response)
+        if("token" in obj){
+          setJwt(obj.token)
+        } else {
+          console.log(obj.error)
+        }
+        
+      }
+        
+    )
   }
+
+  useEffect(()=>{
+    if(getJwt != ""){
+      navigate('/');
+    }
+  })
   
   const buttonLogin : ButtonInterface = {
     text: 'Login',
