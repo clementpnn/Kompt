@@ -49,13 +49,11 @@ class DashboardController extends BaseController
         $totalLine = $collocationManager->displayLine($user, $collocation);
         $cName = $collocationManager->name($collocation);
         $cCode = $collocationManager->code($collocation);
-        $uName = $userManager->name($user);
         $isAdmin = $userManager->isadmin($user, $collocation);
 
         $this->renderJSON([
             "collocationName" => $cName['name'],
             "collocationCode" => $cCode['secret_code'],
-            "userName" => $uName['name'],
             "isAdmin" => $isAdmin['is_admin'],
             "peoples" => $TotalPeople,
             "data" => $totalLine,
