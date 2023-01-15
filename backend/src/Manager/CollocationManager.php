@@ -104,7 +104,7 @@ class CollocationManager extends BaseManager
      */
     public function getCollocation(User $user): Collocation|NULL
     {
-        $query = $this->pdo->prepare("SELECT id FROM collocations JOIN collocation_roles ON collocations.id = collocation_roles.collocation_id WHERE collocation_roles.user_id = :userId");
+        $query = $this->pdo->prepare("SELECT id, name, secret_code FROM collocations JOIN collocation_roles ON collocations.id = collocation_roles.collocation_id WHERE collocation_roles.user_id = :userId");
         $query->bindValue(':userId', $user->getId(), \PDO::PARAM_INT);
         $query->execute();
         $data = $query->fetch(\PDO::FETCH_ASSOC);
@@ -152,21 +152,6 @@ class CollocationManager extends BaseManager
     }
 
     /**
-     * @param $user
-     * @param Collocation $collocation
-     * @return ?int
-     */
-    public function countReceivable(User $user, Collocation $collocation): ?int
-    {
-        $query = $this->pdo->prepare("SELECT SUM(expenses.amount - payments.amount) AS amount_due FROM expenses JOIN payments ON expenses.id = payments.expense_id WHERE expenses.collocation_id = :collocationId AND payments.sender_id != :userId");
-        $query->bindValue(':userId', $user->getId(), \PDO::PARAM_INT);
-        $query->bindValue(':collocationId', $collocation->getId(), \PDO::PARAM_INT);
-        $query->execute();
-        $totalReceivable = $query->fetchColumn();
-        return $totalReceivable;
-    }
-
-    /**
      * @param User $user
      * @param Collocation $collocation
      * @return ?int
@@ -192,5 +177,29 @@ class CollocationManager extends BaseManager
         $query->execute();
         $numPeople = $query->fetchColumn();
         return $numPeople;
+    }
+
+    /**
+     * @param Collocation $collocation
+     */
+    public function name(Collocation $collocation)
+    {
+        $query = $this->pdo->prepare("SELECT name FROM collocations WHERE id = :collocationId");
+        $query->bindValue(':collocationId', $collocation->getId(), \PDO::PARAM_STR);
+        $query->execute();
+        $name = $query->fetch(\PDO::FETCH_ASSOC);
+        return $name;
+    }
+
+    /**
+     * @param Collocation $collocation
+     */
+    public function code(Collocation $collocation)
+    {
+        $query = $this->pdo->prepare("SELECT secret_code FROM collocations WHERE id = :collocationId");
+        $query->bindValue(':collocationId', $collocation->getId(), \PDO::PARAM_STR);
+        $query->execute();
+        $code = $query->fetch(\PDO::FETCH_ASSOC);
+        return $code;
     }
 }

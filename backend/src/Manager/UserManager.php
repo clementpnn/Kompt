@@ -3,6 +3,7 @@
 namespace App\Manager;
 
 use App\Entity\User;
+use App\Entity\Collocation;
 use App\Framework\Base\BaseManager;
 
 class UserManager extends BaseManager
@@ -80,5 +81,33 @@ class UserManager extends BaseManager
         $query->bindValue("email", $user->getEmail(), \PDO::PARAM_STR);
         $query->bindValue("password", $user->getPassword(), \PDO::PARAM_STR);
         $query->execute();
+    }
+
+    /**
+     * @param User $user
+     */
+    public function name(User $user)
+    {
+        $query = $this->pdo->prepare("SELECT name FROM users WHERE id = :userId");
+        $query->bindValue(':userId', $user->getId(), \PDO::PARAM_STR);
+        $query->execute();
+        $name = $query->fetch(\PDO::FETCH_ASSOC);
+        return $name;
+    }
+
+    /**
+     * @param User $user
+     * @param Collocation $user
+     */
+    public function isadmin(User $user, Collocation $collocation)
+    {
+        $query = $this->pdo->prepare("SELECT COUNT(*) as is_admin
+        FROM collocation_roles 
+        WHERE collocation_id = :collocationId AND user_id = :userId AND role = 'admin'");
+        $query->bindValue(':userId', $user->getId(), \PDO::PARAM_STR);
+        $query->bindValue(':collocationId', $collocation->getId(), \PDO::PARAM_STR);
+        $query->execute();
+        $admin = $query->fetch(\PDO::FETCH_ASSOC);
+        return $admin;
     }
 }
