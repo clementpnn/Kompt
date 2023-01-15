@@ -34,10 +34,10 @@ interface RefundGroup {
 }
 
 interface RefundMember {
-  id: number;
-  name: string;
-  paid: number;
-  payers_amount: number;
+  id: number
+  name: string
+  paid: number
+  payers_amount: number
 }
 
 interface User {

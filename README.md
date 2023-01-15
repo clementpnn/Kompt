@@ -1,7 +1,5 @@
 # 🎉 Welcome to [Kompt](https://github.com/clementpnn/Kompt)
 
-![](./app/src/images/forReadme.png)
-
 ## Description
 
 With Kompt, create a group and invite your roommates to manage the collocation accounts

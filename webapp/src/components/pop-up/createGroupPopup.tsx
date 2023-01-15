@@ -39,7 +39,7 @@ export default function CreateGroupPopup() {
     style: "fill",
     color: "primary",
     icon: undefined,
-  };
+  }
 
   return (
 
