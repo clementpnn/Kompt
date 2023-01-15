@@ -50,7 +50,7 @@ class RefundManager extends BaseManager
 
     /**
      * @param int $id
-     * @param userId $id
+     * @param int $userId
      */
     public function payersAmount(int $id, int $userId)
     {
