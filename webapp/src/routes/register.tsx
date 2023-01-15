@@ -17,7 +17,7 @@ export default function Register() {
   });
 
   const { register, handleSubmit } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<FormValues> = (data : any) => {
     fetch("http://localhost:2329/register", {
       method: "POST",
       mode: "cors",

@@ -1,28 +1,32 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { ButtonInterface, FormValues } from '../../interfaces/interfaces';
 import Button from '../button';
-
+import { userStore } from "../../stores/store";
 
 
 export default function JoinGroupPopup() {
-
+    const getJwt = userStore((state) => state.token);
+    const setGroup = userStore((state) => state.setGroup);
     const { register, handleSubmit } = useForm<FormValues>();
-    const onSubmit: SubmitHandler<FormValues> = data => {
+    const onSubmit: SubmitHandler<FormValues> = (data : any) => {
       
-      fetch('http://localhost:5432/#join_group', {
-        method: 'POST',
-        mode: 'cors',
-        // body: new URLSearchParams({
-        //   ...data
-        // }),
-        // credentials: 'include',
-        // headers: new Headers({
-        //   // 'Authorization' : 'Basic amZnbWFpbC5jb206cGFzc3dvcmQ=',
-        //   'Content-type':  'application/x-www-form-urlencoded'
-        // })
-      })
-        .then(data => data.text())
-        .then(json => console.log(json))
+        fetch("http://localhost:2329/collocation/joined", {
+            method: "POST",
+            mode: "cors",
+            credentials: "include",
+            body: new URLSearchParams({
+              ...data,
+            }),
+            headers: {
+              Authorization: "Bearer " + getJwt,
+            },
+          })
+            .then((response) => response.json())
+            .then((data) => {
+                if(data.isInCollocation == 'yes'){
+                    setGroup(true)
+                }
+            });
     }
 
     const buttonJoinGroup : ButtonInterface = {
@@ -47,8 +51,7 @@ export default function JoinGroupPopup() {
                     <p className="py-4 my-2.5">Enter the code generate by the group admin to join</p>
                     <div className="mt-5">
                         <form className="form-control w-full" onSubmit={handleSubmit(onSubmit)}>
-                            <input type="text" placeholder="Enter the code" className="mb-5 input input-bordered w-full"/>
-                            {/* {...register('generateCode')}/> */}
+                            <input type="text" placeholder="Enter the code" className="mb-5 input input-bordered w-full" {...register('code')}/>
                             <Button props={buttonJoinGroup}/>
                         </form>
                     </div>
