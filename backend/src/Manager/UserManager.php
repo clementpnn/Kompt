@@ -81,4 +81,16 @@ class UserManager extends BaseManager
         $query->bindValue("password", $user->getPassword(), \PDO::PARAM_STR);
         $query->execute();
     }
+
+    /**
+     * @param Collocation $collocation
+     */
+    public function name(User $user)
+    {
+        $query = $this->pdo->prepare("SELECT name FROM collocations WHERE id = :collocationId");
+        $query->bindValue(':collocationId', $user->getId(), \PDO::PARAM_STR);
+        $query->execute();
+        $name = $query->fetch(\PDO::FETCH_ASSOC);
+        return $name;
+    }
 }

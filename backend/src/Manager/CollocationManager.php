@@ -104,7 +104,7 @@ class CollocationManager extends BaseManager
      */
     public function getCollocation(User $user): Collocation|NULL
     {
-        $query = $this->pdo->prepare("SELECT id FROM collocations JOIN collocation_roles ON collocations.id = collocation_roles.collocation_id WHERE collocation_roles.user_id = :userId");
+        $query = $this->pdo->prepare("SELECT id, name, secret_code FROM collocations JOIN collocation_roles ON collocations.id = collocation_roles.collocation_id WHERE collocation_roles.user_id = :userId");
         $query->bindValue(':userId', $user->getId(), \PDO::PARAM_INT);
         $query->execute();
         $data = $query->fetch(\PDO::FETCH_ASSOC);
@@ -177,5 +177,29 @@ class CollocationManager extends BaseManager
         $query->execute();
         $numPeople = $query->fetchColumn();
         return $numPeople;
+    }
+
+    /**
+     * @param Collocation $collocation
+     */
+    public function name(Collocation $collocation)
+    {
+        $query = $this->pdo->prepare("SELECT name FROM collocations WHERE id = :collocationId");
+        $query->bindValue(':collocationId', $collocation->getId(), \PDO::PARAM_STR);
+        $query->execute();
+        $name = $query->fetch(\PDO::FETCH_ASSOC);
+        return $name;
+    }
+
+    /**
+     * @param Collocation $collocation
+     */
+    public function code(Collocation $collocation)
+    {
+        $query = $this->pdo->prepare("SELECT secret_code FROM collocations WHERE id = :collocationId");
+        $query->bindValue(':collocationId', $collocation->getId(), \PDO::PARAM_STR);
+        $query->execute();
+        $code = $query->fetch(\PDO::FETCH_ASSOC);
+        return $code;
     }
 }

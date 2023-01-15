@@ -37,4 +37,11 @@ interface User {
   setGroup: (inGroup: boolean) => void;
   deleteUser: () => void;
 }
-export type { FormValues, ButtonInterface, RefundGroup, LabelInterface, User };
+
+interface HeaderLanding {
+  name: string;
+  member: number;
+  user: string;
+  debt: number | null;
+}
+export type { FormValues, ButtonInterface, RefundGroup, LabelInterface, User, HeaderLanding };
