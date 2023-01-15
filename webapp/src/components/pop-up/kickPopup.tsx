@@ -57,7 +57,9 @@ export default function KickMemberPopup({name}:{name:string}) {
                 <label className="modal-box relative p-5">
                     <div className="flex">
                         <p className="font-bold text-2xl flex-1">Kick member</p>
-                        {/* <a href="" className="text-primary font-bold">✕</a> */}
+                        <label htmlFor="kick_member" className="text-primary font-bold">
+                        ✕
+                        </label>
                     </div>
                     <p className="py-4 my-2.5">Are you sure to kick {name} ?</p>
                     <div className="grid grid-cols-2 gap-5 mt-5">

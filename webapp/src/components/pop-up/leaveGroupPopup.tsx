@@ -25,7 +25,9 @@ export default function LeaveGroupPopup() {
                 <label className="modal-box relative p-5">
                     <div className="flex">
                         <p className="font-bold text-2xl flex-1">Are you sure to leave the group ?</p>
-                        {/* <a href="" className="text-primary font-bold">✕</a> */}
+                        <label htmlFor="leave_group" className="text-primary font-bold">
+                        ✕
+                        </label>
                     </div>
                     <div className="grid grid-cols-2 gap-5 mt-5">
 

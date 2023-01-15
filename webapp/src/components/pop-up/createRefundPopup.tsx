@@ -48,7 +48,9 @@ export default function InvitePopup() {
                 <label className="modal-box relative p-5">
                     <div className="flex">
                         <p className="font-bold text-2xl flex-1">Create Refund</p>
-                        {/* <a href="" className="text-primary font-bold">✕</a> */}
+                        <label htmlFor="create_refund" className="text-primary font-bold">
+                        ✕
+                        </label>
                     </div>
                     <form className="form-control my-5" onSubmit={handleSubmit(onSubmit)}>
                          <label className="label label-text font-os text-large">
