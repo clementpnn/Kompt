@@ -17,6 +17,7 @@ export default function Landing() {
 
     const getJwt = userStore((state) => state.token);
     const getGroup = userStore((state) => state.group);
+    const setAdmin = userStore((state) => state.setAdmin);
     const navigate = useNavigate();
 
     const [groupData, setGroupData] = useState<GroupHeader>({
@@ -48,7 +49,8 @@ export default function Landing() {
                     admin: data.isAdmin,
                     refund: data.data,
                     code: data.collocationCode,
-                })     
+                })
+                setAdmin(data.isAdmin)     
             })
         }
     })

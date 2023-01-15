@@ -25,13 +25,15 @@ export default function Refund() {
     const send = location.state
 
     const [refundData, setRefundData] = useState<RefundGroup>({
-        id: send.id,
+        id: 0,
         title: "",
         paid: 0,
         payers_amount: 0,
         date: "",
         members: [
-            {name: "",
+            {
+            id: 0,
+            name: "",
             paid: 0,
             payers_amount: 0,}
         ]
@@ -58,7 +60,7 @@ export default function Refund() {
             .then((response) => response.json())
             .then((data) => {
                 setRefundData({
-                    id: send.id,
+                    id: data.id,
                     title: data.title,
                     paid: data.totalPays,
                     payers_amount: data.amount,
@@ -67,7 +69,7 @@ export default function Refund() {
                 })
             })
         }
-    }, [])
+    })
 
     return (
         <>

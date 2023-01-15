@@ -6,7 +6,12 @@ import ProgressBar from "./progressbar"
 
 
 export default function HeaderExpense({refund} : {refund : RefundGroup}) {
-    
+    if(refund.paid == null){
+        refund.paid = 0
+    }
+    if(refund.payers_amount == null){
+        refund.payers_amount = 0
+    }
     return (
 
         <>

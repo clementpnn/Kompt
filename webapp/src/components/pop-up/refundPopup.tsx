@@ -1,28 +1,33 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { ButtonInterface, FormValues } from '../../interfaces/interfaces'
+import { userStore } from '../../stores/store'
 import Button from '../button'
 
 
 
-export default function RefundPopup() {
+export default function RefundPopup({id} : {id : number}) {
+
+    const getJwt = userStore((state) => state.token)
 
     const { register, handleSubmit } = useForm<FormValues>()
-    const onSubmit: SubmitHandler<FormValues> = data => {
+    const onSubmit: SubmitHandler<FormValues> = (data : any) => {
       
-      fetch('http://localhost:5432/#join_group', {
-        method: 'POST',
-        mode: 'cors',
-        // body: new URLSearchParams({
-        //   ...data
-        // }),
-        // credentials: 'include',
-        // headers: new Headers({
-        //   // 'Authorization' : 'Basic amZnbWFpbC5jb206cGFzc3dvcmQ=',
-        //   'Content-type':  'application/x-www-form-urlencoded'
-        // })
+      fetch("http://localhost:2329/pay", {
+        method: "POST",
+        mode: "cors",
+        credentials: "include",
+        body: new URLSearchParams({
+            "id": id,
+            ...data
+        }),
+        headers: {
+            Authorization: "Bearer " + getJwt,
+        },
+        })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
       })
-        .then(data => data.text())
-        .then(json => console.log(json))
 
     }
 
@@ -51,7 +56,7 @@ export default function RefundPopup() {
                         <label className="label label-text font-os text-large">
                             Amount
                         </label>
-                        <input type="number" min="1" step="1"placeholder="Enter the refund amount" className="mb-10 input input-bordered w-full" {...register('password')}/>
+                        <input type="number" min="1" step="1"placeholder="Enter the refund amount" className="mb-10 input input-bordered w-full" {...register('amount')}/>
                         <Button props={buttonRefund}/>
                     </form>
 
