@@ -39,15 +39,13 @@ export default function KickMemberPopup({name}:{name:string}) {
         color: 'primary',
         icon: undefined 
     }
-    const buttonKickCancel : ButtonInterface = {
+    const labelKickCancel : LabelInterface = {
         text: 'Cancel',
         style: 'outline',
         color: 'primary',
+        htmlFor: 'kick_member',
         icon: undefined 
     }
-
-
-    
 
     return(
         <>
@@ -64,7 +62,7 @@ export default function KickMemberPopup({name}:{name:string}) {
                     <p className="py-4 my-2.5">Are you sure to kick {name} ?</p>
                     <div className="grid grid-cols-2 gap-5 mt-5">
                         <Button props={buttonKick}/>
-                        <Button props={buttonKickCancel}/>
+                        <Label props={labelKickCancel}/>
                     </div>
                 </label>
             </label>

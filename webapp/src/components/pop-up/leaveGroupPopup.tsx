@@ -1,20 +1,22 @@
-import { ButtonInterface } from "../../interfaces/interfaces"
+import { ButtonInterface, LabelInterface } from "../../interfaces/interfaces"
 import Button from "../button"
+import Label from "../label"
 
 
 
 export default function LeaveGroupPopup() {
 
-    const buttonLeave : ButtonInterface = {
+    const buttonLeaveGroup : ButtonInterface = {
         text: 'Leave group',
         style: 'fill',
         color: 'primary',
         icon: undefined 
     }
-    const buttonLeaveCancel : ButtonInterface = {
+    const labelLeaveGroupCancel : LabelInterface = {
         text: 'Cancel',
         style: 'outline',
         color: 'primary',
+        htmlFor: 'leave_group',
         icon: undefined 
     }
 
@@ -31,8 +33,8 @@ export default function LeaveGroupPopup() {
                     </div>
                     <div className="grid grid-cols-2 gap-5 mt-5">
 
-                        <Button props={buttonLeave}/>
-                        <Button props={buttonLeaveCancel}/>
+                        <Button props={buttonLeaveGroup}/>
+                        <Label props={labelLeaveGroupCancel}/>
 
                     </div>
                 </label>

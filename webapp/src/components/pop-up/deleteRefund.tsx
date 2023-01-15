@@ -20,14 +20,13 @@ export default function DeleteRefundPopup() {
         htmlFor: 'delete_refund',
         icon: undefined 
     }
-    const labelDeleteCancel : LabelInterface = {
+    const labelDeleterefundCancel : LabelInterface = {
         text: 'Cancel',
         style: 'outline',
         color: 'primary',
         htmlFor: 'delete_refund',
         icon: undefined 
-    }
-    
+    }    
 
     return(
         <>
@@ -42,7 +41,7 @@ export default function DeleteRefundPopup() {
                     <div className="grid grid-cols-2 gap-5 mt-5">
 
                         <Button props={buttonDelete}/>
-                        <Label props={labelDeleteCancel}/>
+                        <Label props={labelDeleterefundCancel}/>
                     </div>
                 </label>
             </label>
