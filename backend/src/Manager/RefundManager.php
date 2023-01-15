@@ -27,4 +27,46 @@ class RefundManager extends BaseManager
         $query->bindValue("collocationId", $collocation->getId(), \PDO::PARAM_INT);
         $query->execute();
     }
+
+    /**
+     * @param int $id
+     * @return Refund|NULL
+     */
+    public function expense(int $id): Refund|NULL
+    {
+        $query = $this->pdo->prepare("SELECT expenses.date, expenses.title, expenses.amount, expenses.payers, expenses.payers_amount
+        FROM expenses
+        WHERE expenses.id = :id");
+        $query->bindValue("id", $id, \PDO::PARAM_INT);
+        $query->execute();
+        $data = $query->fetch(\PDO::FETCH_ASSOC);
+
+        if ($data) {
+            return new Refund($data);
+        }
+
+        return null;
+    }
+
+    /**
+     * @param int $id
+     * @param userId $id
+     */
+    public function payersAmount(int $id, int $userId)
+    {
+        $query = $this->pdo->prepare("SELECT users.name, expenses.payers_amount, expenses.date, SUM(payments.amount) as paid
+        FROM expenses
+        JOIN users ON expenses.user_id = users.id
+        LEFT JOIN payments ON expenses.id = payments.expense_id 
+        AND payments.sender_id = :userId
+        WHERE expenses.id = :id
+        GROUP BY expenses.id
+        ");
+        $query->bindValue("id", $id, \PDO::PARAM_INT);
+        $query->bindValue("userId", $userId, \PDO::PARAM_INT);
+        $query->execute();
+        $data = $query->fetch(\PDO::FETCH_ASSOC);
+
+        return $data;
+    }
 }

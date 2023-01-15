@@ -3,7 +3,7 @@
 namespace App\Framework\Route;
 
 use App\Framework\DIC\DIC;
-use App\Framework\Entity\Dependency;
+use App\Framework\Base\Dependency;
 use App\Framework\Traits\DirectoryParser;
 use InvalidArgumentException;
 use ReflectionClass;
@@ -64,6 +64,7 @@ class Router
                 foreach ((new ReflectionClass($controllerClass))->getMethods() as $method) {
                     if ($method->getName() === $controllerActionName) {
                         foreach ($method->getParameters() as $parameter) {
+                            var_dump($parameter);
                             $dependencies[] = (new Dependency())
                                 ->setName($parameter->getName())
                                 ->setType($parameter->getType()->getName())
