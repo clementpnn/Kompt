@@ -1,25 +1,16 @@
-import { RefundGroup } from "../interfaces/interfaces"
-import Badge from "./badge"
-import ProgressBar from "./progressbar"
-import { useNavigate } from 'react-router-dom'
-import RefundPopup from "./pop-up/refundPopup"
+import { GroupHeader, RefundGroup } from "../../interfaces/interfaces"
+import Badge from "../badge"
+import ProgressBar from "../progressbar"
+import { useNavigate } from 'react-router-dom';
 
 
 
-export default function Table({header, tab} : {header : string[], tab: []}) {
 
-    const navigate = useNavigate()
 
-    var url = document.location.href; 
-    const endOfUrl = url.substring (url.lastIndexOf( "/" )+1 )
+export default function GroupTable({header, obj} : {header : string[], obj: GroupHeader}) {
 
-    var onPage = false
-    if (endOfUrl == "refund") {
-        onPage = true
-    } else {
-        false
-    }
-
+    const navigate = useNavigate();
+    const tab = obj.refund
     return (
         <div className="overflow-x-auto pt-14 px-20">
 
@@ -43,20 +34,13 @@ export default function Table({header, tab} : {header : string[], tab: []}) {
                             line.payers_amount = 0
                         }
                         return (
-                            <tr key={line.id} onClick={() => navigate('/landing/refund', {state: {id: line.id}})}>
-
+                            <tr key={line.id} onClick={() => navigate('/landing/refund', {state: {id: line.id, admin: obj.admin}})}>
                                 <td className="font-os text-large ">{line.title}</td>
                                 <td className="w-80 pr-20"><ProgressBar taille={"w-80"} value={line.paid} max={line.payers_amount}/></td>
                                 <td className="font-os text-large text-primary font-bold">{`${line.paid}$ / ${line.payers_amount}$`}</td>
                                 <td>{line.paid==line.payers_amount ? <Badge state="success"/> : <Badge state="processing"/>}</td>
                                 <td className="font-os text-large">{line.date}</td>
-
-                                {onPage ? (
-                                    <td><RefundPopup/></td>
-                                ) : ( 
-                                    <></>
-                                )}       
-
+                                
                             </tr>
                         )
                     })}
