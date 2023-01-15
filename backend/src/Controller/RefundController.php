@@ -133,6 +133,7 @@ class RefundController extends BaseController
         }
 
         $refund = $RefundManager->expense($data['id']);
+        $totPay = $RefundManager->totalPay($data['id']);
 
         if (!$refund)
         {
@@ -153,6 +154,7 @@ class RefundController extends BaseController
             "date" => $refund->getDate(),
             "title" => $refund->getTitle(),
             "amount" => $refund->getAmount(),
+            "totalPays" => $totPay['total_refunds'],
             "pays" => $pay
         ]);
         die;

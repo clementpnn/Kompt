@@ -50,6 +50,22 @@ class RefundManager extends BaseManager
 
     /**
      * @param int $id
+     */
+    public function totalPay(int $id)
+    {
+        $query = $this->pdo->prepare("SELECT SUM(amount) as total_refunds
+        FROM payments
+        WHERE expense_id = :id
+        ");
+        $query->bindValue("id", $id, \PDO::PARAM_INT);
+        $query->execute();
+        $data = $query->fetch(\PDO::FETCH_ASSOC);
+
+        return $data;
+    }
+
+    /**
+     * @param int $id
      * @param int $userId
      */
     public function payersAmount(int $id, int $userId)
