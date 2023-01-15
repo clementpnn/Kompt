@@ -45,7 +45,7 @@ class Refund extends BaseEntity
     }
 
     /**
-     * @return 
+     * @return string
      */
     public function getTitle(): string
     {

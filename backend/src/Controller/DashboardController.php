@@ -48,11 +48,14 @@ class DashboardController extends BaseController
         $TotalPeople = $collocationManager->countPeople($collocation);
         $totalToPay = $collocationManager->countToPay($user, $collocation);
         $totalLine = $collocationManager->displayLine($user, $collocation);
+        $cName = $collocationManager->name($collocation);
+        $cCode = $collocationManager->code($collocation);
+        $uName = $userManager->name($user);
 
         $this->renderJSON([
-            "collocatioName" => $collocation->getName(),
-            "collocatioName" => $collocation->getSecreteCode(),
-            "userName" => $user->getName(),
+            "collocatioName" => $cName,
+            "collocatioCode" => $cCode,
+            "userName" => $uName,
             "peoples" => $TotalPeople,
             "toPay" => $totalToPay,
             "data" => $totalLine,
