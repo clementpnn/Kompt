@@ -1,10 +1,9 @@
-import {ReactComponent as User} from '../assets/icon/user.svg';
-import InvitePopup from './pop-up/inviteGroupPopup';
-import CreateRefundPopup from "../components/pop-up/createRefundPopup";
-import BreadCrumbs from './breadcrumbs';
-import { Link } from 'react-router-dom';
-
-import { GroupHeader } from '../interfaces/interfaces';
+import {ReactComponent as User} from '../assets/icon/user.svg'
+import InvitePopup from './pop-up/inviteGroupPopup'
+import CreateRefundPopup from "../components/pop-up/createRefundPopup"
+import BreadCrumbs from './breadcrumbs'
+import { Link } from 'react-router-dom'
+import { GroupHeader } from '../interfaces/interfaces'
 
 
 

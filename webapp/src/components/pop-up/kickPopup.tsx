@@ -1,13 +1,13 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { ButtonInterface, FormValues, LabelInterface } from '../../interfaces/interfaces';
-import Button from '../button';
-import Label from '../label';
+import { ButtonInterface, FormValues, LabelInterface } from '../../interfaces/interfaces'
+import Button from '../button'
+import Label from '../label'
 
 
 
 export default function KickMemberPopup({name}:{name:string}) {
 
-    const { register, handleSubmit } = useForm<FormValues>();
+    const { register, handleSubmit } = useForm<FormValues>()
     const onSubmit: SubmitHandler<FormValues> = data => {
       
       fetch('http://localhost:5432/#join_group', {
@@ -26,17 +26,18 @@ export default function KickMemberPopup({name}:{name:string}) {
         .then(json => console.log(json))
     }
 
+    const buttonKick : ButtonInterface = {
+        text: 'Kick',
+        style: 'fill',
+        color: 'primary',
+        icon: undefined 
+    }
+
     const labelKickMember : LabelInterface = {
         text: 'Kick',
         style: 'fill',
         color: 'primary',
         htmlFor: 'kick_member',
-        icon: undefined 
-    }
-    const buttonKick : ButtonInterface = {
-        text: 'Kick',
-        style: 'fill',
-        color: 'primary',
         icon: undefined 
     }
     const labelKickCancel : LabelInterface = {
@@ -47,26 +48,31 @@ export default function KickMemberPopup({name}:{name:string}) {
         icon: undefined 
     }
 
-    return(
+    return (
+
         <>
             <Label props={labelKickMember}/>
+
             <input type="checkbox" id="kick_member" className="modal-toggle z-10" />
             <label htmlFor="kick_member" className="modal cursor-pointer">
                 <label className="modal-box relative p-5">
+
                     <div className="flex">
                         <p className="font-bold text-2xl flex-1">Kick member</p>
-                        <label htmlFor="kick_member" className="text-primary font-bold">
-                        ✕
-                        </label>
+                        <label htmlFor="kick_member" className="text-primary font-bold">✕</label>
                     </div>
+
                     <p className="py-4 my-2.5">Are you sure to kick {name} ?</p>
+
                     <div className="grid grid-cols-2 gap-5 mt-5">
                         <Button props={buttonKick}/>
                         <Label props={labelKickCancel}/>
                     </div>
+
                 </label>
             </label>
         </>
+
     )
     
 }

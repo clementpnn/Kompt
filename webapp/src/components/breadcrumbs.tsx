@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
+
+
 
 export default function BreadCrumbs({page}:{page:string | undefined}) {
     
-    return(
+    return (
         <>
             <div className="text-sm breadcrumbs">
                 <ul>
