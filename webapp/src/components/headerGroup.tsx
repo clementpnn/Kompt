@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 
 
-export default function HeaderGroup({groupName,  groupMemberNumber}:{groupName: string,  groupMemberNumber:number}) {
+export default function HeaderGroup({groupName,  groupMemberNumber}:{groupName: string | undefined,  groupMemberNumber:number | undefined}) {
     
     return (
         <>

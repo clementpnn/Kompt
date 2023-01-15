@@ -38,10 +38,5 @@ interface User {
   deleteUser: () => void;
 }
 
-interface HeaderLanding {
-  name: string;
-  member: number;
-  user: string;
-  debt: number | null;
-}
-export type { FormValues, ButtonInterface, RefundGroup, LabelInterface, User, HeaderLanding };
+
+export type { FormValues, ButtonInterface, RefundGroup, LabelInterface, User};
