@@ -12,6 +12,9 @@ import { userStore } from "../stores/store"
 
 
 export default function Landing() {
+    var url = document.location.href; 
+    const endOfUrl = url.substring (url.lastIndexOf( "/" )+1 );
+
 
     const getJwt = userStore((state) => state.token);
     const getGroup = userStore((state) => state.group);
@@ -22,19 +25,19 @@ export default function Landing() {
           navigate("/");
         }
     });
-
     fetch("http://localhost:2329/dashboard", {
-      method: "GET",
-      mode: "cors",
-      credentials: "include",
-      headers: {
-        Authorization: "Bearer " + getJwt,
-      },
-    })
-    .then((response) => response.json())
-    .then((data) => {
+        method: "GET",
+        mode: "cors",
+        credentials: "include",
+        headers: {
+          Authorization: "Bearer " + getJwt,
+        },
+      })
+      .then((response) => response.json())
+      .then((data) => {
         console.log(data)
-    })
+      })
+
 
     const header: string[] = ["Refund", "Loading", "Amount", "Status", "Date"]
     const tableauRefund : RefundGroup[]= [

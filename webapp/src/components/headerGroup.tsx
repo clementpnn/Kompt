@@ -2,6 +2,7 @@ import {ReactComponent as User} from '../assets/icon/user.svg';
 import InvitePopup from './pop-up/inviteGroupPopup';
 import CreateRefundPopup from "../components/pop-up/createRefundPopup";
 import BreadCrumbs from './breadcrumbs';
+import { Link } from 'react-router-dom';
 
 
 
@@ -22,7 +23,8 @@ export default function HeaderGroup({groupName,  groupMemberNumber}:{groupName: 
                                     < User />
                                     <p className="font-os text-large font-bold text-grey-500 ml-2 mr-4">{groupMemberNumber}</p>
                                 </div>
-                                <p><a className="font-os text-large font-bold text-primary" href={`/landing/members_group`}>see all members</a></p>
+
+                                <Link to="/landing/members_group" className="font-os text-large font-bold text-primary">see all members</Link>
 
                             </div>
                         </div>

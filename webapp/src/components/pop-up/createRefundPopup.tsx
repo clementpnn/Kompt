@@ -5,6 +5,7 @@ import Label from "../label"
 
 
 
+
 export default function InvitePopup() {
 
     const { register, handleSubmit } = useForm<FormValues>();
@@ -48,7 +49,7 @@ export default function InvitePopup() {
                 <label className="modal-box relative p-5">
                     <div className="flex">
                         <p className="font-bold text-2xl flex-1">Create Refund</p>
-                        <a href="" className="text-primary font-bold">✕</a>
+                        {/* <a href="" className="text-primary font-bold">✕</a> */}
                     </div>
                     <form className="form-control my-5" onSubmit={handleSubmit(onSubmit)}>
                          <label className="label label-text font-os text-large">

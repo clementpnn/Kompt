@@ -22,7 +22,9 @@ export default function CreateGroupPopup() {
     })
       .then((response) => response.json())
       .then((data) => {
-        setGroup(true)
+        if(data.isInCollocation == 'yes'){
+          setGroup(true)
+        }
       });
   };
 
@@ -43,9 +45,9 @@ export default function CreateGroupPopup() {
         <label className="modal-box relative p-5">
           <div className="flex">
             <p className="font-bold text-2xl flex-1">Create Group</p>
-            <a href="" className="text-primary font-bold">
+            {/* <a href="" className="text-primary font-bold">
               ✕
-            </a>
+            </a> */}
           </div>
           <p className="py-4 my-2.5">Create a group and invite your roomates</p>
           <div className="mt-5">
