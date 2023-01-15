@@ -143,6 +143,7 @@ class RefundController extends BaseController
         }
 
         $this->renderJSON([
+            "id" => $refund->getId(),
             "date" => $refund->getDate(),
             "title" => $refund->getTitle(),
             "amount" => $refund->getAmount(),
