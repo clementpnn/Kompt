@@ -6,16 +6,10 @@ import RefundPopup from "./pop-up/refundPopup";
 
 
 
-export default function Table({header, tab} : {header : string[], tab: RefundGroup[]}) {
+
+export default function Table({header, tab} : {header : string[], tab: []}) {
 
     const navigate = useNavigate();
-    const LabelInviteGroup : LabelInterface = {
-        text: "Create Refund",
-        style: "fill",
-        color: "primary",
-        htmlFor: 'create_refund',
-        icon: undefined 
-    }
 
     var url = document.location.href; 
     const endOfUrl = url.substring (url.lastIndexOf( "/" )+1 );
@@ -39,15 +33,19 @@ export default function Table({header, tab} : {header : string[], tab: RefundGro
                 </thead>
                 <tbody>
 
-                    {tab.map(line => {
-                
+                    {tab.map((line : RefundGroup) => {
+                        if(line.paid == null){
+                            line.paid = 0
+                        }
+                        if(line.payers_amount == null){
+                            line.payers_amount = 0
+                        }
                         return (
-                            // <tr onClick={() => navigate(`/refund_${line.id}`, {state: {id: line.id}})}>
                             <tr key={line.id} onClick={() => navigate('/landing/refund', {state: {id: line.id}})}>
-                                <td className="font-os text-large ">{line.name}</td>
-                                <td className="w-80 pr-20"><ProgressBar taille={"w-80"} value={line.expense} max={line.amount}/></td>
-                                <td className="font-os text-large text-primary font-bold">{`${line.expense}$ / ${line.amount}$`}</td>
-                                <td>{line.expense==line.amount ? <Badge state="success"/> : <Badge state="processing"/>}</td>
+                                <td className="font-os text-large ">{line.title}</td>
+                                <td className="w-80 pr-20"><ProgressBar taille={"w-80"} value={line.paid} max={line.payers_amount}/></td>
+                                <td className="font-os text-large text-primary font-bold">{`${line.paid}$ / ${line.payers_amount}$`}</td>
+                                <td>{line.paid==line.payers_amount ? <Badge state="success"/> : <Badge state="processing"/>}</td>
                                 <td className="font-os text-large">{line.date}</td>
                                 {onPage ? (
                                     <td><RefundPopup/></td>

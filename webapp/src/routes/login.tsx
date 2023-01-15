@@ -11,7 +11,7 @@ export default function Login() {
   const navigate = useNavigate();
   
   useEffect(() => {
-    if (getJwt != "") {
+    if (getJwt != "" ) {
       navigate("/");
     }
   });

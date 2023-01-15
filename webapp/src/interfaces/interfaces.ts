@@ -6,7 +6,7 @@ interface FormValues {
   passwordConfirm: string;
   code: string;
   title: string;
-  amount: string;
+  amount: number;
 }
 
 interface ButtonInterface {
@@ -26,9 +26,9 @@ interface LabelInterface {
 
 interface RefundGroup {
   id: number;
-  name: string;
-  expense: number;
-  amount: number;
+  title: string;
+  paid: number;
+  payers_amount: number;
   date?: string;
 }
 
@@ -41,11 +41,13 @@ interface User {
 }
 
 interface GroupHeader {
-  code: string;
+  
   name: string;
   member: number;
   user: string;
   debt: number;
+  refund: [];
+  code: string;
 }
 
 
