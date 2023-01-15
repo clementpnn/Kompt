@@ -29,7 +29,14 @@ interface RefundGroup {
   title: string;
   paid: number;
   payers_amount: number;
-  date?: string;
+  date: string;
+  members: RefundMember[]
+}
+
+interface RefundMember {
+  name: string;
+  paid: number;
+  payers_amount: number;
 }
 
 interface User {
@@ -41,14 +48,12 @@ interface User {
 }
 
 interface GroupHeader {
-  
   name: string;
   member: number;
-  user: string;
-  debt: number;
+  admin: number;
   refund: [];
   code: string;
 }
 
 
-export type { FormValues, ButtonInterface, RefundGroup, LabelInterface, User ,GroupHeader };
+export type { FormValues, ButtonInterface, RefundGroup, RefundMember, LabelInterface, User ,GroupHeader };

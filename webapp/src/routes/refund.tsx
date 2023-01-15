@@ -1,47 +1,71 @@
+import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import HeaderExpense from "../components/headerExpense";
-import Table from "../components/table";
 import { RefundGroup } from "../interfaces/interfaces";
+import { useNavigate } from "react-router-dom"
+import { userStore } from "../stores/store";
+import RefundTable from "../components/table/refundTable";
 
 
 
 export default function Refund(){
 
     const location = useLocation();
-    const id : number = location.state.id
-    const refund : RefundGroup = {
-        id: id,
-        name: "Refund de la bouffe",
-        expense: 10,
-        amount: 20,
-        date: "Jan 11, 2022"
-    }
+    const navigate = useNavigate();
+
+    const getJwt = userStore((state) => state.token);
+    const getGroup = userStore((state) => state.group);
+
+
+    const send = location.state
+
+    const [refundData, setRefundData] = useState<RefundGroup>({
+        id: send.id,
+        title: "",
+        paid: 0,
+        payers_amount: 0,
+        date: "",
+        members: [
+            {name: "",
+            paid: 0,
+            payers_amount: 0,}
+        ]
+    })
+
     const header : string[] = ["Member", "Loading", "Amount", "Status"]
-    const tableauRefund : RefundGroup[]= [
-        {   
-            id: 0,
-            name: "Vico",
-            expense: 10,
-            amount: 20,
-        },
-        {   
-            id: 1,
-            name: "Ici",
-            expense: 30,
-            amount: 30,
-        },
-        {   
-            id: 2,
-            name: "Test",
-            expense: 15,
-            amount: 25,
-        },
-    ]
+    useEffect(() => {
+        if (getJwt == "" || getGroup == false) {
+          navigate("/");
+        } else {
+            fetch("http://localhost:2329/refund", {
+                method: "POST",
+                mode: "cors",
+                credentials: "include",
+                body: new URLSearchParams({
+                    "id": send.id
+                }),
+                headers: {
+                    Authorization: "Bearer " + getJwt,
+                },
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                setRefundData({
+                    id: send.id,
+                    title: data.title,
+                    paid: data.totalPays,
+                    payers_amount: data.amount,
+                    date: data.date,
+                    members: data.pays
+                })
+            })
+        }
+    }, [])
 
     return (
         <>
-            <HeaderExpense refund={refund}/>
-            <Table header={header} tab={tableauRefund}/>
+            <HeaderExpense refund={refundData}/>
+            <RefundTable header={header} obj={refundData}/>
             <Outlet />
         </>
     )
