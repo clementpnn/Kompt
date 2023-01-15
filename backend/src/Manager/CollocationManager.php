@@ -15,9 +15,8 @@ class CollocationManager extends BaseManager
      */
     public function getUsers(Collocation $collocation, User $user): array
     {
-        $query = $this->pdo->prepare("SELECT users.id FROM users JOIN collocation_roles ON users.id = collocation_roles.user_id WHERE collocation_roles.collocation_id = :id AND users.id != :excludeId");
+        $query = $this->pdo->prepare("SELECT users.id FROM users JOIN collocation_roles ON users.id = collocation_roles.user_id WHERE collocation_roles.collocation_id = :id");
         $query->bindValue("id", $collocation->getId(), \PDO::PARAM_INT);
-        $query->bindValue("excludeId", $user->getId(), \PDO::PARAM_INT);
         $query->execute();
         $data = $query->fetchAll(\PDO::FETCH_COLUMN, 0);
         
