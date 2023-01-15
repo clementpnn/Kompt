@@ -1,9 +1,13 @@
+import { useEffect, useState } from 'react';
 import {LabelInterface } from '../../interfaces/interfaces';
+import { userStore } from '../../stores/store';
 import Label from '../label';
 
 
 
 export default function SideBarPopup() {
+
+
 
     const labelLeaveGroup : LabelInterface = {
         text: 'Leave Group',
@@ -19,11 +23,23 @@ export default function SideBarPopup() {
         htmlFor: 'logout',
         icon: undefined 
     }
-
+    const [checkBoxValue, setCheckBoxValue] = useState(false)
+    const [style, setStyle] = useState("");
+    
+    
+    useEffect(()=>{
+        if(checkBoxValue == false){
+            setStyle("w-0 ")
+        } else if(checkBoxValue == true){
+            setStyle("")
+        }
+    })
+    
     return(
-        <>
-            <div className="drawer drawer-end mt-16 bg-none fixed hidden">
-                <input id="drawer" type="checkbox" className="drawer-toggle" />
+        <>  
+            
+            <div className={`drawer ${style}drawer-end mt-16 bg-none fixed `}>
+                <input id="drawer" type="checkbox" checked={checkBoxValue} onChange={e => setCheckBoxValue(e.target.checked)} className="drawer-toggle" />
                 <div className="drawer-side" id="drawer">
                     <label htmlFor="drawer" className="drawer-overlay"></label>
                     <div className="w-80 bg-white pl-10 pr-20 py-1">
@@ -39,8 +55,11 @@ export default function SideBarPopup() {
                         </div>
                     </div>
                 </div>
-            </div>            
+            </div>
+            
         </>
     )
     
 }
+
+

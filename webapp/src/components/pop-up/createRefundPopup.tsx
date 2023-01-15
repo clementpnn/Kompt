@@ -1,4 +1,5 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { Link, useNavigate } from 'react-router-dom';
 import { ButtonInterface, FormValues, LabelInterface } from '../../interfaces/interfaces';
 import { userStore } from '../../stores/store';
 import Button from "../button"
@@ -10,7 +11,9 @@ import Label from "../label"
 export default function InvitePopup() {
     
     const getJwt = userStore((state) => state.token);
-    const { register, handleSubmit } = useForm<FormValues>();
+    const navigate = useNavigate();
+
+    const { register, handleSubmit, reset } = useForm<FormValues>();
     const onSubmit: SubmitHandler<FormValues> = (data :any) => {
       
         fetch("http://localhost:2329/refund/create", {
@@ -18,15 +21,16 @@ export default function InvitePopup() {
             mode: "cors",
             credentials: "include",
             body: new URLSearchParams({
-                ...data,
+              ...data,
             }),
             headers: {
-                Authorization: "Bearer " + getJwt,
+              Authorization: "Bearer " + getJwt,
             },
-            })
-            .then((response) => response.json())
+          })
+            .then((response) => response.text())
             .then((data) => {
                 console.log(data)
+                reset()
             });
     }
 
@@ -60,12 +64,13 @@ export default function InvitePopup() {
                          <label className="label label-text font-os text-large">
                             Title
                          </label>
-                         <input type="text" placeholder="Enter the title of the refund" className="mb-2 input input-bordered w-full" {...register('title')}/>
+                         <input type="text" placeholder="Enter the title of the refund" required className="mb-2 input input-bordered w-full" {...register('title')}/>
                          <label className="label label-text font-os text-large">
                             Amount
                          </label>
-                         <input type="number" min="1" step="1"placeholder="Enter the refund amount" className="mb-10 input input-bordered w-full" {...register('amount')}/>
-                         <Button props={buttonCreateRefund}/>
+                         <input type="number" min="1" step="1"placeholder="Enter the refund amount" required className="mb-10 input input-bordered w-full" {...register('amount')}/>
+                        <Button props={buttonCreateRefund}/>
+
                      </form>
                 </label>
             </label>
