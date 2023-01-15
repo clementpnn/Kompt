@@ -64,7 +64,7 @@ class RefundController extends BaseController
         $sum = $data['amount'];
         $num = count($users);
         $payerAmount =  $sum / $num;
-
+        $payerAmount = intval($payerAmount);
         $refundManager = new RefundManager(new PDOFactory());
         $refund = new Refund();
 
