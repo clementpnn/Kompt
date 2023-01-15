@@ -13,25 +13,30 @@ export default function InvitePopup({generateCode}:{generateCode:string}) {
         icon: undefined 
     }
 
-    return(
+    return (
+
         <>
             <Label props={LabelInviteGroup}/>
+
             <input type="checkbox" id="invite" className="modal-toggle z-10" />
             <label htmlFor="invite" className="modal cursor-pointer">
                 <label className="modal-box relative p-5">
+
                     <div className="flex">
                         <p className="font-bold text-2xl flex-1">Create Group</p>
-                        <label htmlFor="invite" className="text-primary font-bold">
-                        ✕
-                        </label>
+                        <label htmlFor="invite" className="text-primary font-bold">✕</label>
                     </div>
+
                     <p className="py-4">Give this code to your rommates to join the group</p>
+
                     <div className="flex justify-center	">
                         <p className="text-primary font-bold">{generateCode}</p>
                     </div>
                 </label>
+
             </label>
-         </>
+        </>
+
      )
      
  }

@@ -85,18 +85,6 @@ class UserManager extends BaseManager
 
     /**
      * @param User $user
-     */
-    public function name(User $user)
-    {
-        $query = $this->pdo->prepare("SELECT name FROM users WHERE id = :userId");
-        $query->bindValue(':userId', $user->getId(), \PDO::PARAM_STR);
-        $query->execute();
-        $name = $query->fetch(\PDO::FETCH_ASSOC);
-        return $name;
-    }
-
-    /**
-     * @param User $user
      * @param Collocation $user
      */
     public function isadmin(User $user, Collocation $collocation)

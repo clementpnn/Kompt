@@ -1,43 +1,52 @@
-import { Outlet } from "react-router-dom";
-import { userStore } from "../stores/store";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { Outlet } from "react-router-dom"
+import { userStore } from "../stores/store"
+import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
+
 
 
 function HomeLog() {
+
   return (
     <div className="pt-20 bg-stone-100 h-screen flex justify-center items-center flex flex-col">
       <p className="text-center">Vous n'avez pas encore de groupe.</p>
       <p className="text-center">Rejoignez en un ou créez le.</p>
     </div>
-  );
+  )
+
 }
+
 function HomeNotLog() {
+
   return (
     <div className="pt-20 bg-stone-100 h-screen flex justify-center items-center flex flex-col">
       <p className="text-center">Bienvenue sur Kompt</p>
       <p className="text-center">Créez un compte ou connectez-vous pour accéder à l'application</p>
     </div>
-  );
+  )
+
 }
 
 export default function Homepage() {
-  const getJwt = userStore((state) => state.token);
-  const getGroup = userStore((state) => state.group);
-  const setGroup = userStore((state) => state.setGroup);
-  const navigate = useNavigate();
+
+  const getJwt = userStore((state) => state.token)
+  const getGroup = userStore((state) => state.group)
+  const setGroup = userStore((state) => state.setGroup)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (getGroup == true) {
-      navigate("/landing");
+      navigate("/landing")
     }
-  });
+  })
 
-  let isLogged: boolean = false;
+  let isLogged: boolean = false
+
   if (getJwt == "") {
-    isLogged = false;
+    isLogged = false
   } else {
-    isLogged = true;
+    isLogged = true
+
     fetch("http://localhost:2329/collocation", {
       method: "GET",
       mode: "cors",
@@ -46,6 +55,7 @@ export default function Homepage() {
         Authorization: "Bearer " + getJwt,
       },
     })
+
     .then((response) => response.json())
     .then((data) => {
       if(data.isInCollocation == "yes"){
@@ -54,12 +64,10 @@ export default function Homepage() {
     })
   }
 
-  
-  
   return (
     <>
       {isLogged ? <HomeLog /> : <HomeNotLog />}
       <Outlet />
     </>
-  );
+  )
 }

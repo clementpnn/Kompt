@@ -11,7 +11,6 @@ import GroupTable from "../components/table/groupTable"
 
 
 
-
 export default function Landing() {
 
     const getJwt = userStore((state) => state.token);
@@ -25,6 +24,7 @@ export default function Landing() {
         refund: [],
         code: "",
     })
+
     useEffect(() => {
         if (getJwt == "" || getGroup == false) {
           navigate("/");
@@ -37,6 +37,7 @@ export default function Landing() {
                 Authorization: "Bearer " + getJwt,
                 },
             })
+
             .then((response) => response.json())
             .then((data) => {
                 setGroupData({
@@ -45,16 +46,13 @@ export default function Landing() {
                     admin: data.isAdmin,
                     refund: data.data,
                     code: data.collocationCode,
-                })
-                
+                })     
             })
         }
     })
 
-
     const header: string[] = ["Refund", "Loading", "Amount", "Status", "Date"]
-
-            
+        
     return (
         <>
             <SideBarPopup />

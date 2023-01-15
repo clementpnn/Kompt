@@ -1,27 +1,27 @@
 interface FormValues {
-  token(token: any): unknown;
-  name: string;
-  email: string;
-  password: string;
-  passwordConfirm: string;
-  code: string;
-  title: string;
-  amount: number;
+  token(token: any): unknown
+  name: string
+  email: string
+  password: string
+  passwordConfirm: string
+  code: string
+  title: string
+  amount: number
 }
 
 interface ButtonInterface {
-  text: string;
-  style: string;
-  color: string;
-  icon: string | undefined;
+  text: string
+  style: string
+  color: string
+  icon: string | undefined
 }
 
 interface LabelInterface {
-  text: string;
-  style: string;
-  color: string;
-  htmlFor: string;
-  icon: string | undefined;
+  text: string
+  style: string
+  color: string
+  htmlFor: string
+  icon: string | undefined
 }
 
 interface RefundGroup {
@@ -40,11 +40,11 @@ interface RefundMember {
 }
 
 interface User {
-  token: string;
-  group: boolean;
-  setUser: (token: string) => void;
-  setGroup: (inGroup: boolean) => void;
-  deleteUser: () => void;
+  token: string
+  group: boolean
+  setUser: (token: string) => void
+  setGroup: (inGroup: boolean) => void
+  deleteUser: () => void
 }
 
 interface GroupHeader {

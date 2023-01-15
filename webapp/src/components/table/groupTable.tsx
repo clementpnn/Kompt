@@ -13,7 +13,9 @@ export default function GroupTable({header, obj} : {header : string[], obj: Grou
     const tab = obj.refund
     return (
         <div className="overflow-x-auto pt-14 px-20">
+
             <table className="table-normal w-full">
+
                 <thead>
                     <tr className="border-b">
                         {header.map((value, index) => {
@@ -21,6 +23,7 @@ export default function GroupTable({header, obj} : {header : string[], obj: Grou
                         })}
                     </tr>
                 </thead>
+
                 <tbody>
 
                     {tab.map((line : RefundGroup) => {
@@ -40,11 +43,14 @@ export default function GroupTable({header, obj} : {header : string[], obj: Grou
                                 
                             </tr>
                         )
-                })}
+                    })}
 
                 </tbody>
+
             </table>
+
         </div>
+        
     )
     
 }
