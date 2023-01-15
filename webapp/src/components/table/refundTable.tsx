@@ -1,8 +1,7 @@
 import { RefundMember, RefundGroup } from "../../interfaces/interfaces"
 import Badge from "../badge"
 import ProgressBar from "../progressbar"
-import RefundPopup from "../pop-up/refundPopup";
-
+import RefundPopup from "../pop-up/refundPopup"
 
 
 
@@ -11,8 +10,11 @@ export default function RefundTable({header, obj} : {header : string[], obj: Ref
     const tab = obj.members
 
     return (
+
         <div className="overflow-x-auto pt-14 px-20">
+
             <table className="table-normal w-full">
+
                 <thead>
                     <tr className="border-b">
                         {header.map((value, index) => {
@@ -20,15 +22,18 @@ export default function RefundTable({header, obj} : {header : string[], obj: Ref
                         })}
                     </tr>
                 </thead>
+
                 <tbody>
 
                     {tab.map((line : RefundMember, id : any) => {
+
                         if(line.paid == null){
                             line.paid = 0
                         }
                         if(line.payers_amount == null){
                             line.payers_amount = 0
                         }
+
                         return (
                             <tr key={id}>
                                 <td className="font-os text-large ">{line.name}</td>
@@ -38,11 +43,15 @@ export default function RefundTable({header, obj} : {header : string[], obj: Ref
                                 <td><RefundPopup/></td>
                             </tr>
                         )
+
                 })}
 
                 </tbody>
+
             </table>
+
         </div>
+        
     )
     
 }

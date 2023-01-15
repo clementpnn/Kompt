@@ -24,6 +24,7 @@ export default function JoinGroupPopup() {
               Authorization: "Bearer " + getJwt,
             },
           })
+          
             .then((response) => response.json())
             .then((data) => {
                 if(data.isInCollocation == 'yes'){

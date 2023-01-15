@@ -31,7 +31,14 @@ export default function SideBarPopup() {
         htmlFor: 'logout',
         icon: undefined 
     }
-    
+    const labelDeleteGroup : LabelInterface = {
+        text: 'Delete Group',
+        style: 'fill',
+        color: 'primary',
+        htmlFor: 'delete_group',
+        icon: undefined 
+    }
+
     return (
 
         <>      
@@ -51,6 +58,9 @@ export default function SideBarPopup() {
                                 <Label props={labelLeaveGroup}/>
                             </div>
                             <Label props={labelLogout}/>
+                        </div>
+                        <div className="border-b w-full py-10">
+                            <Label props={labelDeleteGroup}/>
                         </div>
 
                     </div>
