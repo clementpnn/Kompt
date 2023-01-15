@@ -1,7 +1,6 @@
 import {ReactComponent as User} from '../assets/icon/user.svg'
 import InvitePopup from './pop-up/inviteGroupPopup'
 import CreateRefundPopup from "../components/pop-up/createRefundPopup"
-import BreadCrumbs from './breadcrumbs'
 import { Link } from 'react-router-dom'
 import { GroupHeader } from '../interfaces/interfaces'
 
@@ -12,10 +11,8 @@ export default function HeaderGroup({group}:{group : GroupHeader}) {
     
     return (
         <>
-            <div className="mb-5 mx-20 pt-28">
-                <BreadCrumbs page=""/>   
-            </div> 
-            <div className="mx-20 bg-white">  
+
+            <div className="mx-20 bg-white border-y py-5">  
                 <div className="navbar bg-base-100 p-0">
                     <div className="flex-1">
                         <div className="flex-1 flex flex-col">
@@ -36,7 +33,9 @@ export default function HeaderGroup({group}:{group : GroupHeader}) {
                             <div className="mr-5">
                                 <InvitePopup generateCode={group.code} />
                             </div>
-                            <CreateRefundPopup/>
+                            <div>
+                                <CreateRefundPopup/>
+                            </div>
                         </div>
                     </div>   
                 </div>

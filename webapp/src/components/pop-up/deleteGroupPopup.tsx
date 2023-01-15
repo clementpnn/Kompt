@@ -13,13 +13,6 @@ export default function DeleteGroupPopup() {
         icon: undefined 
     }
 
-    const labelDeleteGroup : LabelInterface = {
-        text: 'Delete Group',
-        style: 'fill',
-        color: 'primary',
-        htmlFor: 'delete_group',
-        icon: undefined 
-    }
     const labelDeleteGroupCancel : LabelInterface = {
         text: 'Cancel',
         style: 'outline',
@@ -30,9 +23,7 @@ export default function DeleteGroupPopup() {
 
     return (
 
-        <>
-            <Label props={labelDeleteGroup}/>
-            
+        <>            
             <input type="checkbox" id="delete_group" className="modal-toggle z-10" />
             <label htmlFor="delete_group" className="modal cursor-pointer">
                 <label className="modal-box relative p-5">

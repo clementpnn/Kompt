@@ -51,12 +51,12 @@ interface User {
 }
 
 interface GroupHeader {
-  name: string;
-  member: number;
-  admin: number;
-  refund: [];
-  code: string;
+  name: string
+  member: number
+  admin: number
+  refund: []
+  code: string
 }
 
 
-export type { FormValues, ButtonInterface, RefundGroup, RefundMember, LabelInterface, User ,GroupHeader };
+export type { FormValues, ButtonInterface, RefundGroup, RefundMember, LabelInterface, User ,GroupHeader }

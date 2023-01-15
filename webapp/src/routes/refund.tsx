@@ -1,20 +1,25 @@
-import { useEffect, useState } from "react";
-import { Outlet, useLocation } from "react-router-dom";
-import HeaderExpense from "../components/headerExpense";
-import { RefundGroup } from "../interfaces/interfaces";
+import { useEffect, useState } from "react"
+import { Outlet, useLocation } from "react-router-dom"
+import HeaderExpense from "../components/headerExpense"
+import { RefundGroup } from "../interfaces/interfaces"
 import { useNavigate } from "react-router-dom"
-import { userStore } from "../stores/store";
-import RefundTable from "../components/table/refundTable";
+import { userStore } from "../stores/store"
+import RefundTable from "../components/table/refundTable"
+import BreadCrumbs from "../components/breadcrumbs"
+import LeaveGroupPopup from "../components/pop-up/leaveGroupPopup"
+import LogoutPopup from "../components/pop-up/logoutPopup"
+import SideBarPopup from "../components/pop-up/sideBarPopup"
+import DeleteGroupPopup from "../components/pop-up/deleteGroupPopup"
 
 
 
-export default function Refund(){
+export default function Refund() {
 
-    const location = useLocation();
-    const navigate = useNavigate();
+    const location = useLocation()
+    const navigate = useNavigate()
 
-    const getJwt = userStore((state) => state.token);
-    const getGroup = userStore((state) => state.group);
+    const getJwt = userStore((state) => state.token)
+    const getGroup = userStore((state) => state.group)
 
 
     const send = location.state
@@ -36,6 +41,7 @@ export default function Refund(){
 
     const header : string[] = ["Member", "Loading", "Amount", "Status"]
     useEffect(() => {
+
         if (getJwt == "" || getGroup == false) {
           navigate("/");
         } else {
@@ -50,6 +56,7 @@ export default function Refund(){
                     Authorization: "Bearer " + getJwt,
                 },
             })
+
             .then((response) => response.json())
             .then((data) => {
                 setRefundData({
@@ -66,6 +73,16 @@ export default function Refund(){
 
     return (
         <>
+            <SideBarPopup />
+            <LeaveGroupPopup />
+            <LogoutPopup />
+            <DeleteGroupPopup/>
+
+
+            <div className="mb-5 mx-20 pt-28">
+                <BreadCrumbs page="Expenses"/>   
+            </div> 
+            
             <HeaderExpense refund={refundData}/>
             <RefundTable header={header} obj={refundData}/>
             <Outlet />

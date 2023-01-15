@@ -68,16 +68,20 @@ export default function Navbar() {
           </div>
 
           <div className="flex-none">
+
             {isLogged ? (
               <>{getGroup == true ? <NavbarInGroup /> : <NavbarLog />}</>
             ) : (
               <NavbarNotLog />
             )}
+
           </div>
 
         </div>
       </div>
+
       <Outlet />
+      
     </>
 
   )

@@ -17,7 +17,7 @@ export default function Button({props} : {props : ButtonInterface}) {
         }
     }
 
-    let balise;
+    let balise
 
     if(props.style=="fill" && props.color=="primary"){
         balise = <button className="btn btn-primary font-os text-paragraph text-white normal-case w-full">

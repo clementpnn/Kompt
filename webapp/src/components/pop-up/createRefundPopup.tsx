@@ -26,6 +26,7 @@ export default function InvitePopup() {
               Authorization: "Bearer " + getJwt,
             },
           })
+          
             .then((response) => response.text())
             .then((data) => {
                 console.log(data)
@@ -38,7 +39,7 @@ export default function InvitePopup() {
         text: "Create Refund",
         style: "fill",
         color: "primary",
-        htmlFor: 'create_refund',
+        htmlFor: "create_refund",
         icon: undefined 
     }
     const buttonCreateRefund : ButtonInterface = {
