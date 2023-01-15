@@ -14,7 +14,7 @@ export const userStore = create<User>() (
       setUser: (token) => set((state) => ({token: token})),
       setAdmin: (newRole) => set((state) => ({admin: newRole})),
       setGroup: (inGroup) => set((state) => ({group: inGroup})),
-      deleteUser: () => set((state) => ({token: "", group: false}))
+      deleteUser: () => set((state) => ({token: "", group: false, admin: 0}))
     }),
 
     {name: "global", getStorage: () => localStorage}

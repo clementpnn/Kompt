@@ -1,10 +1,13 @@
 import { ButtonInterface, LabelInterface } from "../../interfaces/interfaces"
+import { userStore } from "../../stores/store"
 import Button from "../button"
 import Label from "../label"
 
 
 
 export default function LeaveGroupPopup() {
+
+    const logout = userStore((state) => state.deleteUser)
 
     const buttonLogout : ButtonInterface = {
         text: 'Log out',
@@ -34,8 +37,9 @@ export default function LeaveGroupPopup() {
                     </div>
 
                     <div className="grid grid-cols-2 gap-5 mt-5">
-                        <Button props={buttonLogout}/>
+                        <div onClick={logout}><Button props={buttonLogout}/></div>
                         <Label props={labelLogoutCancel}/>
+                        
                     </div>
 
                 </label>
