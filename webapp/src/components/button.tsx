@@ -4,7 +4,7 @@ import { ButtonInterface } from '../interfaces/interfaces'
 
 export default function Button({props} : {props : ButtonInterface}) {
 
-    function buttonContent(){
+    function buttonContent() {
         if(props.icon == undefined){
             return props.text
         } else {

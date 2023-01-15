@@ -1,7 +1,7 @@
-import { Outlet, useLocation } from "react-router-dom";
-import HeaderExpense from "../components/headerExpense";
-import Table from "../components/table";
-import { RefundGroup } from "../interfaces/interfaces";
+import { Outlet, useLocation } from "react-router-dom"
+import HeaderExpense from "../components/headerExpense"
+import Table from "../components/table"
+import { RefundGroup } from "../interfaces/interfaces"
 
 
 

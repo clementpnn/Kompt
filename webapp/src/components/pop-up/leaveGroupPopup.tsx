@@ -12,6 +12,7 @@ export default function LeaveGroupPopup() {
         color: 'primary',
         icon: undefined 
     }
+
     const labelLeaveGroupCancel : LabelInterface = {
         text: 'Cancel',
         style: 'outline',
@@ -20,26 +21,27 @@ export default function LeaveGroupPopup() {
         icon: undefined 
     }
 
-    return(
+    return (
+
         <>
             <input type="checkbox" id="leave_group" className="modal-toggle z-10" />
             <label htmlFor="leave_group" className="modal cursor-pointer">
                 <label className="modal-box relative p-5">
+
                     <div className="flex">
                         <p className="font-bold text-2xl flex-1">Are you sure to leave the group ?</p>
-                        <label htmlFor="leave_group" className="text-primary font-bold">
-                        ✕
-                        </label>
+                        <label htmlFor="leave_group" className="text-primary font-bold">✕</label>
                     </div>
-                    <div className="grid grid-cols-2 gap-5 mt-5">
 
+                    <div className="grid grid-cols-2 gap-5 mt-5">
                         <Button props={buttonLeaveGroup}/>
                         <Label props={labelLeaveGroupCancel}/>
-
                     </div>
+
                 </label>
             </label>
         </>
+        
     )
     
 }
