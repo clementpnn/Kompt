@@ -46,7 +46,6 @@ class DashboardController extends BaseController
         $collocation = $collocationManager->getCollocation($user);
 
         $TotalPeople = $collocationManager->countPeople($collocation);
-        $totalToPay = $collocationManager->countToPay($user, $collocation);
         $totalLine = $collocationManager->displayLine($user, $collocation);
         $cName = $collocationManager->name($collocation);
         $cCode = $collocationManager->code($collocation);
@@ -59,7 +58,6 @@ class DashboardController extends BaseController
             "userName" => $uName['name'],
             "isAdmin" => $isAdmin['is_admin'],
             "peoples" => $TotalPeople,
-            "toPay" => $totalToPay['debt'],
             "data" => $totalLine,
         ]);
         die;

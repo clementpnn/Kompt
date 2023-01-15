@@ -136,25 +136,6 @@ class CollocationManager extends BaseManager
     }
 
     /**
-     * @param User $user
-     * @param Collocation $collocation
-     */
-    public function countToPay(User $user, Collocation $collocation)
-    {
-        $query = $this->pdo->prepare("SELECT SUM(CASE WHEN payments.sender_id = :userId THEN -payments.amount ELSE expenses.payers_amount END) as debt
-        FROM expenses
-        LEFT JOIN payments ON expenses.id = payments.expense_id 
-        WHERE expenses.collocation_id = :collocationId
-        
-        ");
-        $query->bindValue('collocationId', $collocation->getId(), \PDO::PARAM_INT);
-        $query->bindValue('userId', $user->getId(), \PDO::PARAM_INT);
-        $query->execute();
-        $totalOwed = $query->fetch(\PDO::FETCH_ASSOC);
-        return $totalOwed;
-    }
-
-    /**
      * @param Collocation $collocation
      * @return int
      */
