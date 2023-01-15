@@ -8,6 +8,8 @@ import LogoutPopup from "../components/pop-up/logoutPopup"
 import { useEffect, useState } from "react"
 import { userStore } from "../stores/store"
 import GroupTable from "../components/table/groupTable"
+import BreadCrumbs from '../components/breadcrumbs'
+import DeleteGroupPopup from '../components/pop-up/deleteGroupPopup'
 
 
 
@@ -58,8 +60,15 @@ export default function Landing() {
             <SideBarPopup />
             <LeaveGroupPopup />
             <LogoutPopup />
+            <DeleteGroupPopup/>
+
+            <div className="mb-5 mx-20 pt-28">
+                <BreadCrumbs page=""/>   
+            </div> 
+            
             <HeaderGroup group={groupData}/>
             <GroupTable header={header} obj={groupData} />
+
             <Outlet />
         </>
     )

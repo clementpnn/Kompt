@@ -8,6 +8,7 @@ export default function BreadCrumbs({page}:{page:string | undefined}) {
         <>
             <div className="text-sm breadcrumbs">
                 <ul>
+                    
                     <li><Link to="/landing">Home</Link></li> 
  
                     { {page} ? (   
@@ -15,6 +16,7 @@ export default function BreadCrumbs({page}:{page:string | undefined}) {
                     ) : ( 
                         <></>
                     )}
+
                 </ul>
             </div>
         </>

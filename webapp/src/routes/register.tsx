@@ -14,7 +14,7 @@ export default function Register() {
 
   useEffect(() => {
     if (getJwt != "" ) {
-      navigate("/");
+      navigate("/")
     } 
   })
 
@@ -35,7 +35,7 @@ export default function Register() {
     })
       .then((data) => data.json())
       .then((response) => {
-        setJwt(response.token);
+        setJwt(response.token)
       })
 
   }

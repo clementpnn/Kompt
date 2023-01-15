@@ -5,9 +5,13 @@ import { userStore } from "../stores/store"
 import { Link, useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 
+
+
 export default function Login() {
+
   const setJwt = userStore((state) => state.setUser)
   const getJwt = userStore((state) => state.token)
+  
   const navigate = useNavigate()
   
   useEffect(() => {

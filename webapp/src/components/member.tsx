@@ -12,11 +12,13 @@ export default function Member({memberName, role}:{memberName:string, role:strin
                 <div className="flex-1">
                     <p>{memberName}</p>
                 </div>
-                <div className="flex">
-                    <div className="mr-2.5">
+                <div className="flex w-1/4">
+                    <div className="mr-2.5 w-1/2">
                         <RolePopup name={memberName} role={role}/>
                     </div>
-                    <KickMemberPopup name={memberName}/>
+                    <div className="w-1/2">
+                        <KickMemberPopup name={memberName}/>
+                    </div>
                 </div>
             </div>
         </>

@@ -22,11 +22,11 @@ export default function Label({props} : {props : LabelInterface}) {
     let balise
 
     if(props.style=="fill" && props.color=="primary") {
-        balise = <label className="btn btn-primary font-os text-paragraph text-white normal-case" htmlFor={props.htmlFor}>
+        balise = <label className="btn btn-primary font-os text-paragraph text-white normal-case w-full" htmlFor={props.htmlFor}>
             {labelContent()}
         </label>
     } else if(props.style=="outline" && props.color=="primary" && props.style=="outline") {
-        balise = <label className="btn btn-outline btn-primary font-os text-paragraph normal-case" htmlFor={props.htmlFor}>
+        balise = <label className="btn btn-outline btn-primary font-os text-paragraph normal-case w-full" htmlFor={props.htmlFor}>
             {labelContent()}
         </label>
     } else if(props.style=="undefined") {

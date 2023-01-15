@@ -70,4 +70,5 @@ export default function Homepage() {
       <Outlet />
     </>
   )
+  
 }

@@ -23,6 +23,7 @@ export default function CreateGroupPopup() {
       headers: {
         Authorization: "Bearer " + getJwt,
       },
+      
     })
       .then((response) => response.json())
       .then((data) => {
