@@ -5,6 +5,8 @@ interface FormValues {
   password: string;
   passwordConfirm: string;
   code: string;
+  title: string;
+  amount: string;
 }
 
 interface ButtonInterface {
@@ -38,5 +40,13 @@ interface User {
   deleteUser: () => void;
 }
 
+interface GroupHeader {
+  code: string;
+  name: string;
+  member: number;
+  user: string;
+  debt: number;
+}
 
-export type { FormValues, ButtonInterface, RefundGroup, LabelInterface, User};
+
+export type { FormValues, ButtonInterface, RefundGroup, LabelInterface, User ,GroupHeader };

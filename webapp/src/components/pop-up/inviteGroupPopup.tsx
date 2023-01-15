@@ -21,7 +21,9 @@ export default function InvitePopup({generateCode}:{generateCode:string}) {
                 <label className="modal-box relative p-5">
                     <div className="flex">
                         <p className="font-bold text-2xl flex-1">Create Group</p>
-                        {/* <a href="" className="text-primary font-bold">✕</a> */}
+                        <label htmlFor="invite" className="text-primary font-bold">
+                        ✕
+                        </label>
                     </div>
                     <p className="py-4">Give this code to your rommates to join the group</p>
                     <div className="flex justify-center	">

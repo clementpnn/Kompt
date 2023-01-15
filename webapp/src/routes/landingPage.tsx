@@ -1,6 +1,5 @@
 import Table from "../components/table"
 import HeaderGroup from '../components/headerGroup'
-import HeaderUser from "../components/headerUser"
 import { Outlet, useNavigate } from "react-router-dom"
 import SideBarPopup from "../components/pop-up/sideBarPopup"
 import { RefundGroup } from "../interfaces/interfaces"
@@ -21,36 +20,13 @@ export default function Landing() {
     const getGroup = userStore((state) => state.group);
     const navigate = useNavigate();
 
-    
 
-    let groupName : string = "";
-    let groupMember : number = 0;
-    let groupUser : string = "";
-    let groupDebt : number | null = null;
-    const [member, setMember] = useState()
+
     useEffect(() => {
         if (getJwt == "" || getGroup == false) {
           navigate("/");
-        } 
-    });
-    fetch("http://localhost:2329/dashboard", {
-        method: "GET",
-        mode: "cors",
-        credentials: "include",
-        headers: {
-          Authorization: "Bearer " + getJwt,
-        },
-      })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data.peoples)
-        // groupName = data.colocatioName.name
-        // groupMember = data.peoples
-        // setMember(data.member)
-        // groupUser = data.userName
-        // groupDebt = data.toPay
-
-      })
+        }
+    })
 
 
     const header: string[] = ["Refund", "Loading", "Amount", "Status", "Date"]
@@ -85,8 +61,7 @@ export default function Landing() {
             <SideBarPopup />
             <LeaveGroupPopup />
             <LogoutPopup />
-            <HeaderGroup groupName={groupName} groupMemberNumber={groupMember}/>
-            <HeaderUser username={"UsernameHere"} debtValue={12.00}/>
+            <HeaderGroup/>
             <Table header={header} tab={tableauRefund} />
             <Outlet />
         </>

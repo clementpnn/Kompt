@@ -54,10 +54,10 @@ class DashboardController extends BaseController
         $isAdmin = $userManager->isadmin($user, $collocation);
 
         $this->renderJSON([
-            "collocatioName" => $cName,
-            "collocatioCode" => $cCode,
-            "userName" => $uName,
-            "isAdmin" => $isAdmin,
+            "collocationName" => $cName['name'],
+            "collocationCode" => $cCode['secret_code'],
+            "userName" => $uName['name'],
+            "isAdmin" => $isAdmin['is_admin'],
             "peoples" => $TotalPeople,
             "toPay" => $totalToPay,
             "data" => $totalLine,
