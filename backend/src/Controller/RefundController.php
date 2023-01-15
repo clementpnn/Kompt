@@ -138,8 +138,8 @@ class RefundController extends BaseController
         $payers = json_decode($refund->getPayers());
         $pay = array();
         foreach ($payers as $payer) {
-            $data = $RefundManager->payersAmount($data['id'], $payer);
-            array_push($pay, $data);
+            $datas = $RefundManager->payersAmount($data['id'], $payer);
+            array_push($pay, $datas);
         }
 
         $this->renderJSON([
