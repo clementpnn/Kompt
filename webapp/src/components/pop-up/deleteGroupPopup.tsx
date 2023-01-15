@@ -19,13 +19,14 @@ export default function DeleteGroupPopup() {
         htmlFor: 'delete_group',
         icon: undefined 
     }
-    const labelDeleteCancel : LabelInterface = {
+    const labelDeleteGroupCancel : LabelInterface = {
         text: 'Cancel',
         style: 'outline',
         color: 'primary',
         htmlFor: 'delete_group',
         icon: undefined 
     }
+
     
 
     return(
@@ -41,7 +42,7 @@ export default function DeleteGroupPopup() {
                     <div className="grid grid-cols-2 gap-5 mt-5">
 
                         <Button props={buttonDelete}/>
-                        <Label props={labelDeleteCancel}/>
+                        <Label props={labelDeleteGroupCancel}/>
 
                     </div>
                 </label>
