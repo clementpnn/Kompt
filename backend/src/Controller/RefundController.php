@@ -152,4 +152,61 @@ class RefundController extends BaseController
         ]);
         die;
     }
+
+    #[Route('/pay', name: "app_pay", methods: ['POST'])]
+    public function pay()
+    {
+        $userManager = new UserManager(new PDOFactory());
+        $collocationManager = new CollocationManager(new PDOFactory());
+        $RefundManager = new RefundManager(new PDOFactory());
+
+        $headers = getallheaders();
+        if (isset($headers['Authorization'])) {
+            $jwt = $collocationManager->bearer($headers);
+        }
+        
+        $token = JWTHelper::decodeJWT($jwt);
+        if (!$token)
+        {
+            $this->renderJSON([
+                "message" => "invalid cred"
+            ]);
+            die;
+        }
+        
+        $object = json_decode(json_encode($token));
+        $email = $object->email;
+        $user = $userManager->getByMail($email);
+
+        if (!$user)
+        {
+            $this->renderJSON([
+                "message" => "no user"
+            ]);
+            die;
+        }
+
+        $data = [
+            'amount' => $_POST['amount'],
+            'id' => $_POST['id'],
+        ];
+
+        $collocation = $collocationManager->getCollocation($user);
+
+        if (!$collocation)
+        {
+            $this->renderJSON([
+                "message" => "no collocation"
+            ]);
+            die;
+        }
+
+        $refund = $RefundManager->expense($data['id']);
+        $RefundManager->insertPay($refund, $user, $data['id'], $data['amount']);
+
+        $this->renderJSON([
+            "message" => "pay créé"
+        ]);
+        die;
+    }
 }

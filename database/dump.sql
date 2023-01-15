@@ -40,7 +40,6 @@ CREATE TABLE IF NOT EXISTS expenses
 CREATE TABLE IF NOT EXISTS payments
 (
   id         INT  PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  date       DATE NOT NULL,
   amount     REAL NOT NULL,
   sender_id  INT  NOT NULL,
   expense_id INT  NOT NULL,

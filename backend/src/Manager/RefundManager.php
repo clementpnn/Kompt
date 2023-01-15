@@ -81,4 +81,19 @@ class RefundManager extends BaseManager
 
         return $data;
     }
+
+    /**
+     * @param Refund $refund
+     * @param User $user
+     * @param Collocation $collocation
+     * @return void
+     */
+    public function insertPay(Refund $refund, User $user, $id, $amount): void
+    {
+        $query = $this->pdo->prepare("INSERT INTO payments (amount, sender_id, expense_id) VALUES (:amount, :senderId, :expenseId)");
+        $query->bindValue("amount", $amount, \PDO::PARAM_INT);
+        $query->bindValue("senderId", $user->getId(), \PDO::PARAM_INT);
+        $query->bindValue("expenseId", $id, \PDO::PARAM_INT);
+        $query->execute();
+    }
 }
