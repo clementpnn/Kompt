@@ -29,6 +29,7 @@ interface RefundGroup {
   title: string;
   paid: number;
   payers_amount: number;
+  date: string;
   members: RefundMember[]
 }
 

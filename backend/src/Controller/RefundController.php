@@ -135,14 +135,6 @@ class RefundController extends BaseController
         $refund = $RefundManager->expense($data['id']);
         $totPay = $RefundManager->totalPay($data['id']);
 
-        if (!$refund)
-        {
-            $this->renderJSON([
-                "message" => "no collocation"
-            ]);
-            die;
-        }
-
         $payers = json_decode($refund->getPayers());
         $pay = array();
         foreach ($payers as $payer) {

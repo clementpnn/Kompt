@@ -24,6 +24,7 @@ export default function Refund(){
         title: "",
         paid: 0,
         payers_amount: 0,
+        date: "",
         members: [
             {name: "",
             paid: 0,
@@ -47,16 +48,17 @@ export default function Refund(){
                     Authorization: "Bearer " + getJwt,
                 },
             })
-            .then((response) => response.text())
+            .then((response) => response.json())
             .then((data) => {
                 console.log(data)
-                // setRefundData({
-                //     id: send.id,
-                //     title: data.title,
-                //     paid: data.totalPays,
-                //     payers_amount: data.amount,
-                //     members: data.pays
-                // })
+                setRefundData({
+                    id: send.id,
+                    title: data.title,
+                    paid: data.totalPays,
+                    payers_amount: data.amount,
+                    date: data.date,
+                    members: data.pays
+                })
             })
         }
     }, [])
