@@ -34,6 +34,7 @@ interface RefundGroup {
 }
 
 interface RefundMember {
+  id: number;
   name: string;
   paid: number;
   payers_amount: number;

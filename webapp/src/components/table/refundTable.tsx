@@ -22,7 +22,7 @@ export default function RefundTable({header, obj} : {header : string[], obj: Ref
                 </thead>
                 <tbody>
 
-                    {tab.map((line : RefundMember, id : any) => {
+                    {tab.map((line : RefundMember) => {
                         if(line.paid == null){
                             line.paid = 0
                         }
@@ -30,12 +30,12 @@ export default function RefundTable({header, obj} : {header : string[], obj: Ref
                             line.payers_amount = 0
                         }
                         return (
-                            <tr key={id}>
+                            <tr key={line.id}>
                                 <td className="font-os text-large ">{line.name}</td>
                                 <td className="w-80 pr-20"><ProgressBar taille={"w-80"} value={line.paid} max={line.payers_amount}/></td>
                                 <td className="font-os text-large text-primary font-bold">{`${line.paid}$ / ${line.payers_amount}$`}</td>
                                 <td>{line.paid==line.payers_amount ? <Badge state="success"/> : <Badge state="processing"/>}</td>
-                                <td><RefundPopup/></td>
+                                <td><RefundPopup id={line.id}/></td>
                             </tr>
                         )
                 })}
