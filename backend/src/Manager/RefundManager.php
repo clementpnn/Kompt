@@ -70,7 +70,7 @@ class RefundManager extends BaseManager
      */
     public function payersAmount(int $id, int $userId)
     {
-        $query = $this->pdo->prepare("SELECT users.name, expenses.payers_amount, expenses.date, SUM(payments.amount) as paid
+        $query = $this->pdo->prepare("SELECT users.name, expenses.payers_amount, SUM(payments.amount) as paid
         FROM expenses
         JOIN users ON expenses.user_id = users.id
         LEFT JOIN payments ON expenses.id = payments.expense_id 
