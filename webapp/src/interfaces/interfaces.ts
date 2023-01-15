@@ -42,7 +42,9 @@ interface RefundMember {
 interface User {
   token: string
   group: boolean
+  admin : number
   setUser: (token: string) => void
+  setAdmin: (newRole: number) => void
   setGroup: (inGroup: boolean) => void
   deleteUser: () => void
 }

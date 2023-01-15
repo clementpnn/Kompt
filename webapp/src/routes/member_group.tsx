@@ -1,14 +1,46 @@
-import { Outlet } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom"
 import BreadCrumbs from "../components/breadcrumbs"
 import Member from "../components/member"
 import SideBarPopup from "../components/pop-up/sideBarPopup"
 import LeaveGroupPopup from "../components/pop-up/leaveGroupPopup"
 import LogoutPopup from "../components/pop-up/logoutPopup"
+import { userStore } from "../stores/store"
+import { useEffect } from "react"
 
 
 
 export default function GroupMember() {
+    const getJwt = userStore((state) => state.token);
+    const getGroup = userStore((state) => state.group);
+    const navigate = useNavigate();
 
+    // const [groupData, setGroupData] = useState<GroupHeader>({
+    //     name: "",
+    //     member: 0,
+    //     admin: 0,
+    //     refund: [],
+    //     code: "",
+    // })
+
+    useEffect(() => {
+        if (getJwt == "" || getGroup == false) {
+          navigate("/");
+        } else {
+            fetch("http://localhost:2329/dashboard", {
+                method: "GET",
+                mode: "cors",
+                credentials: "include",
+                headers: {
+                Authorization: "Bearer " + getJwt,
+                },
+            })
+
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data)   
+            })
+        }
+    })
     return (
         <>
             <SideBarPopup />

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { LabelInterface } from "../../interfaces/interfaces"
 import Label from "../label"
 
@@ -12,6 +13,8 @@ export default function RolePopup({name, role}:{name:string, role:string}) {
         htmlFor: 'member_role',
         icon: undefined 
     }
+
+    const [selectedOption, setSelectedOption] = useState(true)
 
     return (
 
@@ -32,10 +35,10 @@ export default function RolePopup({name, role}:{name:string, role:string}) {
                         <p className="py-2 my-2.5">Actual role : {role}</p>
                     </div>
 
-                    <div className="grid grid-rows-2 gap-5 mt-5">
+                    <form className="grid grid-rows-2 gap-5 mt-5">
 
                         <div className="flex flex-row">
-                            <input type="radio" name="role" className="radio mr-2.5" value="admin" checked />
+                            <input type="radio" name="role" className="radio mr-2.5" value="admin" checked={selectedOption === true} onChange={() => setSelectedOption(false)}/>
                             <p>Admin</p>
                         </div>
 
@@ -44,7 +47,7 @@ export default function RolePopup({name, role}:{name:string, role:string}) {
                             <p>User</p>
                         </div>
                         
-                    </div>
+                    </form>
 
                 </label>
             </label>

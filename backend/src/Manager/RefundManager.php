@@ -64,7 +64,7 @@ class RefundManager extends BaseManager
         return $data;
     }
 
-    public function payersAmount(int $id, int $userId)
+    public function payersAmount($id, $userId)
     {
         $query = $this->pdo->prepare("SELECT users.name, expenses.payers_amount, SUM(payments.amount) as paid
         FROM expenses
