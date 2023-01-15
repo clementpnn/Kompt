@@ -19,6 +19,7 @@ export default function Refund(){
 
     const send = location.state
 
+    console.log(typeof send.id)
     const [refundData, setRefundData] = useState<RefundGroup>({
         id: send.id,
         title: "",
