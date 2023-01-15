@@ -59,7 +59,7 @@ class DashboardController extends BaseController
             "userName" => $uName['name'],
             "isAdmin" => $isAdmin['is_admin'],
             "peoples" => $TotalPeople,
-            "toPay" => $totalToPay,
+            "toPay" => $totalToPay['debt'],
             "data" => $totalLine,
         ]);
         die;
