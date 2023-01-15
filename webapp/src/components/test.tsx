@@ -12,7 +12,7 @@ export default function Test() {
 
   // const [state, setState] = useState<DataGroup>({
   //   dataGroup: {
-  //     name: "",
+  //     name: "",  
   //     member: 0,
   //     user: "",
   //     debt: 0,

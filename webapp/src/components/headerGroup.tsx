@@ -8,10 +8,9 @@ import { GroupHeader } from '../interfaces/interfaces'
 
 export default function HeaderGroup({group}:{group : GroupHeader}) {
 
-    
     return (
-        <>
 
+        <>
             <div className="mx-20 bg-white border-y py-5">  
                 <div className="navbar bg-base-100 p-0">
                     <div className="flex-1">

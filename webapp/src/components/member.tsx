@@ -8,6 +8,7 @@ export default function Member({memberName, role}:{memberName:string, role:strin
     const getAdmin = userStore(state => state.admin)
     console.log(getAdmin)
     return (
+        
         <>
             <div className="mx-20 bg-white flex border-b p-5 items-center hover:bg-grey-100 "> 
                 <div className="flex-1">

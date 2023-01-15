@@ -7,12 +7,12 @@ import Label from '../label'
 
 export default function KickMemberPopup({name}:{name:string}) {
 
-    const { register, handleSubmit } = useForm<FormValues>()
-    const onSubmit: SubmitHandler<FormValues> = data => {
+    // const { register, handleSubmit } = useForm<FormValues>()
+    // const onSubmit: SubmitHandler<FormValues> = data => {
       
-      fetch('http://localhost:5432/#join_group', {
-        method: 'POST',
-        mode: 'cors',
+    //   fetch('http://localhost:5432/#join_group', {
+    //     method: 'POST',
+    //     mode: 'cors',
         // body: new URLSearchParams({
         //   ...data
         // }),
@@ -21,10 +21,10 @@ export default function KickMemberPopup({name}:{name:string}) {
         //   // 'Authorization' : 'Basic amZnbWFpbC5jb206cGFzc3dvcmQ=',
         //   'Content-type':  'application/x-www-form-urlencoded'
         // })
-      })
-        .then(data => data.text())
-        .then(json => console.log(json))
-    }
+    //   })
+    //     .then(data => data.text())
+    //     .then(json => console.log(json))
+    // }
 
     const buttonKick : ButtonInterface = {
         text: 'Kick',

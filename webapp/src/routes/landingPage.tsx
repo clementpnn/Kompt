@@ -15,10 +15,10 @@ import DeleteGroupPopup from '../components/pop-up/deleteGroupPopup'
 
 export default function Landing() {
 
-    const getJwt = userStore((state) => state.token);
-    const getGroup = userStore((state) => state.group);
-    const setAdmin = userStore((state) => state.setAdmin);
-    const navigate = useNavigate();
+    const getJwt = userStore((state) => state.token)
+    const getGroup = userStore((state) => state.group)
+    const setAdmin = userStore((state) => state.setAdmin)
+    const navigate = useNavigate()
 
     const [groupData, setGroupData] = useState<GroupHeader>({
         name: "",

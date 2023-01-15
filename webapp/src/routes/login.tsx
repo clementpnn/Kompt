@@ -11,12 +11,11 @@ export default function Login() {
 
   const setJwt = userStore((state) => state.setUser)
   const getJwt = userStore((state) => state.token)
-  
   const navigate = useNavigate()
   
   useEffect(() => {
     if (getJwt != "" ) {
-      navigate("/");
+      navigate("/")
     }
   })
 

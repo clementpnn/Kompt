@@ -20,8 +20,6 @@ export default function Refund() {
 
     const getJwt = userStore((state) => state.token)
     const getGroup = userStore((state) => state.group)
-
-
     const send = location.state
 
     const [refundData, setRefundData] = useState<RefundGroup>({

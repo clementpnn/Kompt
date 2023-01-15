@@ -11,17 +11,9 @@ import DeleteGroupPopup from "../components/pop-up/deleteGroupPopup"
 
 
 export default function GroupMember() {
-    const getJwt = userStore((state) => state.token);
-    const getGroup = userStore((state) => state.group);
-    const navigate = useNavigate();
-
-    // const [groupData, setGroupData] = useState<GroupHeader>({
-    //     name: "",
-    //     member: 0,
-    //     admin: 0,
-    //     refund: [],
-    //     code: "",
-    // })
+    const getJwt = userStore((state) => state.token)
+    const getGroup = userStore((state) => state.group)
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (getJwt == "" || getGroup == false) {
@@ -42,6 +34,7 @@ export default function GroupMember() {
             })
         }
     })
+    
     return (
         <>
             <SideBarPopup />
@@ -49,7 +42,6 @@ export default function GroupMember() {
             <LogoutPopup />
             <DeleteGroupPopup/>
 
-            
             <div className="mb-5 mx-20 pt-28">
                 <BreadCrumbs page="Members"/>   
             </div> 
