@@ -1,4 +1,4 @@
-import Table from "../components/table"
+
 import HeaderGroup from '../components/headerGroup'
 import { Outlet, useNavigate } from "react-router-dom"
 import SideBarPopup from "../components/pop-up/sideBarPopup"
@@ -7,12 +7,11 @@ import LeaveGroupPopup from "../components/pop-up/leaveGroupPopup"
 import LogoutPopup from "../components/pop-up/logoutPopup"
 import { useEffect, useState } from "react"
 import { userStore } from "../stores/store"
+import GroupTable from "../components/table/groupTable"
 
 
 
 export default function Landing() {
-    var url = document.location.href
-    const endOfUrl = url.substring (url.lastIndexOf( "/" )+1 )
 
     const getJwt = userStore((state) => state.token);
     const getGroup = userStore((state) => state.group);
@@ -21,8 +20,7 @@ export default function Landing() {
     const [groupData, setGroupData] = useState<GroupHeader>({
         name: "",
         member: 0,
-        user: "",
-        debt: 0,
+        admin: 0,
         refund: [],
         code: "",
     })
@@ -45,8 +43,7 @@ export default function Landing() {
                 setGroupData({
                     name: data.collocationName,
                     member: data.peoples,
-                    user: data.userName,
-                    debt: data.toPay,
+                    admin: data.isAdmin,
                     refund: data.data,
                     code: data.collocationCode,
                 })     
@@ -62,7 +59,7 @@ export default function Landing() {
             <LeaveGroupPopup />
             <LogoutPopup />
             <HeaderGroup group={groupData}/>
-            <Table header={header} tab={groupData.refund} />
+            <GroupTable header={header} obj={groupData} />
             <Outlet />
         </>
     )
