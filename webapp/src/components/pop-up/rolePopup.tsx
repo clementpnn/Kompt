@@ -21,7 +21,7 @@ export default function RolePopup({name, role}:{name:string, role:string}) {
                     <label className="modal-box relative p-5">
                         <div className="flex">
                             <p className="font-bold text-2xl flex-1">Member Role</p>
-                            <a href="" className="text-primary font-bold">✕</a>
+                            {/* <a href="" className="text-primary font-bold">✕</a> */}
                         </div>
                         <div>
                             {/* Bug a corriger */}

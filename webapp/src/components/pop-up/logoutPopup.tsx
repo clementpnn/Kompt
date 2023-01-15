@@ -25,7 +25,7 @@ export default function LeaveGroupPopup() {
                 <label className="modal-box relative p-5">
                     <div className="flex">
                         <p className="font-bold text-2xl flex-1">Are you sure to log out ?</p>
-                        <a href="" className="text-primary font-bold">✕</a>
+                        {/* <a href="" className="text-primary font-bold">✕</a> */}
                     </div>
                     <div className="grid grid-cols-2 gap-5 mt-5">
                         <Button props={buttonLogout}/>
