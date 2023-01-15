@@ -1,54 +1,54 @@
 interface FormValues {
-  token(token: any): unknown;
-  name: string;
-  email: string;
-  password: string;
-  passwordConfirm: string;
-  code: string;
-  title: string;
-  amount: number;
+  token(token: any): unknown
+  name: string
+  email: string
+  password: string
+  passwordConfirm: string
+  code: string
+  title: string
+  amount: number
 }
 
 interface ButtonInterface {
-  text: string;
-  style: string;
-  color: string;
-  icon: string | undefined;
+  text: string
+  style: string
+  color: string
+  icon: string | undefined
 }
 
 interface LabelInterface {
-  text: string;
-  style: string;
-  color: string;
-  htmlFor: string;
-  icon: string | undefined;
+  text: string
+  style: string
+  color: string
+  htmlFor: string
+  icon: string | undefined
 }
 
 interface RefundGroup {
-  id: number;
-  title: string;
-  paid: number;
-  payers_amount: number;
-  date?: string;
+  id: number
+  title: string
+  paid: number
+  payers_amount: number
+  date?: string
 }
 
 interface User {
-  token: string;
-  group: boolean;
-  setUser: (token: string) => void;
-  setGroup: (inGroup: boolean) => void;
-  deleteUser: () => void;
+  token: string
+  group: boolean
+  setUser: (token: string) => void
+  setGroup: (inGroup: boolean) => void
+  deleteUser: () => void
 }
 
 interface GroupHeader {
   
-  name: string;
-  member: number;
-  user: string;
-  debt: number;
-  refund: [];
-  code: string;
+  name: string
+  member: number
+  user: string
+  debt: number
+  refund: []
+  code: string
 }
 
 
-export type { FormValues, ButtonInterface, RefundGroup, LabelInterface, User ,GroupHeader };
+export type { FormValues, ButtonInterface, RefundGroup, LabelInterface, User ,GroupHeader }

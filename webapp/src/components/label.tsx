@@ -4,8 +4,9 @@ import { LabelInterface } from '../interfaces/interfaces'
 
 export default function Label({props} : {props : LabelInterface}) {
 
-    function labelContent(){
-        if(props.icon == undefined){
+    function labelContent() {
+
+        if(props.icon == undefined) {
             return props.text
         } else {
             return (
@@ -15,20 +16,21 @@ export default function Label({props} : {props : LabelInterface}) {
                 </>
             )
         }
+
     }
 
-    let balise;
+    let balise
 
-    if(props.style=="fill" && props.color=="primary"){
+    if(props.style=="fill" && props.color=="primary") {
         balise = <label className="btn btn-primary font-os text-paragraph text-white normal-case" htmlFor={props.htmlFor}>
             {labelContent()}
         </label>
-    } else if(props.style=="outline" && props.color=="primary" && props.style=="outline"){
+    } else if(props.style=="outline" && props.color=="primary" && props.style=="outline") {
         balise = <label className="btn btn-outline btn-primary font-os text-paragraph normal-case" htmlFor={props.htmlFor}>
             {labelContent()}
         </label>
-    } else if(props.style=="undefined"){
-        balise = <label className={"btn btn-secondary text-neutral-600 font-os text-paragraph normal-case"} >
+    } else if(props.style=="undefined") {
+        balise = <label className={"btn btn-secondary text-neutral-600 font-os text-paragraph normal-case"}>
             {labelContent()}
         </label>
     }

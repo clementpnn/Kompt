@@ -1,23 +1,26 @@
-import { useForm, SubmitHandler } from "react-hook-form";
-import Button from "../components/button";
-import { FormValues, ButtonInterface } from "../interfaces/interfaces";
-import { userStore } from "../stores/store";
-import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useForm, SubmitHandler } from "react-hook-form"
+import Button from "../components/button"
+import { FormValues, ButtonInterface } from "../interfaces/interfaces"
+import { userStore } from "../stores/store"
+import { Link, useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 
 export default function Register() {
-  const setJwt = userStore((state) => state.setUser);
-  const getJwt = userStore((state) => state.token);
-  const navigate = useNavigate();
+
+  const setJwt = userStore((state) => state.setUser)
+  const getJwt = userStore((state) => state.token)
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (getJwt != "" ) {
       navigate("/");
     } 
-  });
+  })
 
-  const { register, handleSubmit } = useForm<FormValues>();
+  const { register, handleSubmit } = useForm<FormValues>()
   const onSubmit: SubmitHandler<FormValues> = (data : any) => {
+
     fetch("http://localhost:2329/register", {
       method: "POST",
       mode: "cors",
@@ -28,29 +31,32 @@ export default function Register() {
       headers: new Headers({
         "Content-type": "application/x-www-form-urlencoded",
       }),
+
     })
       .then((data) => data.json())
       .then((response) => {
         setJwt(response.token);
-      });
-  };
+      })
 
-  
+  }
 
   const buttonRegister: ButtonInterface = {
     text: "Register",
     style: "fill",
     color: "primary",
     icon: undefined,
-  };
+  }
 
   return (
     <div className="flex justify-center h-screen items-center">
       <div className="w-1/3 h-screen flex flex-col place-content-evenly">
+
         <div className="flex text-center flex-col">
           <p className="font-os text-title3 font-bold"> Welcome to Kompt ! </p>
         </div>
+
         <form className="form-control w-full" onSubmit={handleSubmit(onSubmit)}>
+
           <label className="label label-text font-bold font-os text-large">
             Name
           </label>
@@ -61,6 +67,7 @@ export default function Register() {
             {...register("name")}
             required
           />
+
           <label className="label label-text font-bold font-os text-large">
             Email
           </label>
@@ -71,6 +78,7 @@ export default function Register() {
             {...register("email")}
             required
           />
+
           <label className="label label-text font-bold font-os text-large">
             Password
           </label>
@@ -81,6 +89,7 @@ export default function Register() {
             {...register("password")}
             required
           />
+
           <label className="label label-text font-bold font-os text-large">
             Confirm password
           </label>
@@ -91,15 +100,21 @@ export default function Register() {
             {...register("passwordConfirm")}
             required
           />
+
           <Button props={buttonRegister} />
+
         </form>
+
         <p className="font-os text-large">
           Already have a Kompt account ?{" "}
           <Link to="/login" className="font-os font-bold text-large">
             Sign in
           </Link>
         </p>
+
       </div>
     </div>
-  );
+    
+  )
+
 }

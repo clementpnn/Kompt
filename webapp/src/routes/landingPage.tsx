@@ -10,11 +10,9 @@ import { userStore } from "../stores/store"
 
 
 
-
 export default function Landing() {
-    var url = document.location.href; 
-    const endOfUrl = url.substring (url.lastIndexOf( "/" )+1 );
-
+    var url = document.location.href
+    const endOfUrl = url.substring (url.lastIndexOf( "/" )+1 )
 
     const getJwt = userStore((state) => state.token);
     const getGroup = userStore((state) => state.group);
@@ -28,6 +26,7 @@ export default function Landing() {
         refund: [],
         code: "",
     })
+
     useEffect(() => {
         if (getJwt == "" || getGroup == false) {
           navigate("/");
@@ -40,6 +39,7 @@ export default function Landing() {
                 Authorization: "Bearer " + getJwt,
                 },
             })
+
             .then((response) => response.json())
             .then((data) => {
                 setGroupData({
@@ -49,16 +49,13 @@ export default function Landing() {
                     debt: data.toPay,
                     refund: data.data,
                     code: data.collocationCode,
-                })
-                
+                })     
             })
         }
     })
 
-
     const header: string[] = ["Refund", "Loading", "Amount", "Status", "Date"]
-
-            
+        
     return (
         <>
             <SideBarPopup />
